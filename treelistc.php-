@@ -1,0 +1,145 @@
+<?php
+include "header.php";
+
+$servername = "localhost";
+$username = "gujaratilyrics_v";
+$password = "(75+;z#s_Od&b}}fiC";
+$dbname = "gujaratilyrics_ftree";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+
+$upc = $_GET['upc'];
+$upcn = substr($upc, -1);
+$par = str_replace(",$upcn","",$upc);
+$par = substr($par, -1);
+
+
+
+$rt = true;
+if(!$lg && !$vp){
+	$rt = false;
+}
+if($lg && $lg != $id){
+	$rt = false;
+}
+if($vp && $vp != $id){
+	$rt = false;
+}
+
+// echo isset($vp) ;
+
+if($rt == false):
+?>
+<div class="pt-box">
+	<h3>View Password:</h3>
+
+	<form class="pt-form" id="send-vpass">
+		<div class="pt-input">
+			<i class="icons icon-list"></i>
+			<input type="password" name="vpass" placeholder="Write the view password">
+		</div>
+		<hr />
+		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Submit</button>
+		<input type="hidden" name="id" value="<?=$id?>" />
+	</form>
+</div>
+<?php
+include "footer.php";
+exit;
+endif;
+?>
+<div class="pt-box pt-tree pt-full">
+	<div class="pt-details">
+		<?php if($lg): ?>
+		<a href="details.php" title="Edit Details"><i class="icons icon-pencil"></i></a>
+		<a title="Logout"><i class="icons icon-logout logout"></i></a>
+	<?php endif; ?>
+		<a href="tree.php?id=<?=$id?>" title="Tree URL"><i class="icons icon-list"></i></a>
+	</div>
+<?php
+$query = "SELECT * FROM puerto_families WHERE id = $id";
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+?>
+	<h3><?php echo $row['name']; ?>'s Tree:</h3>
+<?php } } ?>
+	<div class="pt-sm">
+		<div class="" id="div">
+
+<?php
+$queryl = "SELECT * FROM puerto_members WHERE family = $id AND id = $upcn LIMIT 1";
+$resultl = $conn->query($queryl);
+
+if ($resultl->num_rows > 0) {
+    // output data of each row
+    while($rowl = $resultl->fetch_assoc()) {
+?>
+<div class="col-md-4">
+<img src="<?php echo $rowl['photo']; ?>">
+</div>
+
+<div class="col-md-8">
+<a><?php echo $rowl['name']; ?> <?php echo $rowl['lastname']; ?><i class="icons icon-symbol-<?php if ($rowl['lastname'] = 1) { echo 'male';  }else { echo 'female'; } ?>" title="Male"></i></a>
+<p>Born at 26/6/1927 in <b></b></p><p>Dead at 30/7/1997 in <b></b></p>
+<p><a href="" target="_blank" title=""><i class="icons icon-globe"></i></a>
+<a href="mailto:vishwas.halani@gmail.com" title="vishwas.halani@gmail.com"><i class="icons icon-envelope"></i></a><a title=""><i class="icons icon-phone"></i></a>
+<a title=""><i class="icons icon-screen-smartphone"></i></a></p>
+<p><b>Profession:</b> Teacher, GOV Contractor</p>
+<p><b>Company:</b> </p>
+<p><b>Interests:</b> </p>
+<p><b>Bio Notes:</b> </p>
+</div>
+<?php } }?>
+
+
+<?php if ($upc > 0 ) { ?>
+<a href="treelistc.php?id=<?php echo $id; ?>&upc=<?php echo $par; ?>"> Load Parent</a>
+<?php } ?>
+			<ul class="list-group">
+<?php
+$queryl = "SELECT * FROM puerto_members WHERE family = $id AND parent = $upcn ORDER BY type DESC";
+$resultl = mysql_query($queryl);
+while ($rowl = mysql_fetch_array($resultl)) {
+?>
+
+                         <li class="list-group-item">
+
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+   	<div class="media">
+        <a href="treelistc.php?id=<?php echo $id; ?>&upc=<?php echo $upc.','.$rowl['id']; ?>" class="pull-left">
+            <img src="http://funedge.co.id/assets/img/no_profile_pic.jpg" height="130px" class="media-object" alt="Sample Image">
+        </a>
+        <div class="media-body">
+          <h2 class="media-heading"><?php echo $rowl['name']; ?> <?php echo $rowl['lastname']; ?></h2>
+            <h6>Born : <?php echo $rowl['birthyear']; ?></h6>
+          <h6>Profession : <?php echo $rowl['profession']; ?></h6>
+        </div>
+    </div>
+</div>
+</li>
+<?php } ?>
+
+                       </ul>
+		</div>
+	</div>
+	
+
+    
+</div>
+
+</div>
+
+<?php
+include "footer.php";
+?>

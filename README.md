@@ -1,1 +1,1 @@
-My Vegan Tree
+MyVeganTree
