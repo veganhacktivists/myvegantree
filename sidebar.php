@@ -23,8 +23,22 @@
     <?php endif; ?>
 
     <?php if(!$lg): ?>
-      <a href="details.php"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Login</button></a><br>
-      <button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Register</button>
+	
+
+	<form class="pt-form" id="send-login" style="padding: 15px 0px 0px 0px;">
+		<div class="pt-input">
+			<i class="icons icon-user"></i>
+			<input type="text" name="name" placeholder="Username">
+		</div>
+		<div class="pt-input">
+			<i class="icons icon-key"></i>
+			<input type="password" name="pass" placeholder="Password">
+		</div>
+		<hr />
+		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign In</button>
+		<div class="pt-new"><a href="sign-up.php">Register!</a></div>
+	</form>
+
     <?php endif; ?>
   </div>
 
