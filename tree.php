@@ -14,6 +14,7 @@ if($vp && $vp != $id){
 
 // echo isset($vp) ;
 
+/*
 if($rt == false):
 ?>
 <div class="pt-box">
@@ -33,7 +34,7 @@ if($rt == false):
 include_once "footer.php";
 exit;
 endif;
-
+*/
 
 function get_child($cid){
 	global $db, $lg, $id;
