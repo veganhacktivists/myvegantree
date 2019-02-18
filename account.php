@@ -11,6 +11,12 @@ if($lg && $lg != $id){
 if($vp && $vp != $id){
 	$rt = false;
 }
+
+/*
+
+needs code to redirect back to index if not logged in_array
+
+*/
 ?>
 
 
@@ -87,6 +93,34 @@ if($vp && $vp != $id){
 
 
 </style>
+<style>
+.top-container {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+.header {
+  padding: 10px 16px;
+  background: #f95318;
+  color: #fff;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+</style>
+
 
 <div class="wrapper">
 
@@ -95,14 +129,18 @@ if($vp && $vp != $id){
 ?>
 
 <div id="tree">
-
+<div class="header" id="myHeader">
+  <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To customize your tree, go to Customization <u>over here</u>!</h4>
+</div>
 
 <div class="pt-box" style="    width: 574px;
     border-radius: 3px;
-    margin: 50px 0px 0px 50px;    background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
+    margin: 20px 0px 0px 50px;    background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
 
 
-	<form class="pt-form" id="send-detail">
+	<form class="pt-form" id="send-detail" style="background-color: #ffffffba;">
+	
+	<h4>Update your Account Details</h4><br>
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
 			<input type="text" name="name" value="<?=db_get("families", "name", $lg)?>" placeholder="Update your username">
@@ -111,6 +149,15 @@ if($vp && $vp != $id){
 			<i class="icons icon-key"></i>
 			<input type="password" name="pass" placeholder="Update your account password">
 		</div>
+		
+		<div class="pt-input">
+		
+		<select name="public">
+	<option value="public">Make my tree link public</option>
+	<option value="private">Password protect my tree</option>
+	</select>
+	</div>
+	
 		<div class="pt-input">
 			<i class="icons icon-list"></i>
 			<input type="password" name="vpass" placeholder="Update your tree password">
