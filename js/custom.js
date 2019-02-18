@@ -210,9 +210,9 @@ $('#send-login').livequery('submit', function(){
 	$.post("ajax.php?pg=login-send", $(this).serialize(), function(puerto){
 		// console.log(data);
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
-		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 3000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'tree.php?id='+puerto.id); }, 4000);
+			setTimeout(function(){ $(location).attr('href', 'tree.php?id='+puerto.id); }, 3000);
 		}
 	}, 'json');
 
