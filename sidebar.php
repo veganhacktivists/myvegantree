@@ -15,7 +15,7 @@
     <br>
 
     <?php if($lg): ?>
-      <a href="details.php"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
+      <a href="account.php"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
       <button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button><br>
       <button class="button"><i class="fas fa-comments"></i>&nbsp;&nbsp;View requests <h7 style="float:right;">0</h2> </button><br>
       <button class="button"><i class="fas fa-bell"></i>&nbsp;&nbsp;Email settings</button><br>
