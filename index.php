@@ -1,4 +1,10 @@
 <?php
+// make code below redirect to your tree if you try going to index.... broken
+$URL="http://myvegantree.org/Test/tree.php?id=";
+echo "<script type='text/javascript'>document.location.href='{$URL}{$id}';</script>";
+echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL + $id.'">';
+////////////////////////////////////////////
+
 include_once "header.php";
 
 $rt = true;
@@ -44,6 +50,7 @@ function get_child($cid){
 	// grab variable to see if member is "manually added" or if the member is attached via username from other account...
 	$attached = db_get('members', 'attached', $cid);
 
+	$id = db_get('members', 'id', $cid);
 
 	$list = '';
 	$list .= '<li>';
@@ -91,7 +98,6 @@ function get_child($cid){
 }
 
 ?>
-
 
 
 
