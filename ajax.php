@@ -116,7 +116,7 @@ if($pg == 'tree-edit'){
 			if($sql->num_rows){
 					$rs = $sql->fetch_assoc();
 					$_SESSION['login']  = $rs['id'];
-					$alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("You have login succesfully!", "success")];
+					$alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
 			} else {
 				$alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
 			}
@@ -140,7 +140,7 @@ if($pg == 'tree-edit'){
 		 if($sql->num_rows){
 				 $rs = $sql->fetch_assoc();
 				 $_SESSION['vpass']  = $rs['id'];
-				 $alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("You have login succesfully!", "success")];
+				 $alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
 		 } else {
 			 $alert = ["type" => "danger", "msg" => fh_alerts("View password is incorrect!")];
 		 }
