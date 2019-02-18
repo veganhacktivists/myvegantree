@@ -71,15 +71,7 @@ function get_child($cid){
 			$list .= '<div id="Getting there" style="margin-top: 3px;background-color: #da6161;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #da6161;"><i class="fas fa-route"></i>&nbsp;&nbsp;Getting there</i></div>';
 		}
 
-	if($lg == $id){
-
-		$list .= '<span class="pt-options">';
-		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
-		$list .= '<i style="font-size: 20px;margin: 10px;float: right;" class="fas fa-plus-circle tree-add" rel="'.$cid.'" data-toggle="modal" data-target="#myModal"></i>';
-		$list .= '<i style="font-size: 20px;margin: 10px;float: center;" class="fas fa-trash-alt tree-delete" rel="'.$cid.'"></i>';
-		$list .= '</span>';
-
-	}
+	
 
 	$list .= '</a>';
 
