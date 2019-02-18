@@ -16,7 +16,7 @@
 
     <?php if($lg): ?>
       <a href="https://myvegantree.org/Test/account"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
-      <button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button><br>
+      <a href="https://myvegantree.org/Test/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
       <button class="button"><i class="fas fa-comments"></i>&nbsp;&nbsp;View requests <h7 style="float:right;">0</h2> </button><br>
       <button class="button"><i class="fas fa-bell"></i>&nbsp;&nbsp;Email settings</button><br>
       <a title="Logout"><button class="button" style="background-color: #da6161;"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</button></a><br>
