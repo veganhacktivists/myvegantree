@@ -121,14 +121,13 @@ $('.tree-edit').livequery('click', function(){
 		$('[name=mobile]').val(data.mobile);
 		$('[name=birthplace]').val(data.birthplace);
 		$('[name=deathplace]').val(data.deathplace);
-                $('[name=city]').val(data.city);
+		$('[name=city]').val(data.city);
 		$('[name=profession]').val(data.profession);
 		$('[name=company]').val(data.company);
 		$('[name=interests]').val(data.interests);
 		$('[name=bio]').val(data.bio);
 
-		
-		$('[name=status][value='+data.status+']').prop('checked',true);
+		$('[name=status][value="'+data.status+'"]').prop('checked',true);
 		$('[name=death]').prop('checked',(data.death==1?true:false));
 		$('#myModal').modal('show');
 		// console.log(data.death);
