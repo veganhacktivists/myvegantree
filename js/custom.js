@@ -129,6 +129,7 @@ $('.tree-edit').livequery('click', function(){
 
 		$('[name=status][value="'+data.status+'"]').prop('checked',true);
 		$('[name=death]').prop('checked',(data.death==1?true:false));
+		$('#myModalLabel').text('Edit Member');
 		$('#myModal').modal('show');
 		// console.log(data.death);
 	}, 'json');
@@ -142,6 +143,7 @@ $('.tree-add').livequery('click', function(){
 
 	$('#send-details input[type=text], #send-details textarea').val('');
 	$('#send-details [name=parent]').val(id);
+	$('#myModalLabel').text('Add New Member');
 	$('#myModal').modal('show');
 
 
