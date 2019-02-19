@@ -1,8 +1,8 @@
 <?php
 // make code below redirect to your tree if you try going to index.... broken
-$URL="http://myvegantree.org/Test/tree.php?id=";
-echo "<script type='text/javascript'>document.location.href='{$URL}{$id}';</script>";
-echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL + $id.'">';
+//$URL="http://myvegantree.org/Test/tree.php?id=";
+//echo "<script type='text/javascript'>document.location.href='{$URL}{$id}';</script>";
+//echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL + $id.'">';
 ////////////////////////////////////////////
 
 include_once "header.php";
