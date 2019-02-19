@@ -15,8 +15,8 @@
     <br>
 
     <?php if($lg): ?>
-      <a href="https://myvegantree.org/Test/account"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
-      <a href="https://myvegantree.org/Test/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
+      <a href="/Test/account"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
+      <a href="/Test/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
       <button class="button"><i class="fas fa-comments"></i>&nbsp;&nbsp;View requests <h7 style="float:right;">0</h2> </button><br>
       <button class="button"><i class="fas fa-bell"></i>&nbsp;&nbsp;Email settings</button><br>
       <a title="Logout"><button class="button logout" style="background-color: #da6161;"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</button></a><br>
@@ -50,7 +50,7 @@
 
   <div id="donate" style="background-color: white;padding: 21px;border-radius: 10px;margin-bottom: 18px;">
     <center>
-      <a href="https://www.patreon.com/youaretheirvoice" target="_blank"><img src="https://myvegantree.org/images/yatv-logo.png" style="width:70%;"></a>
+      <a href="https://www.patreon.com/youaretheirvoice" target="_blank"><img src="/images/yatv-logo.png" style="width:70%;"></a>
       <br>
       <br>
       This site is an 100% ad-less and free project by <a href="https://youaretheirvoice.com/" target="_blank">YouAreTheirVoice.com</a>, which is funded by its Patreon supporters. Please <a href="https://www.patreon.com/youaretheirvoice" target="_blank">consider a donation</a> if you find our site useful! Thank you <i>so much!</i>

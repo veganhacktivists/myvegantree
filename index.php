@@ -1,6 +1,6 @@
 <?php
 // make code below redirect to your tree if you try going to index.... broken
-//$URL="http://myvegantree.org/Test/tree.php?id=";
+//$URL="/Test/tree.php?id=";
 //echo "<script type='text/javascript'>document.location.href='{$URL}{$id}';</script>";
 //echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL + $id.'">';
 ////////////////////////////////////////////
@@ -78,7 +78,7 @@ function get_child($cid){
 			$list .= '<div id="Getting there" style="margin-top: 3px;background-color: #da6161;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #da6161;"><i class="fas fa-route"></i>&nbsp;&nbsp;Getting there</i></div>';
 		}
 
-	
+
 
 	$list .= '</a>';
 
