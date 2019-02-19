@@ -19,11 +19,11 @@
       <a href="https://myvegantree.org/Test/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
       <button class="button"><i class="fas fa-comments"></i>&nbsp;&nbsp;View requests <h7 style="float:right;">0</h2> </button><br>
       <button class="button"><i class="fas fa-bell"></i>&nbsp;&nbsp;Email settings</button><br>
-      <a title="Logout"><button class="button" style="background-color: #da6161;"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</button></a><br>
+      <a title="Logout"><button class="button logout" style="background-color: #da6161;"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</button></a><br>
     <?php endif; ?>
 
     <?php if(!$lg): ?>
-	
+
 
 	<form class="pt-form" id="send-login" style="padding: 15px 0px 0px 0px;">
 		<div class="pt-input">
