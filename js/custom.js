@@ -228,13 +228,13 @@ $('.inputfile').livequery('change', function(){
 	return false;
 });
 
-
+/*
 $('[rel^=item-]').livequery('click', function(){
 	var id = $(this).attr('rel').replace('item-', '');
 	$.get("ajax.php?pg=tree-edit&id="+id, function(data){
 		console.log(data);
 		var html = '<div class="media">'
-			+'<div class="media-left"><div class="thumb"><img src="'+data.photo+'"></div></div>'
+			+'<div class="media-left"><div class="thumb"><img src="'+data.photo+'" style="width: 150px;height: 150px;object-fit: cover;border-radius: 100%;"></div></div>'
 			+'<div class="media-body">'
 				+'<a>'+data.name+' '+data.lastname+' <i class="icons icon-symbol-'+(data.status == 1?'female" title="Female':'male" title="Male')+'"></i></a>'
 				+'<p>Born at '+data.birthday+'/'+data.birthmonth+'/'+data.birthyear+' in <b>'+data.birthplace+'</b></p>'
@@ -279,7 +279,7 @@ $('[rel^=item-]').livequery('click', function(){
 	return false;
 	console.log(id);
 });
-
+*/
 
 // $("#ZoomIn").click(ZoomIn());
 //
