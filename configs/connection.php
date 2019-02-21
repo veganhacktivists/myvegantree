@@ -13,4 +13,4 @@ if($db->connect_errno){
 }
 
 # Tables' Prefix
-define('prefix', 'puerto_');
+define('prefix', 'mvt_');
