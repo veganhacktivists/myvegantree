@@ -47,14 +47,32 @@ function get_child($cid){
 
 	$list = '';
 	$list .= '<li>';
-	$list .= '<a rel="item-'.$cid.'"'.(db_get('members', 'type', $cid)==2?' class="partner"':'').'>';
+	$list .= '<a href="#">';
 	$list .= '<div class="pt-thumb" style="">';
 
 		if ($attached == 1) {
-		$list .= '<i class="fas fa-user-check" style="font-size: 17px;position: absolute;margin: 10px;color: #da6161;""></i>';
+		$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: #da6161;""></i>';
 		} else {
-		$list .= '<i class="fas fa-user-check" style="font-size: 17px;position: absolute;margin: 10px;color: #dedede;""></i>';
+		$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: #dedede;""></i>';
 		}
+		
+
+	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666;""></i>';
+	/*
+	Semantic popup below, to appear when hovering over the fa-user icon..
+	
+	$list .= '
+	<div class="ui flowing popup top left transition hidden">
+	<div class="ui three column divided center aligned grid">
+    <div class="column">
+	<h4 class="ui header">Private Note</h4>
+	<p>[insert note from database]</p>
+	<div class="ui button">Edit User</div>
+    </div>
+	</div>
+	</div>';
+	*/
+
 
 	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.db_get('members', 'photo', $cid).'" onerror="this.src=\'http://funedge.co.id/assets/img/no_profile_pic.jpg\'" />';
 	$list .= '</div>';
@@ -101,7 +119,6 @@ function get_child($cid){
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script>
-
 
 <script>
 // target elements with the "draggable" class
@@ -161,6 +178,7 @@ interact('.draggable')
  ?>
 
 <div id="tree" class="draggable">
+
 
 <div id="color-key" style="position: absolute;">
 <div class="input-color" style="background-color: #ffffff;padding: 10px;margin: 15px;width: 230px;border: 1px solid #EEE;border-radius: 10px;">
