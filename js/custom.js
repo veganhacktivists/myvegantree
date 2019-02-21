@@ -20,7 +20,7 @@ $('#send-details').livequery('submit', function(){
 					console.log(data);
 					$('#myModal').modal('hide');
 						location.reload();
-					// $(data.alert).hide().insertBefore('.puerto-footer').fadeIn();
+					// $(data.alert).hide().insertBefore('.mvt-footer').fadeIn();
 					// setTimeout(function(){ $('.alert').fadeOut(function(){ $(this).remove() }); }, 3000);
 					// if( data.type == 'success' ){
 					// 	setTimeout( function(){ $(location).attr('href', ( data.url ?  data.url : ( prthref ? prthref : '' ) )); }, 2000);
@@ -48,11 +48,11 @@ $('#send-details').livequery('submit', function(){
 
 $('#send-vpass').livequery('submit', function(){
 	$this = $(this);
-	$.post("ajax.php?pg=vpass-send", $(this).serialize(), function(puerto){
+	$.post("ajax.php?pg=vpass-send", $(this).serialize(), function(mvt){
 		// console.log(data);
-		$this.find('hr').before($(puerto.msg).hide().fadeIn());
+		$this.find('hr').before($(mvt.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
-		if(puerto.type == 'success') {
+		if(mvt.type == 'success') {
 			setTimeout(function(){ location.reload(); }, 4000);
 		}
 	}, 'json');
@@ -79,7 +79,7 @@ $("#add_poll").submit(function(){
 			async: false,
 			success: function (data) {
 					console.log(data);
-					$(data.alert).hide().insertBefore('.puerto-footer').fadeIn();
+					$(data.alert).hide().insertBefore('.mvt-footer').fadeIn();
 					setTimeout(function(){ $('.alert').fadeOut(function(){ $(this).remove() }); }, 3000);
 					if( data.type == 'success' ){
 						setTimeout( function(){ $(location).attr('href', ( data.url ?  data.url : ( prthref ? prthref : '' ) )); }, 2000);
@@ -178,11 +178,11 @@ $('.logout').livequery('click', function(){
 
 $('#send-user').livequery('submit', function(){
 	$this = $(this);
-	$.post("ajax.php?pg=user-send", $(this).serialize(), function(puerto){
+	$.post("ajax.php?pg=user-send", $(this).serialize(), function(mvt){
 		// console.log(data);
-		$this.find('hr').before($(puerto.msg).hide().fadeIn());
+		$this.find('hr').before($(mvt.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
-		if(puerto.type == 'success') {
+		if(mvt.type == 'success') {
 			setTimeout(function(){ $(location).attr('href', 'index.php'); }, 4000);
 		}
 	}, 'json');
@@ -193,11 +193,11 @@ $('#send-user').livequery('submit', function(){
 
 $('#send-detail').livequery('submit', function(){
 	$this = $(this);
-	$.post("ajax.php?pg=detail-send", $(this).serialize(), function(puerto){
-		console.log(puerto);
-		$this.find('hr').before($(puerto.msg).hide().fadeIn());
+	$.post("ajax.php?pg=detail-send", $(this).serialize(), function(mvt){
+		console.log(mvt);
+		$this.find('hr').before($(mvt.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
-		if(puerto.type == 'success') {
+		if(mvt.type == 'success') {
 			setTimeout(function(){ location.reload(); }, 4000);
 		}
 	}, 'json');
@@ -208,12 +208,12 @@ $('#send-detail').livequery('submit', function(){
 
 $('#send-login').livequery('submit', function(){
 	$this = $(this);
-	$.post("ajax.php?pg=login-send", $(this).serialize(), function(puerto){
+	$.post("ajax.php?pg=login-send", $(this).serialize(), function(mvt){
 		// console.log(data);
-		$this.find('hr').before($(puerto.msg).hide().fadeIn());
+		$this.find('hr').before($(mvt.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 3000);
-		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'tree.php?id='+puerto.id); }, 3000);
+		if(mvt.type == 'success') {
+			setTimeout(function(){ $(location).attr('href', 'tree.php?id='+mvt.id); }, 3000);
 		}
 	}, 'json');
 
