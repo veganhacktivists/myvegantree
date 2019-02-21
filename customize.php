@@ -187,7 +187,7 @@ input {
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-envelope"></i>
-			<input type="text" name="email" value="<?=db_get("families", "email", $lg)?>" placeholder="Update your email">
+			<input type="text" name="email" value="<?=db_get("accounts", "email", $lg)?>" placeholder="Update your email">
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Account</button>

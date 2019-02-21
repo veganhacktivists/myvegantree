@@ -3,7 +3,7 @@ include __DIR__.'/configs/config.php';
 
 
 if($pg == 'tree-edit'){
-	$sql = $db->query("SELECT * FROM ".prefix."members WHERE id = '{$id}'");
+	$sql = $db->query("SELECT * FROM ".prefix."bubbles WHERE id = '{$id}'");
 	$rs = $sql->fetch_assoc();
 	echo json_encode($rs);
 } elseif($pg == 'tree-send'){
@@ -36,11 +36,11 @@ if($pg == 'tree-edit'){
 	];
 
 	if($id){
-		db_update('members', $data, $id);
+		db_update('bubbles', $data, $id);
 	} else {
 		$data["parent"] = "'".(int)($_POST['parent'])."'";
-		$data["family"] = "'".db_get('members', 'family', (int)($_POST['parent']))."'";
-		db_insert('members', $data);
+		$data["family"] = "'".db_get('bubbles', 'family', (int)($_POST['parent']))."'";
+		db_insert('bubbles', $data);
 	}
 
 
@@ -64,10 +64,10 @@ if($pg == 'tree-edit'){
 			"date"     => "'".time()."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		];
-		db_insert('families', $data);
-		db_insert('members', [
+		db_insert('accounts', $data);
+		db_insert('bubbles', [
 			"firstname"     => "'".sc_sec($_POST['name'])."'",
-			"family"     => "'".db_get("families", "id", sc_sec($_POST['name']), "name", "&& email = '".sc_sec($_POST['email'])."' && password = '".sc_pass(sc_sec($_POST['pass']))."'")."'",
+			"family"     => "'".db_get("accounts", "id", sc_sec($_POST['name']), "name", "&& email = '".sc_sec($_POST['email'])."' && password = '".sc_pass(sc_sec($_POST['pass']))."'")."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		]);
 		$alert = ["type" => "success", "msg" => fh_alerts("Your family ID has created succesfully!", "success")];
@@ -97,7 +97,7 @@ if($pg == 'tree-edit'){
 		}
 
 
-		db_update('families', $data, $lg);
+		db_update('accounts', $data, $lg);
 		$alert = ["type" => "success", "msg" => fh_alerts("Your family ID has updated succesfully!", "success")];
 	}
 	echo json_encode($alert);
@@ -108,9 +108,9 @@ if($pg == 'tree-edit'){
 	if(empty($name) || empty($pass)){
 		$alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
 	} else {
-		if(db_rows('families WHERE name = "'.$name.'" || email = "'.$name.'"')){
+		if(db_rows('accounts WHERE name = "'.$name.'" || email = "'.$name.'"')){
 			$sql = db_select([
-					'table'  => 'families',
+					'table'  => 'accounts',
 					'where'  => '(name = "'.$name.'" || email = "'.$name.'") && password = "'.sc_pass($pass).'"'
 			]);
 			if($sql->num_rows){
@@ -132,9 +132,9 @@ if($pg == 'tree-edit'){
  if(empty($vpass)){
 	 $alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
  } else {
-	//  if(db_rows('families WHERE vpassword = "'.$name.'" || email = "'.$name.'"')){
+	//  if(db_rows('accounts WHERE vpassword = "'.$name.'" || email = "'.$name.'"')){
 		 $sql = db_select([
-				 'table'  => 'families',
+				 'table'  => 'accounts',
 				 'where'  => 'id = "'.$id.'" && vpassword = "'.sc_pass($vpass).'"'
 		 ]);
 		 if($sql->num_rows){
@@ -150,8 +150,8 @@ if($pg == 'tree-edit'){
  }
  echo json_encode($alert);
 } elseif($pg == "tree-delete"){
-	if($lg == db_get("members", "family", $id))
-		db_delete("members", $id);
+	if($lg == db_get("bubbles", "family", $id))
+		db_delete("bubbles", $id);
 } elseif($pg == "logout"){
 
 		session_unset();

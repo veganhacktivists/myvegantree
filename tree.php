@@ -40,9 +40,9 @@ function get_child($cid){
 	global $db, $lg, $id;
 
 	// grab status of member such as: vegan, vegetarian, plant-based, getting there, custom status, ect...
-	$status = db_get('members', 'status', $cid);
+	$status = db_get('bubbles', 'status', $cid);
 	// grab variable to see if member is "manually added" or if the member is attached via username from other account...
-	$attached = db_get('members', 'attached', $cid);
+	$attached = db_get('bubbles', 'attached', $cid);
 
 
 	$list = '';
@@ -74,9 +74,9 @@ function get_child($cid){
 	*/
 
 
-	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.db_get('members', 'photo', $cid).'" onerror="this.src=\'http://funedge.co.id/assets/img/no_profile_pic.jpg\'" />';
+	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.db_get('bubbles', 'photo', $cid).'" onerror="this.src=\'http://funedge.co.id/assets/img/no_profile_pic.jpg\'" />';
 	$list .= '</div>';
-	$list .= '<strong style="font-size: 20px;">'.db_get('members', 'name', $cid).'</strong>';
+	$list .= '<strong style="font-size: 20px;">'.db_get('bubbles', 'name', $cid).'</strong>';
 
 
 		if ($status == 'Vegan') {
@@ -101,7 +101,7 @@ function get_child($cid){
 
 	$list .= '</a>';
 
-	$sql_m = $db->query("SELECT * FROM ".prefix."members WHERE parent = '{$cid}' && type != 2 ORDER BY birthyear ASC");
+	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE parent = '{$cid}' && type != 2 ORDER BY birthyear ASC");
 	if($sql_m->num_rows){
 		$list .= '<ul>';
 		while($rs_m = $sql_m->fetch_assoc()){
@@ -221,15 +221,15 @@ interact('.draggable')
 
 
 <?php
-$sql = $db->query("SELECT * FROM ".prefix."families WHERE id = '{$id}'");
+$sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '{$id}'");
 
 if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="pt-sm">
 	<div class="tree" id="div" style="padding-top: 20px;">
-	<?php if(db_count("members WHERE family = '{$rs['id']}'")): ?>
+	<?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
 	<ul>
 	<?php
-	$sql_m = $db->query("SELECT * FROM ".prefix."members WHERE family = '{$rs['id']}' && parent = 0 ORDER BY birthyear ASC");
+	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY birthyear ASC");
 	while($rs_m = $sql_m->fetch_assoc()){
 	echo get_child($rs_m['id']);
 	}

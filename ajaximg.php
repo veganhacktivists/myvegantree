@@ -58,11 +58,11 @@ $data = [
 ];
 
 if($id){
-	db_update('members', $data, $id);
+	db_update('bubbles', $data, $id);
 } else {
 	$data["parent"] = "'".(int)($_POST['parent'])."'";
-	$data["family"] = "'".db_get('members', 'family', (int)($_POST['parent']))."'";
-	db_insert('members', $data);
+	$data["family"] = "'".db_get('bubbles', 'family', (int)($_POST['parent']))."'";
+	db_insert('bubbles', $data);
 }
 
 
