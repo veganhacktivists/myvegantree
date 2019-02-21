@@ -82,7 +82,7 @@ function get_child($cid){
 
 	$list .= '</a>';
 
-	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE parent = '{$cid}' && type != 2 ORDER BY birthyear ASC");
+	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE parent = '{$cid}' && type != 2 ORDER BY date ASC");
 	if($sql_m->num_rows){
 		$list .= '<ul>';
 		while($rs_m = $sql_m->fetch_assoc()){
@@ -261,7 +261,7 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
 	<ul>
 	<?php
-	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY birthyear ASC");
+	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
 	while($rs_m = $sql_m->fetch_assoc()){
 	echo get_child($rs_m['id']);
 	}
