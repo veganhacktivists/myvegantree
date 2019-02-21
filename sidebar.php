@@ -36,7 +36,7 @@
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign In</button>
-		<div class="pt-new"><a href="sign-up.php">Register!</a></div>
+		<div class="pt-new"><a href="register">Register!</a></div>
 	</form>
 
     <?php endif; ?>
