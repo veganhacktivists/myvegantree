@@ -66,7 +66,7 @@ if($pg == 'tree-edit'){
 		];
 		db_insert('accounts', $data);
 		db_insert('bubbles', [
-			"firstname"     => "'".sc_sec($_POST['name'])."'",
+			"name"     => "'".sc_sec($_POST['name'])."'",
 			"family"     => "'".db_get("accounts", "id", sc_sec($_POST['name']), "name", "&& email = '".sc_sec($_POST['email'])."' && password = '".sc_pass(sc_sec($_POST['pass']))."'")."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		]);
