@@ -11,27 +11,11 @@ if($pg == 'tree-edit'){
 
 	$data = [
 		"name"  => "'".sc_sec($_POST['name'])."'",
-		"lastname"   => "'".sc_sec($_POST['lastname'])."'",
 		"status"     => "'".sc_sec($_POST['status'])."'",
-		"birthday"   => "'".sc_sec($_POST['birthday'])."'",
-		"birthmonth" => "'".sc_sec($_POST['birthmonth'])."'",
-		"birthyear"  => "'".sc_sec($_POST['birthyear'])."'",
-		"deathday"   => "'".sc_sec($_POST['deathday'])."'",
-		"deathmonth" => "'".sc_sec($_POST['deathmonth'])."'",
-		"deathyear"  => "'".sc_sec($_POST['deathyear'])."'",
 		"type"       => "'".(int)($_POST['type'])."'",
-		"death"      => "'".(int)($_POST['death'])."'",
 		"photo"      => "'".sc_sec($_POST['photo'])."'",
-		"email"      => "'".sc_sec($_POST['email'])."'",
-		"site"       => "'".sc_sec($_POST['site'])."'",
-		"tel"        => "'".sc_sec($_POST['tel'])."'",
-		"mobile"     => "'".sc_sec($_POST['mobile'])."'",
-		"birthplace" => "'".sc_sec($_POST['birthplace'])."'",
-		"deathplace" => "'".sc_sec($_POST['deathplace'])."'",
-                "city"       => "'".sc_sec($_POST['city'])."'",
-		"profession" => "'".sc_sec($_POST['profession'])."'",
-		"company"    => "'".sc_sec($_POST['company'])."'",
-		"interests"  => "'".sc_sec($_POST['interests'])."'",
+		"attached"      => "'".sc_sec($_POST['attached'])."'",
+		"date"      => "'".sc_sec($_POST['date'])."'",
 		"bio"        => "'".sc_sec($_POST['bio'])."'"		
 	];
 
