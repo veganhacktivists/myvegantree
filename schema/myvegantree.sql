@@ -1,5 +1,3 @@
--- Adminer 4.7.1 MySQL dump
-
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
@@ -44,6 +42,4 @@ CREATE TABLE `mvt_requests` (
   `accepted` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`idrequests`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- 2019-02-22 20:36:19
 
