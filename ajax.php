@@ -16,7 +16,7 @@ if($pg == 'tree-edit'){
 		"photo"      => "'".sc_sec($_POST['photo'])."'",
 		"attached"      => "'".sc_sec($_POST['attached'])."'",
 		"date"      => "'".sc_sec($_POST['date'])."'",
-		"bio"        => "'".sc_sec($_POST['bio'])."'"		
+		"bio"        => "'".sc_sec($_POST['bio'])."'"
 	];
 
 	if($id){
@@ -92,21 +92,35 @@ if($pg == 'tree-edit'){
 	if(empty($name) || empty($pass)){
 		$alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
 	} else {
-		if(db_rows('accounts WHERE name = "'.$name.'" || email = "'.$name.'"')){
-			$sql = db_select([
-					'table'  => 'accounts',
-					'where'  => '(name = "'.$name.'" || email = "'.$name.'") && password = "'.sc_pass($pass).'"'
-			]);
-			if($sql->num_rows){
-					$rs = $sql->fetch_assoc();
-					$_SESSION['login']  = $rs['id'];
-					$alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
+		$sql = db_select(['table' => 'accounts', 'where' => '(name = "' . $name . '" || email = "' . $name . '")']);
+		if($sql->num_rows)
+		{
+			$result = $sql->fetch_assoc();
+			$passwordHash = $result["password"];
+			if($pass == sc_dehash($passwordHash, $pass))
+			{
+				$_SESSION['login'] = $result['id'];
+				$alert = ["id" => $result['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
 			} else {
 				$alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
 			}
 		} else {
 			$alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
 		}
+/*
+		if(db_rows('accounts WHERE name = "'.$name.'" || email = "'.$name.'"')){
+			$sql = db_select([
+					'table'  => 'accounts',
+					'column' => 'password',
+					'where'  => '(name = "'.$name.'" || email = "'.$name.'") && password = "'.sc_dehash($pass).'"'
+			]);
+			if($sql->num_rows){
+					$rs = $sql->fetch_assoc();
+					$_SESSION['login']  = $rs['id'];
+					$alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
+
+			}
+		} */
 	}
 	echo json_encode($alert);
 } elseif($pg == 'vpass-send'){
@@ -119,7 +133,7 @@ if($pg == 'tree-edit'){
 	//  if(db_rows('accounts WHERE vpassword = "'.$name.'" || email = "'.$name.'"')){
 		 $sql = db_select([
 				 'table'  => 'accounts',
-				 'where'  => 'id = "'.$id.'" && vpassword = "'.sc_pass($vpass).'"'
+				 'where'  => 'id = "'.$id.'" && vpassword = "'.sc_dehash($vpass).'"'
 		 ]);
 		 if($sql->num_rows){
 				 $rs = $sql->fetch_assoc();

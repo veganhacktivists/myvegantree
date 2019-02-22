@@ -25,7 +25,13 @@ function sc_sec($data, $html = false) {
 }
 
 function sc_pass($data) {
-	return md5(sha1(md5(sha1($data))));
+	//return md5(sha1(md5(sha1($data))));
+  return password_hash($data, PASSWORD_DEFAULT);
+}
+
+function sc_dehash($hash, $data)
+{
+  return password_verify($data, $hash);
 }
 
 
