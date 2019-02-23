@@ -52,6 +52,11 @@ function db_get($table, $field, $id, $where='id', $other=false){
 	global $db;
 	$sql = $db->query("SELECT {$field} FROM ".prefix."{$table} WHERE {$where} = '{$id}' {$other}");
 	if($sql->num_rows > 0){
+		if (preg_match('/,|\*/', $field)) {
+			$res = $sql->fetch_assoc();
+			$sql->close();
+			return $res;
+		}
 		$rs = $sql->fetch_row();
 		$sql->close();
 		return $rs[0];
