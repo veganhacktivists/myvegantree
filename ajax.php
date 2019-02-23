@@ -20,11 +20,19 @@ if($pg == 'tree-edit'){
 	];
 
 	if($id){
-		db_update('bubbles', $data, $id);
+		try {
+			db_update('bubbles', $data, $id);
+		} catch (Exception $e) {
+			error_log( 'Mysql error: '.$e->getMessage() );
+		}
 	} else {
 		$data["parent"] = "'".(int)($_POST['parent'])."'";
 		$data["family"] = "'".db_get('bubbles', 'family', (int)($_POST['parent']))."'";
-		db_insert('bubbles', $data);
+		try {
+			db_insert('bubbles', $data);
+		} catch (Exception $e) {
+			error_log( 'Mysql error: '.$e->getMessage() );
+		}
 	}
 
 
@@ -48,12 +56,16 @@ if($pg == 'tree-edit'){
 			"date"     => "'".time()."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		];
-		db_insert('accounts', $data);
-		db_insert('bubbles', [
-			"name"     => "'".sc_sec($_POST['name'])."'",
-			"family"     => "'".db_get("accounts", "id", sc_sec($_POST['name']), "name", "&& email = '".sc_sec($_POST['email'])."' && password = '".sc_pass(sc_sec($_POST['pass']))."'")."'",
-			"email"    => "'".sc_sec($_POST['email'])."'"
-		]);
+		try {
+			db_insert('accounts', $data);
+			db_insert('bubbles', [
+				"name"     => "'".sc_sec($_POST['name'])."'",
+				"family"     => "'".db_get("accounts", "id", sc_sec($_POST['name']), "name", "&& email = '".sc_sec($_POST['email'])."' && password = '".sc_pass(sc_sec($_POST['pass']))."'")."'",
+				"email"    => "'".sc_sec($_POST['email'])."'"
+			]);
+		} catch (Exception $e) {
+			error_log( 'Mysql error: '.$e->getMessage() );
+		}
 		$alert = ["type" => "success", "msg" => fh_alerts("Your family ID has created succesfully!", "success")];
 	}
 	echo json_encode($alert);
@@ -81,7 +93,11 @@ if($pg == 'tree-edit'){
 		}
 
 
-		db_update('accounts', $data, $lg);
+		try {
+			db_update('accounts', $data, $lg);
+		} catch (Exception $e) {
+			error_log( 'Mysql error: '.$e->getMessage() );
+		}
 		$alert = ["type" => "success", "msg" => fh_alerts("Your family ID has updated succesfully!", "success")];
 	}
 	echo json_encode($alert);

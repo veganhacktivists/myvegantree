@@ -7,23 +7,19 @@ $('#send-details').livequery('submit', function(){
 
 	var formData = new FormData($(this)[0]);
 
-	console.log(formData);
-	console.log($(this).serialize());
-
 	$.ajax({
-			url: 'ajaximg.php',
-			type: 'POST',
-			//dataType: 'json',
-			data: formData,
-			async: false,
-			success: function (data) {
-					console.log(data);
-					$('#myModal').modal('hide');
-						location.reload();
-			},
-			cache: false,
-			contentType: false,
-			processData: false
+		url: 'ajaximg.php',
+		type: 'POST',
+		data: formData,
+		success: function (data) {
+			$('#myModal').modal('hide');
+		},
+		complete: function() {
+			location.reload();
+		},
+		cache: false,
+		contentType: false,
+		processData: false
 	});
 	return false;
 });
@@ -31,7 +27,6 @@ $('#send-details').livequery('submit', function(){
 $('#send-vpass').livequery('submit', function(){
 	$this = $(this);
 	$.post("ajax.php?pg=vpass-send", $(this).serialize(), function(puerto){
-		// console.log(data);
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
 		if(puerto.type == 'success') {
@@ -84,16 +79,15 @@ $('.tree-edit').livequery('click', function(){
 
 	$('#send-details [name=id]').val(id);
 	$.get("ajax.php?pg=tree-edit&id="+id, function(data){
-		console.log(data);
-		
+
 		$('[name=name]').val(data.name);
-		$('[name=status][value="'+data.status+'"]').prop('checked',true);
+		$('[name=status]').val(data.status);
 		$('[name=type]').val(data.type);
 		$('[name=photo]').val(data.photo);
 		$('[name=attached]').val(data.attached);
 		$('[name=date]').val(data.date);
 		$('[name=bio]').val(data.bio);
-		
+
 		$('#myModalLabel').text('Edit Member');
 		$('#myModal').modal('show');
 		// console.log(data.death);
@@ -148,7 +142,6 @@ $('#send-user').livequery('submit', function(){
 
 	return false;
 });
-
 
 $('#send-detail').livequery('submit', function(){
 	$this = $(this);

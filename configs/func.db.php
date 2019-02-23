@@ -5,13 +5,21 @@ function db_insert($table, $array) {
 	$columns = implode(',', array_keys($array));
 	$values  = implode(',', array_values($array));
 	$query   = "INSERT INTO ".prefix."{$table} ({$columns}) VALUES ({$values})";
-	return $db->query($query);
+	$res = $db->query($query);
+	if ( !$res ) {
+		throw new Exception($db->error);
+	}
+	return $res;
 }
 
 function db_delete($table, $id, $id_col = 'id') {
 	Global $db;
 	$query   = "DELETE FROM ".prefix."{$table} WHERE {$id_col} = '{$id}'";
-	return $db->query($query);
+	$res = $db->query($query);
+	if ( !$res ) {
+		throw new Exception($db->error);
+	}
+	return $res;
 }
 
 function db_update($table, $array, $id, $id_col = 'id') {
@@ -25,7 +33,11 @@ function db_update($table, $array, $id, $id_col = 'id') {
 		$update .= "{$columns[$i]} = {$values[$i]}" . ($count == $i+1 ? '' : ', ');
 
 	$query   = "UPDATE ".prefix."{$table} SET {$update} WHERE {$id_col} = '{$id}'";
-	return $db->query($query);
+	$res = $db->query($query);
+	if ( !$res ) {
+		throw new Exception($db->error);
+	}
+	return $res;
 }
 
 function db_count($table, $count = 'id'){
