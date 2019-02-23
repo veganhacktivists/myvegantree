@@ -1,10 +1,4 @@
 <?php
-// make code below redirect to your tree if you try going to index.... broken
-//$URL="/Test/tree.php?id=";
-//echo "<script type='text/javascript'>document.location.href='{$URL}{$id}';</script>";
-//echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL + $id.'">';
-////////////////////////////////////////////
-
 include_once "header.php";
 
 $rt = true;
@@ -17,6 +11,12 @@ if($lg && $lg != $id){
 if($vp && $vp != $id){
 	$rt = false;
 }
+
+// logged in? let's redirect from index to their tree URL
+if($lg) {
+echo '<META HTTP-EQUIV="refresh" content="0;URL=https://myvegantree.org/tree.php?id='.$_SESSION['login'].'">';
+}
+
 
 // echo isset($vp) ;
 
@@ -50,7 +50,6 @@ function get_child($cid){
 	// grab variable to see if member is "manually added" or if the member is attached via username from other account...
 	$attached = db_get('bubbles', 'attached', $cid);
 
-	$id = db_get('bubbles', 'id', $cid);
 
 	$list = '';
 	$list .= '<li>';
@@ -96,6 +95,12 @@ function get_child($cid){
 
 	return $list;
 }
+
+
+
+
+
+
 
 ?>
 
@@ -372,3 +377,5 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>
+
+
