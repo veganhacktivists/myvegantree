@@ -18,12 +18,12 @@
 	
 	<?php
 	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	if ($actual_link != 'https://myvegantree.org/Test/') {
-		 echo '<a href="/Test"><button class="button" style="background-color:#6c97d6;margin-bottom:-7px; margin-top: 15px;"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Go back to your tree!</button></a>';
+	if ($actual_link != 'https://myvegantree.org/') {
+		 echo '<a href="/"><button class="button" style="background-color:#6c97d6;margin-bottom:-7px; margin-top: 15px;"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Go back to your tree!</button></a>';
 	}
 	?>
-      <a href="/Test/account"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
-      <a href="/Test/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
+      <a href="/account"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
+      <a href="/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
       <button class="button"><i class="fas fa-comments"></i>&nbsp;&nbsp;View requests <h7 style="float:right;">0</h2> </button><br>
       <button class="button"><i class="fas fa-bell"></i>&nbsp;&nbsp;Email settings</button><br>
       <a title="Logout"><button class="button logout" style="background-color: #da6161;"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</button></a><br>
