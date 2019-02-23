@@ -51,6 +51,10 @@ function db_count($table, $count = 'id'){
 function db_get($table, $field, $id, $where='id', $other=false){
 	global $db;
 	$sql = $db->query("SELECT {$field} FROM ".prefix."{$table} WHERE {$where} = '{$id}' {$other}");
+	if (!$sql) {
+		throw new Exception($db->error);
+		return;
+	}
 	if($sql->num_rows > 0){
 		if (preg_match('/,|\*/', $field)) {
 			$res = $sql->fetch_assoc();

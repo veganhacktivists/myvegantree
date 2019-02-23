@@ -1,5 +1,6 @@
 <?php
 include_once "header.php";
+include __DIR__.'/configs/func.tree.php';
 
 $rt = true;
 if(!$lg && !$vp){
@@ -42,69 +43,7 @@ exit;
 endif;
 */
 
-function get_child($cid){
-	global $db, $lg, $id;
-
-	// grab status of member such as: vegan, vegetarian, plant-based, getting there, custom status, ect...
-	$status = db_get('bubbles', 'status', $cid);
-	// grab variable to see if member is "manually added" or if the member is attached via username from other account...
-	$attached = db_get('bubbles', 'attached', $cid);
-
-
-	$list = '';
-	$list .= '<li>';
-	$list .= '<a rel="item-'.$cid.'"'.(db_get('bubbles', 'type', $cid)==2?' class="partner"':'').'>';
-	$list .= '<div class="pt-thumb" style="">';
-
-		if ($attached == 1) {
-		$list .= '<i class="fas fa-user-check" style="font-size: 17px;position: absolute;margin: 10px;color: #da6161;""></i>';
-		} else {
-		$list .= '<i class="fas fa-user-check" style="font-size: 17px;position: absolute;margin: 10px;color: #dedede;""></i>';
-		}
-
-	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.db_get('bubbles', 'photo', $cid).'" onerror="this.src=\'http://funedge.co.id/assets/img/no_profile_pic.jpg\'" />';
-	$list .= '</div>';
-	$list .= '<strong style="font-size: 20px;">'.db_get('bubbles', 'name', $cid).'</strong>';
-
-
-		if ($status == 'Vegan') {
-			$list .= '<div id="Vegan" style="margin-top: 3px;background-color: #06bf01;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #06bf01;"><i class="fas fa-leaf"></i>&nbsp;&nbsp;Vegan</i></div>';
-		} else if ($status == 'Vegetarian') {
-			$list .= '<div id="Vegetarian" style="margin-top: 3px;background-color: #8677e0;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #8677e0;"><i class="fab fa-pagelines"></i>&nbsp;&nbsp;Vegetarian</i></div>';
-		} else if ($status == 'Plant-Based') {
-			$list .= '<div id="Plant-Based" style="margin-top: 3px;background-color: #4fc9d4;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #4fc9d4;"><i class="fab fa-envira"></i>&nbsp;&nbsp;Plant-Based</i></div>';
-		} else if ($status == 'Getting there') {
-			$list .= '<div id="Getting there" style="margin-top: 3px;background-color: #da6161;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #da6161;"><i class="fas fa-route"></i>&nbsp;&nbsp;Getting there</i></div>';
-		}
-
-
-
-	$list .= '</a>';
-
-	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE parent = '{$cid}' && type != 2 ORDER BY date ASC");
-	if($sql_m->num_rows){
-		$list .= '<ul>';
-		while($rs_m = $sql_m->fetch_assoc()){
-			$list .= get_child($rs_m['id']);
-		}
-		$list .= '</ul>';
-		$sql_m->close();
-	}
-
-	$list .= '</li>';
-
-	return $list;
-}
-
-
-
-
-
-
-
 ?>
-
-
 
 
 
@@ -268,7 +207,7 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<?php
 	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
 	while($rs_m = $sql_m->fetch_assoc()){
-	echo get_child($rs_m['id']);
+	echo get_child($rs_m['id'], 0);
 	}
 	?>
 	</ul>
@@ -377,5 +316,3 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>
-
-
