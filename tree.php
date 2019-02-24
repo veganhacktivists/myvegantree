@@ -40,7 +40,7 @@ endif;
 
 
 ?>
-
+<!--
 <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script>
 
 <script>
@@ -92,7 +92,7 @@ interact('.draggable')
   window.dragMoveListener = dragMoveListener;
 
   </script>
-
+-->
 
 
 <div class="wrapper" style="background-size: cover; background-image: url(https://i.imgur.com/dEqI5GG.png);">
