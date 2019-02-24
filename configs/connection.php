@@ -4,7 +4,7 @@ $connect = [
 	'HOSTNAME' => 'localhost', // HOST NAME
 	'USERNAME' => 'vrdntf_vtreeuser',      // DATABASE USERNAME
 	'PASSWORD' => '*cpsess8279904246',      // DATABASE PASSWORD
-	'DATABASE' => 'vrdntf_myvegantree_test' // DATABASE NAME
+	'DATABASE' => 'vrdntf_myvegantree' // DATABASE NAME
 ];
 
 $db = new mysqli($connect['HOSTNAME'], $connect['USERNAME'], $connect['PASSWORD'], $connect['DATABASE']);
