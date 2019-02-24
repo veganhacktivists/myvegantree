@@ -45,7 +45,7 @@ function get_child($cid, $attached){
 	}
 
 	// Edit buttons
-	if($lg == $id && !$attached){
+	if($lg && $lg == $id && !$attached){
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: right;" class="fas fa-plus-circle tree-add" rel="'.$cid.'" data-toggle="modal" data-target="#myModal"></i>';
