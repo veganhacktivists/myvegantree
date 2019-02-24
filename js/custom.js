@@ -100,6 +100,8 @@ $('.tree-edit').livequery('click', function(){
 $('.tree-add').livequery('click', function(){
 	var id = $(this).attr('rel');
 
+	$('#send-details').trigger('reset');
+	$('#send-details [name=id]').val('');
 	$('#send-details input[type=text], #send-details textarea').val('');
 	$('#send-details [name=parent]').val(id);
 	$('#myModalLabel').text('Add New Member');
