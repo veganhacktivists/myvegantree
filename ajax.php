@@ -53,15 +53,14 @@ if($pg == 'tree-edit'){
 			"name"     => "'".sc_sec($_POST['name'])."'",
 			"password" => "'".sc_pass(sc_sec($_POST['pass']))."'",
 			"vpassword" => "'".sc_pass(sc_sec($_POST['vpass']))."'",
-			"date"     => "'".time()."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		];
 		try {
-			db_insert('accounts', $data);
+			$account_id = db_insert('accounts', $data);
 			db_insert('bubbles', [
-				"name"     => "'".sc_sec($_POST['name'])."'",
-				"family"     => "'".db_get("accounts", "id", sc_sec($_POST['name']), "name", "&& email = '".sc_sec($_POST['email'])."' && password = '".sc_pass(sc_sec($_POST['pass']))."'")."'",
-				"email"    => "'".sc_sec($_POST['email'])."'"
+				'account_id' => $account_id,
+				'name'       => "'".sc_sec($_POST['name'])."'",
+				'family'     => $account_id
 			]);
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );

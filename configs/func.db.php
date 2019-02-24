@@ -9,7 +9,7 @@ function db_insert($table, $array) {
 	if ( !$res ) {
 		throw new Exception($db->error);
 	}
-	return $res;
+	return $db->insert_id;
 }
 
 function db_delete($table, $id, $id_col = 'id') {
