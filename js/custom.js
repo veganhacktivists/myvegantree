@@ -183,3 +183,10 @@ $('.inputfile').livequery('change', function(){
 });
 
 });
+
+$('.trash-alert')
+  .popup({
+	on: 'click',
+	inline: true,
+	position: 'top left',
+});
