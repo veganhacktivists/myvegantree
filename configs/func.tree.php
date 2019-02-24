@@ -53,7 +53,7 @@ function get_child($cid, $attached){
 		$list .= '<div class="ui flowing popup transition hidden">
 					  <div class="ui divided center aligned grid" style="margin: 0px 100px 0px -7px;padding: 0px 10px 2px 10px;">
 					  	  <div class="row" style="padding: 10px 0px 0px 0px;">
-				  	  		<h4 class="ui header" style="font-size: 15px;">Are you sure you want to delete '.$bubble['name'].'?</h4>
+				  	  		<h4 class="ui header" style="font-size: 15px;">Are you sure you want to delete '.$bubble['name'].'\'s bubble?</h4>
 					  	  </div>
 					      <div class="row">
 					        <div class="ui red button tree-delete" rel="'.$cid.'" style="font-size: 15px;">Delete</div>
