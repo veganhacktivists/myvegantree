@@ -7,7 +7,7 @@ function get_child($cid, $attached){
 
 	$list = '';
 	$list .= '<li>';
-	$list .= '<a href="#">';
+	$list .= '<a>';
 	$list .= '<div class="pt-thumb" style="">';
 
 	$u_color = $attached ? '#da6161' : '#dedede';
