@@ -23,7 +23,7 @@ include_once __DIR__.'/configs/config.php';
 	
 	<!-- Semantic Installation -->
 	<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="semantic/semantic.min.js"></script>
 	
 	<!-- 

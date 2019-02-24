@@ -90,6 +90,7 @@ interact('.draggable')
 
   // this is used later in the resizing and gesture demos
   window.dragMoveListener = dragMoveListener;
+
   </script>
 
 
@@ -216,7 +217,7 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	</label>
 	<div class="prt-group">
 	<input type="file" name="poll_file" id="file" class="inputfile" />
-	<label for="file"><i class="fa fa-upload"></i> Choose an profile image from your computer</label>
+	<label for="file"><i class="fa fa-upload"></i> Choose a profile image from your computer</label>
 	</div>
 
 	</div>
@@ -259,7 +260,6 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>

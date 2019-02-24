@@ -49,9 +49,24 @@ function get_child($cid, $attached){
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: right;" class="fas fa-plus-circle tree-add" rel="'.$cid.'" data-toggle="modal" data-target="#myModal"></i>';
-		$list .= '<i style="font-size: 20px;margin: 10px;float: center;" class="fas fa-trash-alt tree-delete" rel="'.$cid.'"></i>';
+		$list .= '<i style="font-size: 20px;margin: 10px;float: center;" class="fas fa-trash-alt trash-alert icon"></i>';
+		$list .= '<div class="ui flowing popup transition hidden">
+					  <div class="ui divided center aligned grid">
+					  	  <div class="row">
+				  	  		<h4 class="ui header">Are you sure you want to delete '.$bubble['name'].'?</h4>
+					  	  </div>
+					      <div class="row">
+					        <div class="ui red button tree-delete" rel="'.$cid.'">Delete</div>
+					  	  </div>
+					  </div>
+					</div>';
 		$list .= '</span>';
 	}
+
+
+	// tree-delete
+	// rel="'.$cid.'"
+
 
 	$list .= '</a>';
 	$get_children = "
