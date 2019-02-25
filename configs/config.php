@@ -16,5 +16,14 @@ $pg = (isset($_GET['pg'])) ? sc_sec($_GET['pg']) : '';
 $lg = (isset($_SESSION['login'])) ? (int)($_SESSION['login']) : 0;
 $vp = (isset($_SESSION['vpass'])) ? (int)($_SESSION['vpass']) : 0;
 
+// the code below ensures that if user is not logged in, they can't access any other page and get redirected to index
+$current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+if ($current_url != 'https://myvegantree.org/' && $current_url != 'https://myvegantree.org/register') {
+if (!$lg) {
+// redirect if user is not logged in
+header('Location: /');
+}
+}
 
 // echo $lg;

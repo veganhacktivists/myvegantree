@@ -3,17 +3,13 @@ include_once "header.php";
 
 $rt = true;
 if(!$lg && !$vp){
-    $rt = false;
+	$rt = false;
 }
 if($lg && $lg != $id){
-    $rt = false;
+	$rt = false;
 }
 if($vp && $vp != $id){
-    $rt = false;
-}
-if (!$lg) {
-    // redirect if user is not logged in
-    header('Location: /');
+	$rt = false;
 }
 ?>
 
@@ -45,11 +41,11 @@ th, td {
     <?php include_once "sidebar.php"; ?>
 
     <div id="tree">
-        <div class="pt-box" style="width: 574px; border-radius: 3px; margin: 20px 0px 0px 50px; background: #fff0; box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
-            <h4>Tree Requests</h4><br>
+        <div class="pt-box" style="width: 574px; border-radius: 3px; margin: 20px 0px 0px 50px; background: #fff0; box-shadow: 0 0px 10px rgba(0, 0, 0, 0.13);">
+           
 
             <form class="pt-form" style="background-color: #ffffffba;">
-
+ <h4>Tree Requests</h4><br>
                 <?php
 
                 $get_requests = "

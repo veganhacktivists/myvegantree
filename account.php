@@ -11,21 +11,7 @@ if($lg && $lg != $id){
 if($vp && $vp != $id){
 	$rt = false;
 }
-
-if (!$lg) {
-	// redirect if user is not logged in
-	header('Location: /');
-}
-
 ?>
-
-
-
-
-
-
-
-
 
 <style>
 .wrapper {

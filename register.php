@@ -11,12 +11,6 @@ if($lg && $lg != $id){
 if($vp && $vp != $id){
 	$rt = false;
 }
-
-/*
-
-needs code to redirect back to index if not logged in_array
-
-*/
 ?>
 
 
