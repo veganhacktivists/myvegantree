@@ -8,6 +8,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 DROP TABLE IF EXISTS `mvt_accounts`;
 CREATE TABLE `mvt_accounts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
