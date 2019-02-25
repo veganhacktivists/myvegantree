@@ -5,7 +5,7 @@
 
   <div id="account" style="background-color: white;padding: 15px 35px 15px 30px;border-radius: 10px;margin-bottom: 18px;">
     <?php if($lg): ?>
-      <span class="title" style="font-size:20px;">Welcome, <?php $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '{$id}'"); if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?><?=$rs['name']?>!<?php } ?></span>
+      <span class="title" style="font-size:20px;">Welcome, <?php $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '".$_SESSION['login']."'"); if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?><?=$rs['name']?>!<?php } ?></span>
     <?php endif; ?>
 
     <?php if(!$lg): ?>
