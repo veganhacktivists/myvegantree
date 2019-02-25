@@ -158,7 +158,6 @@ endif;
 </div>
 <div id="color-key" style="position: absolute;">
 <div class="input-color" style="background-color: #ffffff;padding: 10px;margin: 15px;width: 230px;border: 1px solid #EEE;border-radius: 10px;">
-<a href="" style="float:right;color: #da6161;"><i>edit</i></a>
 <table style="margin: 5px;">
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #06bf01;color:#fff;"><i class="fas fa-leaf fa-fw"></i></div></td>
