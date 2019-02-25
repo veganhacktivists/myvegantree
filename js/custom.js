@@ -167,7 +167,7 @@ $('#send-login').livequery('submit', function(){
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 3000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'tree.php?id='+puerto.id); }, 3000);
+			setTimeout(function(){ $(location).attr('href', 'impact.php?id='+puerto.id); }, 3000);
 		}
 	}, 'json');
 
