@@ -156,7 +156,7 @@ endif;
 <div class="header" id="myHeader">
   <h4><i class="fas fa-flag"></i>&nbsp;&nbsp;This is an example tree! Register or login to create or see yours!</h4>
 </div>
-<div id="color-key" style="position: absolute;">
+<div id="color-key">
 <div class="input-color" style="background-color: #ffffff;padding: 10px;margin: 15px;width: 230px;border: 1px solid #EEE;border-radius: 10px;">
 <table style="margin: 5px;">
   <tr>
@@ -200,7 +200,7 @@ $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '4'");
 
 if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="pt-sm">
-	<div class="tree" id="div" style="padding-top: 20px;">
+	<div class="tree">
 	<?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
 	<ul>
 	<?php

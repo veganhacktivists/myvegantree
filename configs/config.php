@@ -22,7 +22,7 @@ $current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 if ($current_url != 'https://myvegantree.org/' && $current_url != 'https://myvegantree.org/register') {
 if (!$lg) {
 // redirect if user is not logged in
-header('Location: /');
+// header('Location: /');
 }
 }
 

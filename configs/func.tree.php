@@ -65,7 +65,7 @@ function get_child($cid, $attached){
 
 
 
-	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.$bubble['photo'].'" onerror="this.src=\''.$selectedBg.'\'" />';
+	$list .= '<img draggable="false" style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.$bubble['photo'].'" onerror="this.src=\''.$selectedBg.'\'" />';
 	$list .= '</div>';
 	$list .= '<strong style="font-size: 20px;">'.$bubble['name'].'</strong>';
 

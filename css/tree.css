@@ -53,6 +53,38 @@ sidebar::-webkit-scrollbar-button {display:none}
 	margin-left: 400px;
 }
 
+#color-key {
+	position:absolute;
+	z-index: 3;
+}
+
+.tree {
+	position: fixed;
+    top: 60px;
+    bottom: 0;
+    right: 0;
+	left: 400px;
+	overflow: scroll;
+	cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+	user-select: none;
+}
+
+.tree .pt-thumb::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
 }
 
 .input-color {
@@ -85,8 +117,6 @@ sidebar::-webkit-scrollbar-button {display:none}
 	margin: 4px 2px;
 	cursor: pointer;
 }
-
-
 
 .tree ul {
 	padding-top: 20px;
