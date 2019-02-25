@@ -135,7 +135,11 @@ if($vp && $vp != $id){
 	<form class="pt-form" id="send-user">
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
-			<input type="text" name="name" placeholder="Write your family ID">
+			<input type="text" name="username" placeholder="Enter a username">
+		</div>
+		<div class="pt-input">
+			<i class="icons icon-user"></i>
+			<input type="text" name="name" placeholder="Enter your first name">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>

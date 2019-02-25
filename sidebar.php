@@ -38,7 +38,7 @@
 	<form class="pt-form" id="send-login" style="padding: 15px 0px 0px 0px;">
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
-			<input type="text" name="name" placeholder="Username">
+			<input type="text" name="username" placeholder="Username">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>

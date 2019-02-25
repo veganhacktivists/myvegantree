@@ -38,17 +38,19 @@ if($pg == 'tree-edit'){
 
 	// echo $_POST['death'].'/'.$_POST['gender'].'/'.$_POST['type'];
 } elseif($pg == 'user-send'){
+	$name  = sc_sec($_POST['username']);
 	$name  = sc_sec($_POST['name']);
 	$pass  = sc_sec($_POST['pass']);
 	$vpass = sc_sec($_POST['vpass']);
 	$email = sc_sec($_POST['email']);
 
-	if(empty($name) || empty($pass) || empty($vpass) || empty($email)){
+	if(empty($username) || empty($name) ||empty($pass) || empty($vpass) || empty($email)){
 		$alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
 	} elseif(!check_email($email)) {
 		$alert = ["type" => "danger", "msg" => fh_alerts("You need a correct email address!")];
 	} else {
 		$data = [
+			"username"     => "'".sc_sec($_POST['username'])."'",
 			"name"     => "'".sc_sec($_POST['name'])."'",
 			"password" => "'".sc_pass(sc_sec($_POST['pass']))."'",
 			"vpassword" => "'".sc_pass(sc_sec($_POST['vpass']))."'",
@@ -68,17 +70,19 @@ if($pg == 'tree-edit'){
 	}
 	echo json_encode($alert);
 } elseif($pg == 'detail-send'){
+	$username  = sc_sec($_POST['username']);
 	$name  = sc_sec($_POST['name']);
 	$pass  = sc_sec($_POST['pass']);
 	$vpass = sc_sec($_POST['vpass']);
 	$email = sc_sec($_POST['email']);
 
-	if(empty($name) || empty($email)){
-		$alert = ["type" => "danger", "msg" => fh_alerts("Name and Email are required!")];
+	if(empty($username) || empty($name) || empty($email)){
+		$alert = ["type" => "danger", "msg" => fh_alerts("Username, Name, and Email are required!")];
 	} elseif(!check_email($email)) {
 		$alert = ["type" => "danger", "msg" => fh_alerts("You need a correct email address!")];
 	} else {
 		$data = [
+			"username"     => "'".sc_sec($_POST['username'])."'",
 			"name"     => "'".sc_sec($_POST['name'])."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		];
@@ -100,13 +104,13 @@ if($pg == 'tree-edit'){
 	}
 	echo json_encode($alert);
 } elseif($pg == 'login-send'){
-	$name  = sc_sec($_POST['name']);
+	$username  = sc_sec($_POST['username']);
 	$pass  = sc_sec($_POST['pass']);
 
-	if(empty($name) || empty($pass)){
+	if(empty($username) || empty($pass)){
 		$alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
 	} else {
-		$sql = db_select(['table' => 'accounts', 'where' => '(name = "' . $name . '" || email = "' . $name . '")']);
+		$sql = db_select(['table' => 'accounts', 'where' => '(username = "' . $username . '" || email = "' . $username . '")']);
 		if($sql->num_rows)
 		{
 			$result = $sql->fetch_assoc();
@@ -121,20 +125,6 @@ if($pg == 'tree-edit'){
 		} else {
 			$alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
 		}
-/*
-		if(db_rows('accounts WHERE name = "'.$name.'" || email = "'.$name.'"')){
-			$sql = db_select([
-					'table'  => 'accounts',
-					'column' => 'password',
-					'where'  => '(name = "'.$name.'" || email = "'.$name.'") && password = "'.sc_dehash($pass).'"'
-			]);
-			if($sql->num_rows){
-					$rs = $sql->fetch_assoc();
-					$_SESSION['login']  = $rs['id'];
-					$alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
-
-			}
-		} */
 	}
 	echo json_encode($alert);
 } elseif($pg == 'vpass-send'){
