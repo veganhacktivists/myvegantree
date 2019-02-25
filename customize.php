@@ -138,15 +138,19 @@ input {
 
 
 
-
+<h5>Labels</h5>
 <table>
-  <tr>
-    <td><input type="text" name="label" placeholder="Label"></td>
-    <td><input type="color" id="head" name="head" value="#e66465"></td>
-    <td>Pick Icon</td>
-  </tr>
+<?php
+		$sql = db_select(['table' => 'labels', 'where' => '(account_id IS NULL || account_id = ' . $_SESSION['login'] . ')']);
+		while( $label = $sql->fetch_assoc() ) {
+            $disabled = $label ?>
+    <tr>
+        <td><input type="text" name="label" placeholder="Label" value="<?=$label[ 'name' ]?>"></td>
+        <td><input type="color" id="head" name="head" value="<?=$label[ 'color' ]?>" disabled></td>
+        <td><i class="<?=$label[ 'icon' ]?> fa-fw"></i></td><?php } ?>
+    </tr>
 </table>
-
+<br/>
 
 
 
