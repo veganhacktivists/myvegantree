@@ -35,7 +35,26 @@ function get_child($cid, $attached){
 	</div>';
 	*/
 
-	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.$bubble['photo'].'" onerror="this.src=\'https://myvegantree.org/images/no-profile-picture.png\'" />';
+
+	// this code randomize default profile pictures on load with a bunch of different faces
+	$default_profile_pictures = array(
+			'https://myvegantree.org/images/default-profile-pics/1.png',
+            'https://myvegantree.org/images/default-profile-pics/2.png',
+			'https://myvegantree.org/images/default-profile-pics/3.png',
+			'https://myvegantree.org/images/default-profile-pics/4.png',
+			'https://myvegantree.org/images/default-profile-pics/5.png',
+			'https://myvegantree.org/images/default-profile-pics/6.png',
+			'https://myvegantree.org/images/default-profile-pics/7.png',
+			'https://myvegantree.org/images/default-profile-pics/8.png',
+            'https://myvegantree.org/images/default-profile-pics/9.png'
+        );
+
+	$i = rand(0, count($default_profile_pictures)-1); // generate random number size of the array
+	$selectedBg = "$default_profile_pictures[$i]"; // set variable equal to which random filename was chosen
+
+
+
+	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.$bubble['photo'].'" onerror="this.src=\''.$selectedBg.'\'" />';
 	$list .= '</div>';
 	$list .= '<strong style="font-size: 20px;">'.$bubble['name'].'</strong>';
 
