@@ -10,7 +10,13 @@ function get_child($cid, $attached){
 	$list .= '<a>';
 	$list .= '<div class="pt-thumb" style="">';
 
-	$u_color = $attached ? '#da6161' : '#dedede';
+	$u_color = '#dedede';
+	if ($id == $bubble['account_id'])  {
+	$u_color = '#da6161'; }
+	elseif ($attached) {
+    $u_color = '#da6161';
+	}
+
 	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';""></i>';
 	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666;""></i>';
 
