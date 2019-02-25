@@ -115,7 +115,7 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 ?>
 
-<div id="color-key" style="position: absolute;">
+<div id="color-key">
 <div class="input-color" style="background-color: #ffffff;padding: 10px;margin: 15px;width: 230px;border: 1px solid #EEE;border-radius: 10px;">
 <a href="customize" style="float:right;color: #da6161;"><i>edit</i></a>
 <table style="margin: 5px;">
@@ -159,8 +159,7 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '{$id}'");
 
 if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
-	<div class="pt-sm">
-	<div class="tree" id="div" style="padding-top: 20px;">
+	<div class="tree">
 	<?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
 	<ul>
 	<?php
@@ -171,7 +170,6 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	?>
 	</ul>
 	<?php endif; ?>
-	</div>
 	</div>
 	<?php } ?>
 </div>

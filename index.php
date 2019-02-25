@@ -15,7 +15,7 @@ if($vp && $vp != $id){
 
 // logged in? let's redirect from index to their tree URL
 if($lg) {
-echo '<META HTTP-EQUIV="refresh" content="0;URL=https://myvegantree.org/impact.php?id='.$_SESSION['login'].'">';
+echo '<META HTTP-EQUIV="refresh" content="0;URL=/impact.php?id='.$_SESSION['login'].'">';
 }
 
 
@@ -86,12 +86,6 @@ endif;
 
 
 #sidebar {  }
-#tree { background-color: white;
-
-    background-size: cover;
-    background-image: url(https://i.imgur.com/dEqI5GG.png);
-	    height: 100vh;
-		}
 
 @media screen and (min-width: 600px) {
    .wrapper {
