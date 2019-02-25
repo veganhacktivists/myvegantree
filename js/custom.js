@@ -230,9 +230,9 @@ $('#request_send_btn').livequery('click', function(){
 	return false;
 });
 
-// $('.trash-alert')
-//   .popup({
-// 	on: 'click',
-// 	inline: true,
-// 	position: 'top left',
-// });
+$('.trash-alert')
+.popup({
+on: 'click',
+inline: true,
+position: 'top left',
+});
