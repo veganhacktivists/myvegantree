@@ -1,3 +1,14 @@
+<style>
+.popover-title {
+    padding: 8px 14px!important;
+    margin: 0!important;
+    font-size: 14px!important;
+    background-color: #f7f7f7!important;
+    border-bottom: 1px solid #ebebeb!important;
+    border-radius: 5px 5px 0 0!important;
+}
+</style>
+
 <?php
 
 function get_child($cid, $attached){
@@ -71,6 +82,7 @@ function get_child($cid, $attached){
 
 	// Edit buttons
 	if($lg && $lg == $id && !$attached){
+		$button = "<button class='btn btn-danger tree-delete center-block' rel='".$cid."'>Delete</button>";
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: right;" class="fas fa-plus-circle tree-add" rel="'.$cid.'" data-toggle="modal" data-target="#myModal"></i>';
@@ -80,19 +92,8 @@ function get_child($cid, $attached){
 		// do not allow deletion of this bubble (main account bubble)
 		$list .= '<i style="font-size: 20px;margin: 10px;float: center;color: #e7e8ea;" class="fas fa-trash-alt"></i>';
 		} else {
-		$list .= '<i style="font-size: 20px;margin: 10px;float: center;" class="fas fa-trash-alt trash-alert icon"></i>';
+		$list .= '<i style="font-size: 20px;margin: 10px;float: center;" class="fas fa-trash-alt trash-alert icon" data-placement="top" data-toggle="popover" title="Are you sure?" data-content="<p>Deleting the user '.$bubble['name'].' cannot be reversed!</p>'.$button.'"></i>';
 		}
-
-		$list .= '<div class="ui flowing popup transition hidden">
-					  <div class="ui divided center aligned grid" style="margin: 0px 100px 0px -7px;padding: 0px 10px 2px 10px;">
-					  	  <div class="row" style="padding: 10px 0px 0px 0px;">
-				  	  		<h4 class="ui header" style="font-size: 15px;">Are you sure you want to delete '.$bubble['name'].'\'s bubble?</h4>
-					  	  </div>
-					      <div class="row">
-					        <div class="ui red button tree-delete" rel="'.$cid.'" style="font-size: 15px;">Delete</div>
-					  	  </div>
-					  </div>
-					</div>';
 		$list .= '</span>';
 	}
 

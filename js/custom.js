@@ -230,9 +230,13 @@ $('#request_send_btn').livequery('click', function(){
 	return false;
 });
 
-$('.trash-alert')
-.popup({
-on: 'click',
-inline: true,
-position: 'top left',
+$(function () {
+  $('[data-toggle="popover"]').popover({ html : true });
+});
+
+$('body').on('click', function (e) {
+    if ($(e.target).data('toggle') !== 'popover'
+        && $(e.target).parents('.popover.in').length === 0) { 
+        $('[data-toggle="popover"]').popover('hide');
+    }
 });
