@@ -129,7 +129,11 @@ if($vp && $vp != $id){
 	<h4>Update your Account Details</h4><br>
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
-			<input type="text" name="name" value="<?=db_get("accounts", "name", $lg)?>" placeholder="Update your username">
+			<input type="text" name="name" value="<?=db_get("accounts", "username", $lg)?>" placeholder="Update your Username">
+		</div>
+		<div class="pt-input">
+			<i class="icons icon-user"></i>
+			<input type="text" name="name" value="<?=db_get("accounts", "name", $lg)?>" placeholder="Update your Name">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>

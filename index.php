@@ -15,7 +15,7 @@ if($vp && $vp != $id){
 
 // logged in? let's redirect from index to their tree URL
 if($lg) {
-echo '<META HTTP-EQUIV="refresh" content="0;URL=https://myvegantree.org/tree.php?id='.$_SESSION['login'].'">';
+echo '<META HTTP-EQUIV="refresh" content="0;URL=https://myvegantree.org/impact.php?id='.$_SESSION['login'].'">';
 }
 
 
