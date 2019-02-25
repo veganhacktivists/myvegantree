@@ -1,7 +1,6 @@
 <?php
 include __DIR__.'/configs/config.php';
 
-
 if($pg == 'tree-edit'){
 	$sql = $db->query("SELECT * FROM ".prefix."bubbles WHERE id = '{$id}'");
 	$rs = $sql->fetch_assoc();
@@ -165,6 +164,62 @@ if($pg == 'tree-edit'){
 } elseif($pg == "tree-delete"){
 	if($lg == db_get("bubbles", "family", $id))
 		db_delete("bubbles", $id);
+
+} elseif($pg == 'request-send') {
+	$user = (int) $_POST['user_id'];
+
+	// Validation
+	$invalid = db_count('requests', 'idrequests', "WHERE to_id = $lg AND from_id = $user AND accepted = 1");
+	if ($invalid) {
+		$alert = ['type' => 'danger', 'msg' => fh_alerts("You've already accepted a request from this user")];
+		echo json_encode($alert);
+		exit;
+	}
+	$exists = db_count('accounts', 'id', "WHERE id = $user AND id != $lg");
+	if (!$exists) {
+		$alert = ['type' => 'danger', 'msg' => fh_alerts("Invalid user ID")];
+		echo json_encode($alert);
+		exit;
+	}
+
+	$data = [
+		'from_id'  => $lg,
+		'to_id'    => $user,
+		'accepted' => 0
+	];
+	try {
+		db_insert('requests', $data);
+		$alert = ['type' => 'success', 'msg' => fh_alerts('Tree request sent succesfully!', 'success')];
+	} catch (Exception $e) {
+		error_log( 'Mysql error: '.$e->getMessage() );
+		$alert = ['type' => 'danger', 'msg' => fh_alerts('Failed to make tree request')];
+	}
+	echo json_encode($alert);
+
+} elseif($pg == 'request-accept') {
+	$id = (int) $_POST['request_id'];
+	$data = [ 'accepted' => 1 ];
+	try {
+		db_update('requests', $data, $id, 'idrequests');
+		$alert = ['type' => 'success', 'msg' => fh_alerts('Request approval accepted succesfully!', 'success')];
+	} catch (Exception $e) {
+		error_log( 'Mysql error: '.$e->getMessage() );
+		$alert = ['type' => 'danger', 'msg' => fh_alerts('Failed to accept tree request')];
+	}
+	echo json_encode($alert);
+
+} elseif($pg == 'request-revoke') {
+	$id = (int) $_POST['request_id'];
+	$data = [ 'accepted' => 0, 'ignored' => 1 ];
+	try {
+		db_update('requests', $data, $id, 'idrequests');
+		$alert = ['type' => 'success', 'msg' => fh_alerts('Request approval revoked succesfully!', 'success')];
+	} catch (Exception $e) {
+		error_log( 'Mysql error: '.$e->getMessage() );
+		$alert = ['type' => 'danger', 'msg' => fh_alerts('Failed to revoke tree request')];
+	}
+	echo json_encode($alert);
+
 } elseif($pg == "logout"){
 
 		session_unset();

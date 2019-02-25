@@ -12,11 +12,11 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 
-/*
+if (!$lg) {
+	// redirect if user is not logged in
+	header('Location: /');
+}
 
-needs code to redirect back to index if not logged in_array
-
-*/
 ?>
 
 
@@ -139,7 +139,7 @@ needs code to redirect back to index if not logged in_array
 
 
 	<form class="pt-form" id="send-detail" style="background-color: #ffffffba;">
-	
+
 	<h4>Update your Account Details</h4><br>
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
@@ -149,15 +149,15 @@ needs code to redirect back to index if not logged in_array
 			<i class="icons icon-key"></i>
 			<input type="password" name="pass" placeholder="Update your account password">
 		</div>
-		
+
 		<div class="pt-input">
-		
+
 		<select name="public">
 	<option value="public">Make my tree link public</option>
 	<option value="private">Password protect my tree</option>
 	</select>
 	</div>
-	
+
 		<div class="pt-input">
 			<i class="icons icon-list"></i>
 			<input type="password" name="vpass" placeholder="Update your tree password">
@@ -168,7 +168,7 @@ needs code to redirect back to index if not logged in_array
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Account</button>
-		
+
 	</form>
 </div>
 

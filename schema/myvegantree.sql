@@ -43,8 +43,10 @@ CREATE TABLE `mvt_requests` (
   `idrequests` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `from_id` int(11) unsigned NOT NULL,
   `to_id` int(11) unsigned NOT NULL,
-  `accepted` tinyint(1) unsigned NOT NULL,
+  `accepted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `ignored` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`idrequests`),
+  UNIQUE KEY `from_id_to_id` (`from_id`,`to_id`),
   KEY `from_id` (`from_id`),
   KEY `to_id` (`to_id`),
   CONSTRAINT `mvt_requests_ibfk_2` FOREIGN KEY (`from_id`) REFERENCES `mvt_accounts` (`id`) ON DELETE CASCADE,
@@ -52,4 +54,4 @@ CREATE TABLE `mvt_requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2019-02-24 17:55:30
+-- 2019-02-25 04:58:05

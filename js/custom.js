@@ -184,9 +184,55 @@ $('.inputfile').livequery('change', function(){
 
 });
 
-$('.trash-alert')
-  .popup({
-	on: 'click',
-	inline: true,
-	position: 'top left',
+$('.request-action').livequery('click', function(){
+	var id = $(this).data('id');
+	var action = $(this).data('action');
+	var data = { request_id : id };
+	var alert;
+	$.ajax({
+		url: 'ajax.php?pg=request-'+action,
+		type: 'POST',
+		data: data,
+		complete: function(response) {
+			var alert = JSON.parse(response.responseText);
+			$this = $('form').first();
+			$this.find('hr').before($(alert.msg).hide().fadeIn());
+			setTimeout(function(){ $('form').first().find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
+			if(alert.type == 'success') {
+				setTimeout(function(){ location.reload(); }, 1000);
+			}
+		}
+	});
+	return false;
 });
+
+$('#request_send_btn').livequery('click', function(){
+	$this = $('form').first();
+	var id = $('#user_id').val().trim();
+	if ( !id || !id.match(/^\d+$/) ) {
+		$this.find('hr').before($('<div class="alert alert-danger">Enter a valid user ID</div>').hide().fadeIn());
+		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+		return false;
+	}
+	var data = { user_id : id };
+	$.ajax({
+		url: 'ajax.php?pg=request-send',
+		type: 'POST',
+		data: data,
+		complete: function(response) {
+			var alert = JSON.parse(response.responseText);
+			$this.find('hr').before($(alert.msg).hide().fadeIn());
+			setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+			$('#user_id').val('');
+		}
+	});
+
+	return false;
+});
+
+// $('.trash-alert')
+//   .popup({
+// 	on: 'click',
+// 	inline: true,
+// 	position: 'top left',
+// });

@@ -1,8 +1,0 @@
-[21-Feb-2019 16:37:49 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home1/vrdntf/public_html/myvegantree.org/Test/index.php:265
-Stack trace:
-#0 {main}
-  thrown in /home1/vrdntf/public_html/myvegantree.org/Test/index.php on line 265
-[21-Feb-2019 16:38:14 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home1/vrdntf/public_html/myvegantree.org/Test/index.php:265
-Stack trace:
-#0 {main}
-  thrown in /home1/vrdntf/public_html/myvegantree.org/Test/index.php on line 265

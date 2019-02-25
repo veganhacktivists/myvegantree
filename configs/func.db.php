@@ -40,9 +40,9 @@ function db_update($table, $array, $id, $id_col = 'id') {
 	return $res;
 }
 
-function db_count($table, $count = 'id'){
+function db_count($table, $count = 'id', $where=false){
 	global $db;
-	$sql = $db->query("SELECT COUNT({$count}) FROM ".prefix."{$table}");
+	$sql = $db->query("SELECT COUNT({$count}) FROM ".prefix."{$table} {$where}");
 	$rs  = $sql->fetch_row();
 	$sql->close();
 	return $rs[0];

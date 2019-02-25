@@ -11,20 +11,12 @@ if($lg && $lg != $id){
 if($vp && $vp != $id){
 	$rt = false;
 }
+if (!$lg) {
+	// redirect if user is not logged in
+	header('Location: /');
+}
 
-/*
-
-needs code to redirect back to index if not logged in_array
-
-*/
 ?>
-
-
-
-
-
-
-
 
 
 <style>
@@ -147,12 +139,12 @@ input {
 
 
 	<form class="pt-form" id="send-detail" style="background-color: #ffffffba;">
-	
+
 	<h4>Customize your Vegan tree!</h4><br>
-		
-		
-		
-		
+
+
+
+
 <table>
   <tr>
     <td><input type="text" name="label" placeholder="Label"></td>
@@ -165,22 +157,22 @@ input {
 
 
 
-		
+
 		<div class="pt-input">
 			<i class="icons icon-key"></i>
-			
+
 			<i class="icons icon-key"></i>
 			<input type="password" name="pass" placeholder="Update your account password">
 		</div>
-		
+
 		<div class="pt-input">
-		
+
 		<select name="public">
 	<option value="public">Make my tree link public</option>
 	<option value="private">Password protect my tree</option>
 	</select>
 	</div>
-	
+
 		<div class="pt-input">
 			<i class="icons icon-list"></i>
 			<input type="password" name="vpass" placeholder="Update your tree password">
@@ -191,7 +183,7 @@ input {
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Account</button>
-		
+
 	</form>
 </div>
 
