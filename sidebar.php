@@ -9,7 +9,7 @@
     <?php endif; ?>
 
     <?php if(!$lg): ?>
-      <a class="title" style="">Welcome, Guest!</font>
+      <a class="title" style="color: #403d39;">Welcome, Guest!</font>
     <?php endif; ?>
 
     <br>
@@ -44,17 +44,17 @@
 			<input type="password" name="pass" placeholder="Password">
 		</div>
 		<hr />
-		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign In</button>
-		<div class="pt-new"><a href="register">Register!</a></div>
+		<button type="submit" class="pt-button bg-0" style="background-color:#4CAF50;"><i class="icons icon-login"></i> Sign In</button>
+		<div class="pt-new"><a href="register" style="color:#da6161;">Register here!</a></div>
 	</form>
 
     <?php endif; ?>
   </div>
 
   <div id="welcome" style="background-color: white;padding: 21px;border-radius: 10px;margin-bottom: 18px;">
-    Welcome to <a href="https://myvegantree.org" style="color: #da6161;">MyVeganTree.org</a>! Track your Vegan impact by adding people that have gone Vegan, Vegetarian, or reduced their consumption because of your activism!
+    Welcome to <a href="https://myvegantree.org" style="color: #da6161;">MyVeganTree.org</a>! Track your Vegan impact by adding people that have either gone or are going Vegan, Vegetarian, <i>Custom Label</i>, etc, because of you and your activism!
     <br><br>
-    If someone on your tree makes their own account, add them by username and you'll see their live tree and stats automatically added to yours, easy peasy!
+    If someone on your tree makes their own account, add them by username and you'll see their live tree and stats added to your own tree, <i>just like that!</i>
   </div>
 
   <div id="donate" style="background-color: white;padding: 21px;border-radius: 10px;margin-bottom: 18px;">
@@ -62,7 +62,7 @@
       <a href="https://www.patreon.com/youaretheirvoice" target="_blank"><img src="/images/yatv-logo.png" style="width:70%;"></a>
       <br>
       <br>
-      This site is an 100% ad-less and free project by <a href="https://youaretheirvoice.com/" target="_blank">YouAreTheirVoice.com</a>, which is funded by its Patreon supporters. Please <a href="https://www.patreon.com/youaretheirvoice" target="_blank">consider a donation</a> if you find our site useful! Thank you <i>so much!</i>
+      This site is an 100% ad-less and free project by <a href="https://youaretheirvoice.com/" style="color: #da6161;" target="_blank">YouAreTheirVoice.com</a>, which is funded by its Patreon supporters. Please <a href="https://www.patreon.com/youaretheirvoice" style="color: #da6161;" target="_blank">consider a donation</a> if you find our site useful! Thank you <i>so much!</i>
     </center>
 
   </div>
