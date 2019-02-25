@@ -35,7 +35,7 @@ function get_child($cid, $attached){
 	</div>';
 	*/
 
-	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.$bubble['photo'].'" onerror="this.src=\'http://funedge.co.id/assets/img/no_profile_pic.jpg\'" />';
+	$list .= '<img style="margin-top: 10px;margin-left: 10px;margin-bottom: 5px;margin-right: 10px;width: 150px;height: 150px;object-fit: cover;border-radius: 100%;" src="'.$bubble['photo'].'" onerror="this.src=\'https://myvegantree.org/images/no-profile-picture.png\'" />';
 	$list .= '</div>';
 	$list .= '<strong style="font-size: 20px;">'.$bubble['name'].'</strong>';
 
