@@ -49,7 +49,15 @@ function get_child($cid, $attached){
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: right;" class="fas fa-plus-circle tree-add" rel="'.$cid.'" data-toggle="modal" data-target="#myModal"></i>';
+		
+		
+		if ($id == $bubble['account_id']) {
+		// do not allow deletion of this bubble (main account bubble)
+		$list .= '<i style="font-size: 20px;margin: 10px;float: center;color: #e7e8ea;" class="fas fa-trash-alt"></i>';
+		} else {
 		$list .= '<i style="font-size: 20px;margin: 10px;float: center;" class="fas fa-trash-alt trash-alert icon"></i>';
+		}
+		
 		$list .= '<div class="ui flowing popup transition hidden">
 					  <div class="ui divided center aligned grid" style="margin: 0px 100px 0px -7px;padding: 0px 10px 2px 10px;">
 					  	  <div class="row" style="padding: 10px 0px 0px 0px;">
