@@ -63,6 +63,8 @@ if($pg == 'tree-edit'){
 				'name'       => "'".sc_sec($_POST['name'])."'",
 				'family'     => $account_id
 			]);
+			
+			$_SESSION['login'] = $account_id;
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
 		}

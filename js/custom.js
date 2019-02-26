@@ -20,7 +20,10 @@ $.fn.attachDragger = function(){
 
 $(".tree").attachDragger();
 
-$('.tree').scrollLeft($('.tree > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)').position().left)
+var treePosition = $('.tree > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)').position();
+if (treePosition) {
+	$('.tree').scrollLeft(treePosition.left);
+}
 
 $('#send-details').livequery('submit', function(){
 	var id = $('[name=parent]').val();
