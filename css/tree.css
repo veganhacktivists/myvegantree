@@ -37,7 +37,7 @@ sidebar::-webkit-scrollbar-button {display:none}
 @media screen and (min-width: 600px) {
    
 .wrapper {
-	height: auto;  // clearing
+	height: auto;  /* clearing */
 }
    
 #sidebar { 
