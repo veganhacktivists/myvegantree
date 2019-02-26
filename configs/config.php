@@ -17,17 +17,10 @@ $lg = (isset($_SESSION['login'])) ? (int)($_SESSION['login']) : 0;
 $vp = (isset($_SESSION['vpass'])) ? (int)($_SESSION['vpass']) : 0;
 
 // the code below ensures that if user is not logged in, they can't access any other page and get redirected to index
-$current_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-if ($current_url != 'https://myvegantree.org/' &&
-    $current_url != 'https://myvegantree.org/ajax.php?pg=login-send' &&
-    $current_url != 'https://myvegantree.org/register' && 
-    $_SERVER['HTTP_HOST'] != 'localhost' && 
-    $_SERVER['HTTP_HOST'] != '127.0.0.1') {
-    if (!$lg) {
-        // redirect if user is not logged in
-        header('Location: /');
-    }
+$whitelist = array("/", "/register", "/ajax.php?pg=login-send");
+
+if (!$lg && !in_array($_SERVER['REQUEST_URI'], $whitelist)) {
+    // redirect if user is not logged in
+    header('Location: /');
 }
-
-// echo $lg;
