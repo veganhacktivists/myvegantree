@@ -166,34 +166,7 @@ input {
         </td>
     </tr><?php } ?>
 </table>
-<br/>
 
-
-
-
-		<div class="pt-input">
-			<i class="icons icon-key"></i>
-
-			<i class="icons icon-key"></i>
-			<input type="password" name="pass" placeholder="Update your account password">
-		</div>
-
-		<div class="pt-input">
-
-		<select name="public">
-	<option value="public">Make my tree link public</option>
-	<option value="private">Password protect my tree</option>
-	</select>
-	</div>
-
-		<div class="pt-input">
-			<i class="icons icon-list"></i>
-			<input type="password" name="vpass" placeholder="Update your tree password">
-		</div>
-		<div class="pt-input">
-			<i class="icons icon-envelope"></i>
-			<input type="text" name="email" value="<?=db_get("accounts", "email", $lg)?>" placeholder="Update your email">
-		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Account</button>
 
