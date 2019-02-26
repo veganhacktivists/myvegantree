@@ -147,6 +147,20 @@ endif;
  ?>
 
 <div id="tree">
+
+<?php
+
+// lets count how many times a bubble appears under a label
+// will need to edit status = variable when we get custom statuses
+
+$label_1 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegan' && family = '4'")->fetch_array();
+$label_2 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegetarian' && family = '4'")->fetch_array();
+$label_3 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Plant-Based' && family = '4'")->fetch_array();
+$label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting there' && family = '4'")->fetch_array();
+
+?>
+
+
 <div class="header" id="myHeader">
   <h4><i class="fas fa-flag"></i>&nbsp;&nbsp;This is an example tree! Register or login to create or see yours!</h4>
 </div>
@@ -155,19 +169,19 @@ endif;
 <table style="margin: 5px;">
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #06bf01;color:#fff;"><i class="fas fa-leaf fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegan (3)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegan (<? echo $label_1[0];?>)</td>
   </tr>
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #8677e0;color:#fff;"><i class="fab fa-pagelines fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegetarian (12)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegetarian (<? echo $label_2[0];?>)</td>
   </tr>
     <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #4fc9d4;color:#fff;"><i class="fab fa-envira fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Plant-Based (1)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Plant-Based (<? echo $label_3[0];?>)</td>
   </tr>
       <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px; background-color: #da6161;color:#fff;"><i class="fas fa-route fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Getting there (25)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Getting there (<? echo $label_4[0];?>)</td>
   </tr>
 </table>
 
