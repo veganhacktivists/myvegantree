@@ -42,24 +42,24 @@ th, td {
 
     <div id="tree">
         <div class="pt-box" style="width: 574px; border-radius: 3px; margin: 20px 0px 0px 50px; background: #fff0; box-shadow: 0 0px 10px rgba(0, 0, 0, 0.13);">
-           
+
 
             <form class="pt-form" style="background-color: #ffffffba;">
  <h4>Tree Requests</h4><br>
                 <?php
 
                 $get_requests = "
-                    SELECT r.idrequests, r.accepted, b.name, b.status
-                      FROM mvt_requests r
-                      JOIN mvt_accounts a ON r.from_id = a.id
-                      JOIN mvt_bubbles b  ON a.id = b.account_id
-                     WHERE r.to_id=$lg;";
+                    SELECT r.idrequests, r.accepted, a.username
+                      FROM ".prefix."requests r
+                      JOIN ".prefix."accounts a ON r.from_id = a.id
+                      JOIN ".prefix."bubbles b  ON a.id = b.account_id
+                     WHERE r.to_id=$lg";
 
                 $requests = $db->query($get_requests);
 
                 if ( $requests->num_rows > 0 ) {
-                    echo '<table id="requests_table">';
-                    echo '<tr><th>Name</th><th>Status</th><th></th><th></th></tr>';
+                    echo '<table id="requests_received_table">';
+                    echo '<tr><th>User</th><th>Status</th><th></th><th></th></tr>';
                     while ( $req = $requests->fetch_assoc() ) {
                         $accept = ( $req['accepted'] )
                             ? '<em>Accepted</em>'
@@ -68,8 +68,7 @@ th, td {
                             ? '<button class="btn btn-danger request-action" data-action="revoke" data-id="'.$req['idrequests'].'">Revoke</button>'
                             : '';
                         echo '<tr>';
-                        echo "<td>{$req['name']}</td>";
-                        echo "<td>{$req['status']}</td>";
+                        echo "<td>{$req['username']}</td>";
                         echo "<td>$accept</td>";
                         echo "<td>$revoke</td>";
                         echo '</tr>';
@@ -80,17 +79,41 @@ th, td {
                     echo '<p>No requests to review. Invite friends to <a href="/">myvegantree.org</a>!</p><br>';
                 }
                 $requests->close();
-
                 ?>
+                <?php
+                $get_sent_requests = "
+                    SELECT r.idrequests, r.accepted, a.username
+                      FROM ".prefix."requests r
+                      JOIN ".prefix."accounts a ON r.to_id = a.id
+                     WHERE r.from_id=$lg";
 
+                $requests_sent = $db->query($get_sent_requests);
+
+                if ( $requests_sent->num_rows > 0 ) {
+                    echo '<hr><h4>Sent Requests</h4><br>';
+                    echo '<table id="requests_sent_table">';
+                    echo '<tr><th>User</th><th>Status</th><th></th><th></th></tr>';
+                    while ( $req = $requests_sent->fetch_assoc() ) {
+                        $accept = ( $req['accepted'] ) ? '<em>Accepted</em>' : '<em>Not Yet Accepted</em>';
+                        $cancel = '<button class="btn btn-warn request-action" data-action="cancel" data-id="'.$req['idrequests'].'">Cancel</button>';
+                        echo '<tr>';
+                        echo "<td>{$req['username']}</td>";
+                        echo "<td>$accept</td>";
+                        echo "<td>$cancel</td>";
+                        echo '</tr>';
+                    }
+                    echo '</table><br>';
+                }
+                $requests_sent->close();
+                ?>
+                <span></span>
                 <table id="make_request_table">
                     <tr><td>Make a Request</td><td></td></tr>
                     <tr>
-                        <td><input type="text" id="user_id" placeholder="User ID" size="30"></td>
+                        <td><input type="text" id="request_username" placeholder="Username" size="30"></td>
                         <td><button id="request_send_btn" class="btn btn-primary">Send Request</button></td>
                     </tr>
                 </table>
-                <hr />
             </form>
         </div>
     </div>

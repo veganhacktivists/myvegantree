@@ -221,7 +221,8 @@ $('.request-action').livequery('click', function(){
 		complete: function(response) {
 			var alert = JSON.parse(response.responseText);
 			$this = $('form').first();
-			$this.find('hr').before($(alert.msg).hide().fadeIn());
+			var alert_el = (action == 'cancel') ? 'span' : 'hr';
+			$this.find(alert_el).before($(alert.msg).hide().fadeIn());
 			setTimeout(function(){ $('form').first().find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 			if(alert.type == 'success') {
 				setTimeout(function(){ location.reload(); }, 1000);
@@ -233,26 +234,37 @@ $('.request-action').livequery('click', function(){
 
 $('#request_send_btn').livequery('click', function(){
 	$this = $('form').first();
-	var id = $('#user_id').val().trim();
-	if ( !id || !id.match(/^\d+$/) ) {
-		$this.find('hr').before($('<div class="alert alert-danger">Enter a valid user ID</div>').hide().fadeIn());
+	var user = $('#request_username').val().trim();
+	if ( !user || !user.match(/\w+/) ) {
+		$this.find('span').before($('<div class="alert alert-danger">Enter a valid user ID</div>').hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
 		return false;
 	}
-	var data = { user_id : id };
+	var data = { username : user };
 	$.ajax({
 		url: 'ajax.php?pg=request-send',
 		type: 'POST',
 		data: data,
 		complete: function(response) {
 			var alert = JSON.parse(response.responseText);
-			$this.find('hr').before($(alert.msg).hide().fadeIn());
+			$this.find('span').before($(alert.msg).hide().fadeIn());
 			setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
-			$('#user_id').val('');
+			$('#request_username').val('');
+			if(alert.type == 'success') {
+				setTimeout(function(){ location.reload(); }, 1000);
+			}
 		}
 	});
 
 	return false;
+});
+
+$('#request_username').keypress(function (e) {
+	var key = e.which;
+	if (key == 13) {  // enter key
+		$('#request_send_btn').click();
+		return false;
+	}
 });
 
 $(function () {
@@ -261,7 +273,7 @@ $(function () {
 
 $('body').on('click', function (e) {
     if ($(e.target).data('toggle') !== 'popover'
-        && $(e.target).parents('.popover.in').length === 0) { 
+        && $(e.target).parents('.popover.in').length === 0) {
         $('[data-toggle="popover"]').popover('hide');
     }
 });

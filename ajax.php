@@ -63,7 +63,7 @@ if($pg == 'tree-edit'){
 				'name'       => "'".sc_sec($_POST['name'])."'",
 				'family'     => $account_id
 			]);
-			
+
 			$_SESSION['login'] = $account_id;
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
@@ -158,16 +158,22 @@ if($pg == 'tree-edit'){
 		db_delete("bubbles", $id);
 
 } elseif($pg == 'request-send') {
-	$user = (int) $_POST['user_id'];
+	$username = sc_sec($_POST['username']);
 
 	// Validation
-	$invalid = db_count('requests', 'idrequests', "WHERE to_id = $lg AND from_id = $user AND accepted = 1");
+	$account_id = db_get('accounts', 'id', $username, 'username');
+	if (!$account_id) {
+		$alert = ['type' => 'danger', 'msg' => fh_alerts("Unable to find user, '$username'")];
+		echo json_encode($alert);
+		exit;
+	}
+	$invalid = db_count('requests', 'idrequests', "WHERE to_id = $lg AND from_id = $account_id AND accepted = 1");
 	if ($invalid) {
 		$alert = ['type' => 'danger', 'msg' => fh_alerts("You've already accepted a request from this user")];
 		echo json_encode($alert);
 		exit;
 	}
-	$exists = db_count('accounts', 'id', "WHERE id = $user AND id != $lg");
+	$exists = db_count('accounts', 'id', "WHERE id = $account_id AND id != $lg");
 	if (!$exists) {
 		$alert = ['type' => 'danger', 'msg' => fh_alerts("Invalid user ID")];
 		echo json_encode($alert);
@@ -176,7 +182,7 @@ if($pg == 'tree-edit'){
 
 	$data = [
 		'from_id'  => $lg,
-		'to_id'    => $user,
+		'to_id'    => $account_id,
 		'accepted' => 0
 	];
 	try {
@@ -211,6 +217,18 @@ if($pg == 'tree-edit'){
 		$alert = ['type' => 'danger', 'msg' => fh_alerts('Failed to revoke tree request')];
 	}
 	echo json_encode($alert);
+
+} elseif($pg == 'request-cancel') {
+	$id = (int) $_POST['request_id'];
+	try {
+		db_delete('requests', $id, 'idrequests');
+		$alert = ['type' => 'success', 'msg' => fh_alerts('Request cancelled succesfully!', 'success')];
+	} catch (Exception $e) {
+		error_log( 'Mysql error: '.$e->getMessage() );
+		$alert = ['type' => 'danger', 'msg' => fh_alerts('Failed to cancel request')];
+	}
+	echo json_encode($alert);
+
 
 } elseif($pg == "logout"){
 
