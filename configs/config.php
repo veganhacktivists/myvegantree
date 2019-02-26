@@ -18,7 +18,7 @@ $vp = (isset($_SESSION['vpass'])) ? (int)($_SESSION['vpass']) : 0;
 
 // the code below ensures that if user is not logged in, they can't access any other page and get redirected to index
 
-$whitelist = array("/", "/register", "/ajax.php?pg=login-send");
+$whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=user-send");
 
 if (!$lg && !in_array($_SERVER['REQUEST_URI'], $whitelist)) {
     // redirect if user is not logged in
