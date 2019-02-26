@@ -38,7 +38,7 @@ if($pg == 'tree-edit'){
 
 	// echo $_POST['death'].'/'.$_POST['gender'].'/'.$_POST['type'];
 } elseif($pg == 'user-send'){
-	$name  = sc_sec($_POST['username']);
+	$username  = sc_sec($_POST['username']);
 	$name  = sc_sec($_POST['name']);
 	$pass  = sc_sec($_POST['pass']);
 	$vpass = sc_sec($_POST['vpass']);
@@ -50,10 +50,10 @@ if($pg == 'tree-edit'){
 		$alert = ["type" => "danger", "msg" => fh_alerts("You need a correct email address!")];
 	} else {
 		$data = [
-			"username"     => "'".sc_sec($_POST['username'])."'",
-			"name"     => "'".sc_sec($_POST['name'])."'",
-			"password" => "'".sc_pass(sc_sec($_POST['pass']))."'",
-			"vpassword" => "'".sc_pass(sc_sec($_POST['vpass']))."'",
+			"username"     => "'".$username."'",
+			"name"     => "'".$name."'",
+			"password" => "'".sc_pass($pass)."'",
+			"vpassword" => "'".sc_pass($vpass)."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		];
 		try {
