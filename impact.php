@@ -1,4 +1,5 @@
 <?php
+$LOGIN_REQ_OVERRIDE = true;
 include_once "header.php";
 include __DIR__.'/configs/func.tree.php';
 
@@ -15,30 +16,44 @@ if($vp && $vp != $id){
 
 // echo isset($vp) ;
 
-/*
-if($rt == false):
-?>
-<div class="pt-box">
-	<h3>View Password:</h3>
+
+$servername = "localhost";
+$username = "vrdntf_nosrick";
+$password = "imvegan";
+$dbname = "vrdntf_myvegantree";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+$sql = "SELECT public FROM mvt_accounts WHERE id = '{$id}'";
+$result = mysqli_query($conn, $sql);
+
+$final = mysqli_fetch_row($result);
+
+if ($lg == $id) {
+	
+	// never lock the tree if you're logged in on your own tree
+	
+} else {
+	
+if($final[0] == 2) {
+
+echo '<div class="pt-box">
+	<h3 style="padding: 21px 0px 14px 0px;font-size: 24px;">This tree has been set to private!</h3>
 
 	<form class="pt-form" id="send-vpass">
 		<div class="pt-input">
 			<i class="icons icon-list"></i>
-			<input type="password" name="vpass" placeholder="Write the view password">
+			<input type="password" name="vpass" placeholder="Submit tree password">
 		</div>
 		<hr />
-		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Submit</button>
+		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
 		<input type="hidden" name="id" value="<?=$id?>" />
 	</form>
-</div>
-<?php
-include_once "footer.php";
+</div>';
 exit;
-endif;
-*/
-
-
-
+}
+}
 ?>
 
 

@@ -35,8 +35,6 @@ if($pg == 'tree-edit'){
 	}
 
 
-
-	// echo $_POST['death'].'/'.$_POST['gender'].'/'.$_POST['type'];
 } elseif($pg == 'user-send'){
 	$username  = sc_sec($_POST['username']);
 	$name  = sc_sec($_POST['name']);
@@ -71,11 +69,15 @@ if($pg == 'tree-edit'){
 		$alert = ["type" => "success", "msg" => fh_alerts("Your Username has created succesfully!", "success")];
 	}
 	echo json_encode($alert);
+	
+	
+	
 } elseif($pg == 'detail-send'){
 	$username  = sc_sec($_POST['username']);
 	$name  = sc_sec($_POST['name']);
 	$pass  = sc_sec($_POST['pass']);
 	$vpass = sc_sec($_POST['vpass']);
+	$public = sc_sec($_POST['public']);
 	$email = sc_sec($_POST['email']);
 
 	if(empty($username) || empty($name) || empty($email)){
@@ -86,6 +88,7 @@ if($pg == 'tree-edit'){
 		$data = [
 			"username"     => "'".sc_sec($_POST['username'])."'",
 			"name"     => "'".sc_sec($_POST['name'])."'",
+			"public"     => "'".sc_sec($_POST['public'])."'",
 			"email"    => "'".sc_sec($_POST['email'])."'"
 		];
 		if($pass){

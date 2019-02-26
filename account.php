@@ -129,7 +129,7 @@ if($vp && $vp != $id){
 	<h4>Update your Account Details</h4><br>
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
-			<input type="text" name="name" value="<?=db_get("accounts", "username", $lg)?>" placeholder="Update your Username">
+			<input type="text" name="username" value="<?=db_get("accounts", "username", $lg)?>" placeholder="Update your Username">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
@@ -143,10 +143,32 @@ if($vp && $vp != $id){
 		<div class="pt-input">
 
 		<select name="public">
-	<option value="public">Make my tree link public</option>
-	<option value="private">Password protect my tree</option>
-	</select>
-	</div>
+		
+		<?php 
+		
+		$grabcurrentvalue = db_get("accounts", "public", $lg);
+		
+		if ($grabcurrentvalue == 1) {
+	    
+		echo '<option value="1" selected="selected">Make my tree link public</option>';
+		echo '<option value="2">Password protect my tree</option>';
+		
+		} else if ($grabcurrentvalue == 2) {
+	    
+		echo '<option value="1">Make my tree link public</option>';
+		echo '<option value="2" selected="selected">Password protect my tree</option>';
+		
+		} else {
+			
+		echo '<option value="1" selected="selected">Make my tree link public</option>';
+		echo '<option value="2">Password protect my tree</option>';
+		
+		}
+		
+		?>
+		
+		</select>
+		</div>
 
 		<div class="pt-input">
 			<i class="icons icon-list"></i>

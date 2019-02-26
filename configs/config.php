@@ -17,10 +17,13 @@ $lg = (isset($_SESSION['login'])) ? (int)($_SESSION['login']) : 0;
 $vp = (isset($_SESSION['vpass'])) ? (int)($_SESSION['vpass']) : 0;
 
 // the code below ensures that if user is not logged in, they can't access any other page and get redirected to index
-
-$whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=user-send");
+if ($LOGIN_REQ_OVERRIDE == true) {
+	// don't redirect if we're on impact (tree) pages, users can set public or private if they want
+} else {
+$whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=user-send", "/impact.php");
 
 if (!$lg && !in_array($_SERVER['REQUEST_URI'], $whitelist)) {
     // redirect if user is not logged in
     header('Location: /');
+}
 }
