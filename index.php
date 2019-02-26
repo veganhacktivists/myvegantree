@@ -205,7 +205,7 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 <?php
 $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '4'");
-
+$id = 4;
 if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="pt-sm">
 	<div class="tree">
