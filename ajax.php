@@ -230,6 +230,56 @@ if($pg == 'tree-edit'){
 	echo json_encode($alert);
 
 
+} elseif($pg == 'add-label') {
+    $name  = sc_sec($_POST['name'],true);
+	$color = $_POST['color'];
+	$icon = sc_sec($_POST['icon']);
+    
+    if( !empty( $name ) && preg_match( '/#[0-9A-Fa-f]{6}/', $color ) && !empty( $icon ) ) {
+        $id = db_insert( 'labels', [ 'name' => '"'.$name.'"', 'account_id' => $_SESSION['login'], 'color' => '"'.$color.'"', 'icon' => '"'.$icon.'"' ] );
+        $alert = [ 'success' => true, 'id' => $id ];
+    } else
+        $alert = [ 'success' => false ];
+    
+    
+    echo json_encode($alert);
+
+} elseif($pg == 'edit-label') {
+	
+    $id = (int) $_POST[ 'id' ];
+    $name  = sc_sec($_POST['name'],true);
+	$color = $_POST['color'];
+	$icon = sc_sec($_POST['icon']);
+    
+    if( !empty( $name ) && preg_match( '/#[0-9A-Fa-f]{6}/', $color ) && !empty( $icon ) ) {
+		
+		$query = sprintf( "UPDATE %slabels SET name = '%s', color = '%s', icon = '%s' WHERE id = %d and account_id = %d ", prefix, $name, $color, $icon, $id, $_SESSION['login'] );
+		$res = $db->query($query);
+		
+		if( $res )
+			$alert = [ 'success' => true ];
+		else
+			$alert = [ 'success' => false, 'error' => $db->error ];
+    } else
+        $alert = [ 'success' => false ];
+    
+    echo $res;
+    echo json_encode($alert);
+
+} elseif($pg == 'delete-label') {
+	
+    $id = (int) $_POST[ 'id' ];
+    
+	$query = sprintf( "DELETE FROM %slabels WHERE id = %d and account_id = %d ", prefix, $id, $_SESSION['login'] );
+	$res = $db->query($query);
+	
+	if( $res )
+		$alert = [ 'success' => true ];
+	else
+		$alert = [ 'success' => false, 'error' => $db->error ];
+    
+    echo json_encode($alert);
+
 } elseif($pg == "logout"){
 
 		session_unset();
