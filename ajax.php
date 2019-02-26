@@ -66,7 +66,7 @@ if($pg == 'tree-edit'){
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
 		}
-		$alert = ["type" => "success", "msg" => fh_alerts("Your family ID has created succesfully!", "success")];
+		$alert = ["type" => "success", "msg" => fh_alerts("Your Username has created succesfully!", "success")];
 	}
 	echo json_encode($alert);
 } elseif($pg == 'detail-send'){
@@ -100,7 +100,7 @@ if($pg == 'tree-edit'){
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
 		}
-		$alert = ["type" => "success", "msg" => fh_alerts("Your family ID has updated succesfully!", "success")];
+		$alert = ["type" => "success", "msg" => fh_alerts("Your Username has updated succesfully!", "success")];
 	}
 	echo json_encode($alert);
 } elseif($pg == 'login-send'){
@@ -120,10 +120,10 @@ if($pg == 'tree-edit'){
 				$_SESSION['login'] = $result['id'];
 				$alert = ["id" => $result['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
 			} else {
-				$alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
+				$alert = ["type" => "danger", "msg" => fh_alerts("Username or password is incorrect!")];
 			}
 		} else {
-			$alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
+			$alert = ["type" => "danger", "msg" => fh_alerts("Username or password is incorrect!")];
 		}
 	}
 	echo json_encode($alert);
@@ -147,7 +147,7 @@ if($pg == 'tree-edit'){
 			 $alert = ["type" => "danger", "msg" => fh_alerts("View password is incorrect!")];
 		 }
 	//  } else {
-	// 	 $alert = ["type" => "danger", "msg" => fh_alerts("Family ID or password is incorrect!")];
+	// 	 $alert = ["type" => "danger", "msg" => fh_alerts("Username or password is incorrect!")];
 	//  }
  }
  echo json_encode($alert);
