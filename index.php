@@ -169,19 +169,19 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 <table style="margin: 5px;">
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #06bf01;color:#fff;"><i class="fas fa-leaf fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegan (<? echo $label_1[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegan (<?php echo $label_1[0];?>)</td>
   </tr>
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #8677e0;color:#fff;"><i class="fab fa-pagelines fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegetarian (<? echo $label_2[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegetarian (<?php echo $label_2[0];?>)</td>
   </tr>
     <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #4fc9d4;color:#fff;"><i class="fab fa-envira fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Plant-Based (<? echo $label_3[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Plant-Based (<?php echo $label_3[0];?>)</td>
   </tr>
       <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px; background-color: #da6161;color:#fff;"><i class="fas fa-route fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Getting there (<? echo $label_4[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Getting there (<?php echo $label_4[0];?>)</td>
   </tr>
 </table>
 
