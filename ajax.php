@@ -36,16 +36,20 @@ if($pg == 'tree-edit'){
 
 
 } elseif($pg == 'user-send'){
-	$username  = sc_sec($_POST['username']);
-	$name  = sc_sec($_POST['name']);
-	$pass  = sc_sec($_POST['pass']);
-	$vpass = sc_sec($_POST['vpass']);
-	$email = sc_sec($_POST['email']);
+    $username  = sc_sec($_POST['username']);
+    $name  = sc_sec($_POST['name']);
+    $pass  = sc_sec($_POST['pass']);
+    $vpass = sc_sec($_POST['vpass']);
+    $email = sc_sec($_POST['email']);
 
-	if(empty($username) || empty($name) ||empty($pass) || empty($vpass) || empty($email)){
-		$alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
-	} elseif(!check_email($email)) {
-		$alert = ["type" => "danger", "msg" => fh_alerts("You need a correct email address!")];
+    if(empty($username) || empty($name) ||empty($pass) || empty($vpass) || empty($email)){
+        $alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
+    } elseif(db_count('accounts', 'username', 'WHERE username = "'.$username.'"')){
+        $alert = ["type" => "danger", "msg" => fh_alerts("That username already exists!")];
+	} elseif(db_count('accounts', 'email', 'WHERE email = "'.$email.'"')){
+        $alert = ["type" => "danger", "msg" => fh_alerts("A user with that email is already registered!")];	
+    } elseif(!check_email($email)) {
+        $alert = ["type" => "danger", "msg" => fh_alerts("You need a correct email address!")];
 	} else {
 		$data = [
 			"username"     => "'".$username."'",
@@ -66,7 +70,7 @@ if($pg == 'tree-edit'){
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
 		}
-		$alert = ["type" => "success", "msg" => fh_alerts("Your Username has created succesfully!", "success")];
+		$alert = ["type" => "success", "msg" => fh_alerts("Your registration is successful! One moment please...", "success")];
 	}
 	echo json_encode($alert);
 
