@@ -113,7 +113,7 @@ input {
 
 <div id="tree">
 <div class="header" id="myHeader">
-  <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To edit your account details, go to Account <u>over here</u>!</h4>
+  <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To edit your account details, go to Account <u><a href="https://myvegantree.org/account" style="color: #ffffff;">over here</a></u>!</h4>
 </div>
 
 <div class="pt-box" style="    width: 574px;

@@ -116,7 +116,7 @@ if($vp && $vp != $id){
 
 <div id="tree">
 <div class="header" id="myHeader">
-  <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To customize your tree, go to Customization <u>over here</u>!</h4>
+  <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To customize your tree, go to Customization <u><a href="https://myvegantree.org/customize" style="color: #ffffff;">over here</a></u>!</h4>
 </div>
 
 <div class="pt-box" style="    width: 574px;

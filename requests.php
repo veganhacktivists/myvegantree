@@ -12,7 +12,72 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 ?>
+<style>
+.wrapper {
+  border : 0px dotted #ccc; padding: 0px;
+}
 
+
+#sidebar {  }
+#tree { background-color: white;
+
+    background-size: cover;
+    background-image: url(https://i.imgur.com/dEqI5GG.png);
+	    height: 100vh;
+		}
+
+@media screen and (min-width: 600px) {
+   .wrapper {
+      height: auto; overflow: hidden; // clearing
+   }
+   #sidebar { padding: 20px;width: 400px; float: left;height: 100vh; }
+   #tree { margin-left: 400px; }
+}
+
+
+.input-color {
+    position: relative;
+}
+
+.input-color input {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.input-color .color-box {
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    left: 5px;
+    top: 5px;
+
+}
+
+
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 8px 14px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+</style>
 <style>
 
 th, td {
@@ -27,10 +92,6 @@ th, td {
     height: 100vh;
 }
 
-#make_request_table {
-    margin-top: 24px;
-}
-
 #requests_table th, #requests_table td {
     border-bottom: 1px solid #ddd;
 }
@@ -41,7 +102,9 @@ th, td {
     <?php include_once "sidebar.php"; ?>
 
     <div id="tree">
-        <div class="pt-box" style="width: 574px; border-radius: 3px; margin: 20px 0px 0px 50px; background: #fff0; box-shadow: 0 0px 10px rgba(0, 0, 0, 0.13);">
+      <div class="pt-box" style="    width: 574px;
+    border-radius: 3px;
+    margin: 20px 0px 0px 50px;    background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
 
 
             <form class="pt-form" style="background-color: #ffffffba;">
