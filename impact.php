@@ -42,11 +42,7 @@ $check_if_tree_public = mysqli_fetch_row($result);
 		 
 	$result_count_direct_impacts = mysqli_query($conn, $sql_count_direct_impacts);
 	$count_direct_impacts = mysqli_fetch_row($result_count_direct_impacts);
-	
-	// now let's count indirect impacts by counting all bubbles minus direct impacts
-	// $count_all_bubbles = "SELECT COUNT(*) FROM mvt_bubbles WHERE family = '{$id}'";
-	// $indirect_impacts =  $count_all_bubbles - $count_direct_impacts[0];
-	
+
 	
 if ($lg == $id || $id == $vp) {
 	
@@ -134,7 +130,7 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
   </tr>
    <tr>
     <td><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;Indirectly impacted:&nbsp;&nbsp;</div></td>
-    <td style="text-align:left;"><b><?php //echo $indirect_impacts;?></b></td>
+    <td style="text-align:left;"><b id="indirectly-impacted-count">23</b></td>
   </tr>
 </table>
 </div>
@@ -255,8 +251,19 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 
 
-
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>
+
+<script>
+    $(document).ready(
+        function() {
+            var direct_count = <?php echo $count_direct_impacts[0]; ?>;
+            var total = $('.pt-thumb').length;
+            var indirect = total - 1 - direct_count;
+
+            $('#indirectly-impacted-count').text('' + indirect)
+        }
+    );
+</script>

@@ -13,6 +13,35 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 
+
+// Let's grab from database to see if tree is private or public
+$servername = "localhost";
+$username = "vrdntf_nosrick";
+$password = "imvegan";
+$dbname = "vrdntf_myvegantree";
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+$sql = "SELECT public FROM mvt_accounts WHERE id = '4'";
+$result = mysqli_query($conn, $sql);
+$check_if_tree_public = mysqli_fetch_row($result);
+
+
+	// let's count all direct impacts, including attached accounts
+	$cid_sql = "SELECT id FROM mvt_bubbles WHERE account_id = '4'";
+	$cid_result = mysqli_query($conn, $cid_sql);
+	$grab_the_cid = mysqli_fetch_row($cid_result);
+	$cid = $grab_the_cid[0];
+	
+	$sql_count_direct_impacts = "
+        SELECT COUNT(*)
+          FROM ".prefix."bubbles b
+     LEFT JOIN ".prefix."requests r ON (b.account_id=r.to_id AND r.accepted=1)
+         WHERE (parent = '28' OR r.from_id = '4')
+           AND type != 2
+         ORDER BY r.accepted, b.date ASC";
+		 
+	$result_count_direct_impacts = mysqli_query($conn, $sql_count_direct_impacts);
+	$count_direct_impacts = mysqli_fetch_row($result_count_direct_impacts);
+
 // logged in? let's redirect from index to their tree URL
 if($lg) {
 echo '<META HTTP-EQUIV="refresh" content="0;URL=/impact.php?id='.$_SESSION['login'].'">';
@@ -191,11 +220,11 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 <table style="width: 100%;margin: 5px;">
  <tr>
     <td><i class="fas fa-star"></i>&nbsp;&nbsp;Directly impacted:&nbsp;&nbsp;</div></td>
-    <td style="text-align:left;"><b>6</b></td>
+    <td style="text-align:left;"><b><?php echo $count_direct_impacts[0];?></b></td>
   </tr>
    <tr>
     <td><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;Indirectly impacted:&nbsp;&nbsp;</div></td>
-    <td style="text-align:left;"><b>23</b></td>
+    <td style="text-align:left;"><b id="indirectly-impacted-count">23</b></td>
   </tr>
 </table>
 </div>
@@ -328,3 +357,17 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>
+
+
+<script>
+    $(document).ready(
+        function() {
+            var direct_count = <?php echo $count_direct_impacts[0]; ?>;
+            var total = $('.pt-thumb').length;
+            var indirect = total - 1 - direct_count;
+
+            $('#indirectly-impacted-count').text('' + indirect)
+        }
+    );
+</script>
+
