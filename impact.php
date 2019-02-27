@@ -14,7 +14,7 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 
-		 
+
 // Let's grab from database to see if tree is private or public
 
 $servername = "localhost";
@@ -22,7 +22,7 @@ $username = "vrdntf_nosrick";
 $password = "imvegan";
 $dbname = "vrdntf_myvegantree";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-$sql = "SELECT public FROM mvt_accounts WHERE username = '{$grab_username}'";
+$sql = "SELECT public, id FROM mvt_accounts WHERE username = '{$grab_username}'";
 $result = mysqli_query($conn, $sql);
 $check_if_tree_public = mysqli_fetch_row($result);
 
@@ -32,7 +32,7 @@ $check_if_tree_public = mysqli_fetch_row($result);
 	$cid_result = mysqli_query($conn, $cid_sql);
 	$grab_the_cid = mysqli_fetch_row($cid_result);
 	$cid = $grab_the_cid[0];
-	
+
 	$sql_count_direct_impacts = "
         SELECT COUNT(*)
           FROM ".prefix."bubbles b
@@ -40,17 +40,18 @@ $check_if_tree_public = mysqli_fetch_row($result);
          WHERE (parent = '{$cid}' OR r.from_id = '{$id}')
            AND type != 2
          ORDER BY r.accepted, b.date ASC";
-		 
+
 	$result_count_direct_impacts = mysqli_query($conn, $sql_count_direct_impacts);
 	$count_direct_impacts = mysqli_fetch_row($result_count_direct_impacts);
 
-	
-if ($lg == $id || $id == $vp) {
-	
+$grab_id = $check_if_tree_public[1];
+
+if ($lg == $grab_id || $grab_id == $vp) {
+
 	// never lock the tree if you're logged in on your own tree
-	
+
 } else {
-	
+
 if($check_if_tree_public[0] == 2) {
 
 echo '<div class="pt-box">
@@ -63,7 +64,7 @@ echo '<div class="pt-box">
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
-		<input type="hidden" name="id" value="'. $id . '" />
+		<input type="hidden" name="id" value="'. $grab_id . '" />
 	</form>
 </div>
 
@@ -92,10 +93,10 @@ exit;
 // lets count how many times a bubble appears under a label
 // will need to edit status = variable when we get custom statuses
 
-$label_1 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegan' && family = '{$id}'")->fetch_array();
-$label_2 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegetarian' && family = '{$id}'")->fetch_array();
-$label_3 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Plant-Based' && family = '{$id}'")->fetch_array();
-$label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting there' && family = '{$id}'")->fetch_array();
+$label_1 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegan' && family = '{$grab_id}'")->fetch_array();
+$label_2 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegetarian' && family = '{$grab_id}'")->fetch_array();
+$label_3 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Plant-Based' && family = '{$grab_id}'")->fetch_array();
+$label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting there' && family = '{$grab_id}'")->fetch_array();
 
 ?>
 

@@ -425,3 +425,4 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 94
+[27-Feb-2019 14:11:15 America/Chicago] PHP Parse error:  syntax error, unexpected '?>' in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 137

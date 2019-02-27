@@ -11,8 +11,25 @@
 
 <?php
 
+
+
+
+
 function get_child($cid, $attached){
-	global $db, $lg, $id;
+	
+	// start grab the id
+	$servername = "localhost";
+	$username = "vrdntf_nosrick";
+	$password = "imvegan";
+	$dbname = "vrdntf_myvegantree";
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	$sql = "SELECT id FROM mvt_accounts WHERE username = '{$grab_username}'";
+	$result = mysqli_query($conn, $sql);
+	$fetch_the_id = mysqli_fetch_row($result);
+	$grab_id = $fetch_the_id[0];
+	// end grab the id
+
+	global $db, $lg, $grab_id;
 
 	$bubble = db_get('bubbles', '*', $cid);
 
@@ -22,7 +39,7 @@ function get_child($cid, $attached){
 	$list .= '<div class="pt-thumb" style="">';
 
 	$u_color = '#dedede';
-	if ($id == $bubble['account_id'])  {
+	if ($grab_id == $bubble['account_id'])  {
 	$u_color = '#da6161'; }
 	elseif ($attached) {
     $u_color = '#da6161';
@@ -81,14 +98,14 @@ function get_child($cid, $attached){
 	}
 
 	// Edit buttons
-	if($lg && $lg == $id && !$attached){
+	if($lg && $lg == $grab_id && !$attached){
 		$button = "<button class='btn btn-danger tree-delete center-block' rel='".$cid."'>Delete</button>";
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: right;" class="fas fa-plus-circle tree-add" rel="'.$cid.'" data-toggle="modal" data-target="#myModal"></i>';
 
 
-		if ($id == $bubble['account_id']) {
+		if ($grab_id == $bubble['account_id']) {
 		// do not allow deletion of this bubble (main account bubble)
 		$list .= '<i style="font-size: 20px;margin: 10px;float: center;color: #e7e8ea;" class="fas fa-trash-alt"></i>';
 		} else {
