@@ -18,7 +18,7 @@ function get_child($cid, $attached){
 
 	$list = '';
 	$list .= '<li>';
-	$list .= '<a>';
+	$list .= '<div class="tree-item">';
 	$list .= '<div class="pt-thumb" style="">';
 
 	$u_color = '#dedede';
@@ -104,7 +104,7 @@ function get_child($cid, $attached){
 	// rel="'.$cid.'"
 
 
-	$list .= '</a>';
+	$list .= '</div>';
 
 	if ($attached == '1') {
 		$list .= 'test';
