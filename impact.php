@@ -139,7 +139,8 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 
 <?php
-  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '{$id}'");
+  $username = $_GET["username"];
+  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE username = '{$username}'");
   if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="tree">
     <div class="tree-inner">

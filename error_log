@@ -407,3 +407,21 @@ Stack trace:
 [27-Feb-2019 07:01:09 America/Chicago] PHP Warning:  DOMDocument::load(): Extra content at the end of the document in /home1/vrdntf/public_html/myvegantree.org/impact.php, line: 158 in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 52
 [27-Feb-2019 07:02:07 America/Chicago] PHP Warning:  DOMDocument::load(): I/O warning : failed to load external entity &quot;/impact.php&quot; in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 52
 [27-Feb-2019 07:07:02 America/Chicago] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 51
+[27-Feb-2019 09:18:31 America/Chicago] PHP Parse error:  syntax error, unexpected '$username' (T_VARIABLE), expecting ',' or ';' in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 15
+[27-Feb-2019 09:36:51 America/Chicago] PHP Recoverable fatal error:  Object of class mysqli_result could not be converted to string in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 143
+[27-Feb-2019 10:39:56 America/Chicago] PHP Parse error:  syntax error, unexpected '<', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home1/vrdntf/public_html/myvegantree.org/sidebar.php on line 21
+[27-Feb-2019 10:43:38 America/Chicago] PHP Parse error:  syntax error, unexpected '<', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home1/vrdntf/public_html/myvegantree.org/sidebar.php on line 21
+[27-Feb-2019 10:44:06 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home1/vrdntf/public_html/myvegantree.org/sidebar.php on line 25
+[27-Feb-2019 11:02:12 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home1/vrdntf/public_html/myvegantree.org/sidebar.php on line 33
+[27-Feb-2019 12:19:46 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:94
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 94
+[27-Feb-2019 12:20:11 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:94
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 94
+[27-Feb-2019 12:20:55 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_array() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:94
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 94
