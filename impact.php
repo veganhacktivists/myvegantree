@@ -16,12 +16,13 @@ if($vp && $vp != $id){
 
 		 
 // Let's grab from database to see if tree is private or public
+
 $servername = "localhost";
 $username = "vrdntf_nosrick";
 $password = "imvegan";
 $dbname = "vrdntf_myvegantree";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-$sql = "SELECT public FROM mvt_accounts WHERE id = '{$id}'";
+$sql = "SELECT public FROM mvt_accounts WHERE username = '{$grab_username}'";
 $result = mysqli_query($conn, $sql);
 $check_if_tree_public = mysqli_fetch_row($result);
 
@@ -139,8 +140,8 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 
 <?php
-  $username = $_GET["username"];
-  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE username = '{$username}'");
+
+  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE username = '{$grab_username}'");
   if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="tree">
     <div class="tree-inner">
