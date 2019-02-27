@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $sql);
 
 $final = mysqli_fetch_row($result);
 
-if ($lg == $id) {
+if ($lg == $id || $id == $vp) {
 	
 	// never lock the tree if you're logged in on your own tree
 	
@@ -48,9 +48,15 @@ echo '<div class="pt-box">
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
-		<input type="hidden" name="id" value="<?=$id?>" />
+		<input type="hidden" name="id" value="'. $id . '" />
 	</form>
-</div>';
+</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/jquery.livequery.js"></script>
+<script src="js/custom.js"></script>';
+
 exit;
 }
 }

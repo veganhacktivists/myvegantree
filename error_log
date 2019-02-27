@@ -279,3 +279,102 @@ Stack trace:
 [26-Feb-2019 16:41:22 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/vrdntf/public_html/myvegantree.org/configs/config.php:23) in /home1/vrdntf/public_html/myvegantree.org/configs/config.php on line 25
 [26-Feb-2019 16:41:35 America/Chicago] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home1/vrdntf/public_html/myvegantree.org/configs/config.php on line 23
 [26-Feb-2019 16:41:35 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/vrdntf/public_html/myvegantree.org/configs/config.php:23) in /home1/vrdntf/public_html/myvegantree.org/configs/config.php on line 25
+[26-Feb-2019 17:14:16 America/Chicago] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home1/vrdntf/public_html/myvegantree.org/index.php on line 209
+[26-Feb-2019 17:53:18 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:53:21 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:53:25 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:53:26 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:53:26 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:53:56 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:55:51 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:56:31 America/Chicago] PHP Parse error:  syntax error, unexpected 'Vegan' (T_STRING) in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 80
+[26-Feb-2019 17:56:46 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:56:48 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:56:49 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:56:49 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:57:55 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:58:01 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:58:06 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:59:12 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:59:15 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:59:15 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:59:15 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 17:59:27 America/Chicago] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sc_dehash(), 1 passed in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 145 and exactly 2 expected in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php:32
+Stack trace:
+#0 /home1/vrdntf/public_html/myvegantree.org/ajax.php(145): sc_dehash('imvegan')
+#1 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
+[26-Feb-2019 18:04:26 America/Chicago] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 135
+[26-Feb-2019 18:04:35 America/Chicago] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 135

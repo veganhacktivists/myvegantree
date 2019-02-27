@@ -132,30 +132,30 @@ if($pg == 'tree-edit'){
 		}
 	}
 	echo json_encode($alert);
-} elseif($pg == 'vpass-send'){
+}
+elseif($pg == 'vpass-send'){
  $id  = (int)($_POST['id']);
  $vpass  = sc_sec($_POST['vpass']);
 
  if(empty($vpass)){
-	 $alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
+     $alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
  } else {
-	//  if(db_rows('accounts WHERE vpassword = "'.$name.'" || email = "'.$name.'"')){
-		 $sql = db_select([
-				 'table'  => 'accounts',
-				 'where'  => 'id = "'.$id.'" && vpassword = "'.sc_dehash($vpass).'"'
-		 ]);
-		 if($sql->num_rows){
-				 $rs = $sql->fetch_assoc();
-				 $_SESSION['vpass']  = $rs['id'];
-				 $alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
-		 } else {
-			 $alert = ["type" => "danger", "msg" => fh_alerts("View password is incorrect!")];
-		 }
-	//  } else {
-	// 	 $alert = ["type" => "danger", "msg" => fh_alerts("Username or password is incorrect!")];
-	//  }
+         $sql = db_select([
+                 'table'  => 'accounts',
+                 'where'  => 'id = "'.$id.'"'
+         ]);
+         if($sql->num_rows){
+                 $rs = $sql->fetch_assoc();
+                 if (sc_dehash($rs['vpassword'], $vpass)) {
+                     $_SESSION['vpass'] = $rs['id'];
+                     $alert = ["id" => $rs['id'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
+                 }
+         } else {
+             $alert = ["type" => "danger", "msg" => fh_alerts("View password is incorrect!")];
+         }
  }
  echo json_encode($alert);
+
 } elseif($pg == "tree-delete"){
 	if($lg == db_get("bubbles", "family", $id))
 		db_delete("bubbles", $id);

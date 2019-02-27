@@ -20,7 +20,7 @@ $vp = (isset($_SESSION['vpass'])) ? (int)($_SESSION['vpass']) : 0;
 if ($LOGIN_REQ_OVERRIDE == true) {
 	// don't redirect if we're on impact (tree) pages, users can set public or private if they want
 } else {
-$whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=user-send", "/impact.php");
+$whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=vpass-send", "/ajax.php?pg=user-send", "/impact.php");
 
 if (!$lg && !in_array($_SERVER['REQUEST_URI'], $whitelist)) {
     // redirect if user is not logged in
