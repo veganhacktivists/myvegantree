@@ -20,9 +20,10 @@ $.fn.attachDragger = function(){
 
 $(".tree").attachDragger();
 
-var treePosition = $('.tree > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)').position();
+var treePosition = $('.tree-inner > ul:nth-child(1) > li:nth-child(1) > .tree-item:nth-child(1)').position();
 if (treePosition) {
 	$('.tree').scrollLeft(treePosition.left);
+	$('.tree').scrollTop(0);
 }
 
 $('#send-details').livequery('submit', function(){

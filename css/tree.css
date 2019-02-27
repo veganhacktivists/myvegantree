@@ -71,13 +71,17 @@ sidebar::-webkit-scrollbar-button {display:none}
 
 .tree {
 	position: fixed;
-    top: 60px;
+    top: 0;
     bottom: 0;
     right: 0;
 	left: 400px;
 	overflow: scroll;
 	cursor: pointer;
-	padding: 0 300px 100px 300px;
+	padding: 0 0 100px;
+}
+
+.tree-inner {
+	padding:0 300px;
 }
 
 .tree .pt-thumb::after {
@@ -125,11 +129,11 @@ sidebar::-webkit-scrollbar-button {display:none}
 
 .tree ul {
 	padding-top: 20px;
-  position: relative;
+	position: relative;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
-  display: flex;
+	display: flex;
 }
 
 .tree li {

@@ -53,7 +53,7 @@ echo '<div class="pt-box">
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>';
 
@@ -125,20 +125,21 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 
 <?php
-$sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '{$id}'");
-
-if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
+  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '{$id}'");
+  if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="tree">
-	<?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
-	<ul>
-	<?php
-	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
-	while($rs_m = $sql_m->fetch_assoc()){
-		echo get_child($rs_m['id'], 0);
-	}
-	?>
-	</ul>
-	<?php endif; ?>
+    <div class="tree-inner">
+    <?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
+      <ul>
+        <?php
+          $sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
+          while($rs_m = $sql_m->fetch_assoc()){
+            echo get_child($rs_m['id'], 0);
+          }
+        ?>
+      </ul>
+    <?php endif; ?>
+    </div>
 	</div>
 	<?php } ?>
 </div>
@@ -238,6 +239,6 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>

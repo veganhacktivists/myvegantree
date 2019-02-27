@@ -107,7 +107,7 @@ function get_child($cid, $attached){
 	$list .= '</div>';
 
 	if ($attached == '1') {
-		$list .= 'test';
+		// $list .= 'test';
 	}
 
 	$get_children = "

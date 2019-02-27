@@ -208,19 +208,24 @@ $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '4'");
 $id = 4;
 if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="pt-sm">
-	<div class="tree">
-	<?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
-	<ul>
-	<?php
-	$sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
-	while($rs_m = $sql_m->fetch_assoc()){
-	echo get_child($rs_m['id'], 0);
-	}
-	?>
-	</ul>
-	<?php endif; ?>
-	</div>
-	</div>
+    <?php
+      /* The hard-coded 60px top value below is to stop the tree overlapping the 'This is an example tree' message on the homepage */
+    ?>
+    <div class="tree" style="top:60px;">
+      <div class="tree-inner">
+        <?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
+          <ul>
+            <?php
+              $sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
+              while($rs_m = $sql_m->fetch_assoc()){
+                echo get_child($rs_m['id'], 0);
+              }
+            ?>
+          </ul>
+        <?php endif; ?>
+        </div>
+      </div>
+    </div>
 	<?php } ?>
 </div>
 
@@ -319,7 +324,7 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>
