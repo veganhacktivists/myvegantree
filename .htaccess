@@ -1,0 +1,20 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ $1.php
+
+RewriteRule ^tree/([0-9a-zA-Z])+ tree.php?id=$1 [NC,L]
+
+RewriteCond %{HTTPS} !on
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+AddType text/html py
+AddHandler py-bin .py
+AddHandler cgi-script .py

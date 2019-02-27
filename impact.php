@@ -14,29 +14,47 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 
-// echo isset($vp) ;
-
-
+		 
+// Let's grab from database to see if tree is private or public
 $servername = "localhost";
 $username = "vrdntf_nosrick";
 $password = "imvegan";
 $dbname = "vrdntf_myvegantree";
-
-// Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-
 $sql = "SELECT public FROM mvt_accounts WHERE id = '{$id}'";
 $result = mysqli_query($conn, $sql);
+$check_if_tree_public = mysqli_fetch_row($result);
 
-$final = mysqli_fetch_row($result);
 
+	// let's count all direct impacts, including attached accounts
+	$cid_sql = "SELECT id FROM mvt_bubbles WHERE account_id = '{$id}'";
+	$cid_result = mysqli_query($conn, $cid_sql);
+	$grab_the_cid = mysqli_fetch_row($cid_result);
+	$cid = $grab_the_cid[0];
+	
+	$sql_count_direct_impacts = "
+        SELECT COUNT(*)
+          FROM ".prefix."bubbles b
+     LEFT JOIN ".prefix."requests r ON (b.account_id=r.to_id AND r.accepted=1)
+         WHERE (parent = '{$cid}' OR r.from_id = '{$id}')
+           AND type != 2
+         ORDER BY r.accepted, b.date ASC";
+		 
+	$result_count_direct_impacts = mysqli_query($conn, $sql_count_direct_impacts);
+	$count_direct_impacts = mysqli_fetch_row($result_count_direct_impacts);
+	
+	// now let's count indirect impacts by counting all bubbles minus direct impacts
+	// $count_all_bubbles = "SELECT COUNT(*) FROM mvt_bubbles WHERE family = '{$id}'";
+	// $indirect_impacts =  $count_all_bubbles - $count_direct_impacts[0];
+	
+	
 if ($lg == $id || $id == $vp) {
 	
 	// never lock the tree if you're logged in on your own tree
 	
 } else {
 	
-if($final[0] == 2) {
+if($check_if_tree_public[0] == 2) {
 
 echo '<div class="pt-box">
 	<h3 style="padding: 21px 0px 14px 0px;font-size: 24px;">This tree has been set to private!</h3>
@@ -112,11 +130,11 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 <table style="width: 100%;margin: 5px;">
  <tr>
     <td><i class="fas fa-star"></i>&nbsp;&nbsp;Directly impacted:&nbsp;&nbsp;</div></td>
-    <td style="text-align:left;"><b>6</b></td>
+    <td style="text-align:left;"><b><?php echo $count_direct_impacts[0];?></b></td>
   </tr>
    <tr>
     <td><i class="fas fa-star-half-alt"></i>&nbsp;&nbsp;Indirectly impacted:&nbsp;&nbsp;</div></td>
-    <td style="text-align:left;"><b>23</b></td>
+    <td style="text-align:left;"><b><?php //echo $indirect_impacts;?></b></td>
   </tr>
 </table>
 </div>

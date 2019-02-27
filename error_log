@@ -378,3 +378,4 @@ Stack trace:
   thrown in /home1/vrdntf/public_html/myvegantree.org/configs/func.sec.php on line 32
 [26-Feb-2019 18:04:26 America/Chicago] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 135
 [26-Feb-2019 18:04:35 America/Chicago] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in /home1/vrdntf/public_html/myvegantree.org/ajax.php on line 135
+[26-Feb-2019 20:06:43 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 48
