@@ -84,7 +84,7 @@ if($pg == 'tree-edit'){
 			$headers .= "Content-type:text/html;charset=UTF-8\r\n";
 			$headers .= "From: no-reply@myvegantree.org\r\n";
 
-			$sent = mail($result['email'], $subject, $content, $headers);
+			$sent = mail($result['email'], $subject, $content, $headers, '-f no-reply@myvegantree.org');
 			if (!$sent) {
 				$error = error_get_last()['message'];
 				error_log($error);
