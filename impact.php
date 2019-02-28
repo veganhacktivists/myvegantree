@@ -39,7 +39,6 @@ if ($lg && $lg == $view_id) {
 } else {
 
 	if($check_if_tree_public == 2) {
-		echo 'hey!';
 		echo '<div class="pt-box">
 			<h3 style="padding: 21px 0px 14px 0px;font-size: 24px;">This tree has been set to private!</h3>
 
