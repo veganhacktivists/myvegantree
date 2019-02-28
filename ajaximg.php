@@ -34,7 +34,7 @@ if(file_exists($_FILES['poll_file']['tmp_name']) || !is_uploaded_file($_FILES['p
 $photo = ($poll_imgurl) ? $poll_imgurl : $photo;
 $data  = [];
 
-$fields = array('name', 'status', 'photo', 'bio');
+$fields = array('name', 'label_id', 'photo', 'bio');
 	// "lastname"   => "'".sc_sec($_POST['lastname'])."'",
 	//"birthday"   => "'".sc_sec($_POST['birthday'])."'",
 	//"birthmonth" => "'".sc_sec($_POST['birthmonth'])."'",
@@ -61,7 +61,6 @@ foreach ($fields as $field) {
 		$data[$field] = "'".sc_sec($_POST[$field])."'";
 	}
 }
-
 
 if($id){
 	try {

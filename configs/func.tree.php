@@ -16,7 +16,10 @@
 function get_child($cid, $view_id, $attached){
 	global $db, $lg, $id;
 
-	$bubble = db_get('bubbles', '*', $cid);
+    $res = $db->query( sprintf( 'SELECT %1$sbubbles.account_id, %1$sbubbles.name, %1$1slabels.name as status, color, icon, photo FROM %sbubbles JOIN %1$slabels on label_id = %1$slabels.id WHERE %1$sbubbles.id = %d', prefix, $cid ) );
+    echo $db->error;
+    $bubble = $res->fetch_assoc();
+//	$bubble = db_get('bubbles', '*', $cid);
 
 	$list = '';
 	$list .= '<li>';
@@ -72,16 +75,7 @@ function get_child($cid, $view_id, $attached){
 	$list .= '</div>';
 	$list .= '<strong style="font-size: 20px;">'.$bubble['name'].'</strong>';
 
-
-	if (preg_match('/vegan/i', $bubble['status'])) {
-		$list .= '<div id="Vegan" class="Vegan" style="margin-top: 3px;background-color: #06bf01;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #06bf01;"><i class="fas fa-leaf"></i>&nbsp;&nbsp;Vegan</i></div>';
-	} else if (preg_match('/vegetarian/i', $bubble['status'])) {
-		$list .= '<div id="Vegetarian" class="Vegetarian" style="margin-top: 3px;background-color: #8677e0;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #8677e0;"><i class="fab fa-pagelines"></i>&nbsp;&nbsp;Vegetarian</i></div>';
-	} else if (preg_match('/plant\-based/i', $bubble['status'])) {
-		$list .= '<div id="Plant-Based" class="Plant-Based" style="margin-top: 3px;background-color: #4fc9d4;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #4fc9d4;"><i class="fab fa-envira"></i>&nbsp;&nbsp;Plant-Based</i></div>';
-	} else if (preg_match('/getting there/i', $bubble['status'])) {
-		$list .= '<div id="Getting there" class="Gettingthere" style="margin-top: 3px;background-color: #da6161;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #da6161;"><i class="fas fa-route"></i>&nbsp;&nbsp;Getting there</i></div>';
-	}
+	$list .= '<div style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
 
 	// Edit buttons
 	if($lg && $lg == $view_id && !$attached){

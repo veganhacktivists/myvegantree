@@ -308,7 +308,7 @@ elseif($pg == 'vpass-send'){
 	$res = $db->query($query);
 
 	if( $res ) {
-	    $query = sprintf( "UPDATE %slabels SET label_id = 1 WHERE label_id = %d", prefix, $id );
+	    $query = sprintf( "UPDATE %sbubbles SET label_id = 1 WHERE label_id = %d", prefix, $id );
 	    $res = $db->query($query);
 		$alert = [ 'success' => true ];
 	} else

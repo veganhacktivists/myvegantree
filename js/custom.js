@@ -106,7 +106,7 @@ $('.tree-edit').livequery('click', function(){
 	$('#send-details [name=id]').val(id);
 	$.get("ajax.php?pg=tree-edit&id="+id, function(data){
 		$('[name=name]').val(data.name);
-		$('[name=status]').val(data.status);
+		$('[name=label_id]').val(data.label_id);
 		$('[name=type]').val(data.type);
 		$('[name=photo]').val(data.photo);
 		$('[name=attached]').val(data.attached);

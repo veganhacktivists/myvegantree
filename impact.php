@@ -165,11 +165,12 @@ if ($lg && $lg == $view_id) {
 	</div>
 
 	<label>
-	<select name="status">
-	<option value="Vegan">Vegan</option>
-	<option value="Vegetarian">Vegetarian</option>
-	<option value="Plant-Based">Plant-Based</option>
-	<option value="Getting there">Getting there</option>
+	<select name="label_id">
+    <?php
+        $res = $db->query( sprintf( 'SELECT * from %slabels where account_id = %d or account_id IS NULL', prefix, $_SESSION[ 'login' ] ) );
+        while( $label = $res->fetch_assoc() )
+            printf( '<option value="%d">%s</option>', $label[ 'id' ], $label[ 'name' ] );
+    ?>
 	</select>
 	</label>
 
