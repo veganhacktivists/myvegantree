@@ -105,7 +105,6 @@ $('.tree-edit').livequery('click', function(){
 
 	$('#send-details [name=id]').val(id);
 	$.get("ajax.php?pg=tree-edit&id="+id, function(data){
-
 		$('[name=name]').val(data.name);
 		$('[name=status]').val(data.status);
 		$('[name=type]').val(data.type);
@@ -193,7 +192,7 @@ $('#send-login').livequery('submit', function(){
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 3000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'impact.php?username='+puerto.username); }, 3000);
+			setTimeout(function(){ $(location).attr('href', 'impact'); }, 3000);
 		}
 	}, 'json');
 

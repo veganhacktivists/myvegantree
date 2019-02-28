@@ -13,38 +13,25 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 
+$check_if_tree_public = $public;
 
-// Let's grab from database to see if tree is private or public
-$servername = "localhost";
-$username = "vrdntf_nosrick";
-$password = "imvegan";
-$dbname = "vrdntf_myvegantree";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-$sql = "SELECT public FROM mvt_accounts WHERE id = '4'";
-$result = mysqli_query($conn, $sql);
-$check_if_tree_public = mysqli_fetch_row($result);
+// let's count all direct impacts, including attached accounts
+//$bubble_id = db_get('bubbles', 'id', '4', 'account_id');
 
-
-	// let's count all direct impacts, including attached accounts
-	$cid_sql = "SELECT id FROM mvt_bubbles WHERE account_id = '4'";
-	$cid_result = mysqli_query($conn, $cid_sql);
-	$grab_the_cid = mysqli_fetch_row($cid_result);
-	$cid = $grab_the_cid[0];
-	
-	$sql_count_direct_impacts = "
+$sql_count_direct_impacts = "
         SELECT COUNT(*)
           FROM ".prefix."bubbles b
      LEFT JOIN ".prefix."requests r ON (b.account_id=r.to_id AND r.accepted=1)
          WHERE (parent = '28' OR r.from_id = '4')
            AND type != 2
          ORDER BY r.accepted, b.date ASC";
-		 
-	$result_count_direct_impacts = mysqli_query($conn, $sql_count_direct_impacts);
-	$count_direct_impacts = mysqli_fetch_row($result_count_direct_impacts);
+
+$count_result = $db->query($sql_count_direct_impacts);
+$count_direct_impacts = $count_result->fetch_row();
 
 // logged in? let's redirect from index to their tree URL
-if($lg) {
-echo '<META HTTP-EQUIV="refresh" content="0;URL=/impact.php?id='.$_SESSION['login'].'">';
+if ($lg) {
+	echo '<META HTTP-EQUIV="refresh" content="0;URL=/impact">';
 }
 
 
@@ -245,6 +232,7 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
         <?php if(db_count("bubbles WHERE family = '{$rs['id']}'")): ?>
           <ul>
             <?php
+
               $sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
               while($rs_m = $sql_m->fetch_assoc()){
                 echo get_child($rs_m['id'], 0);
@@ -370,4 +358,3 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
         }
     );
 </script>
-

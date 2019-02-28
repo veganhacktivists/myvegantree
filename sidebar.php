@@ -5,7 +5,7 @@
 
   <div id="account" style="background-color: white;padding: 15px 35px 15px 30px;border-radius: 10px;margin-bottom: 18px;">
     <?php if($lg): ?>
-      <span class="title" style="font-size:20px;">Welcome, <?php $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = '".$_SESSION['login']."'"); if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?><?=$rs['name']?>!<?php } ?></span>
+      <span class="title" style="font-size:20px;">Welcome, <?= $_SESSION['name'] ?></span>
     <?php endif; ?>
 
     <?php if(!$lg): ?>
@@ -16,25 +16,13 @@
 
     <?php if($lg): ?>
 
-	<?php
-	
-
-
-$sql_username = $db->query("SELECT username FROM ".prefix."accounts WHERE id = '".$_SESSION['login']."'");
-if($sql_username->num_rows){
-	$rs = $sql_username->fetch_assoc(); 
- } 
-
-
+<?php
 	// if you're on certain pages, we'll hide the "go back to tree" link at the top of the menu
-	
-	$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	if ($actual_link == 'https://myvegantree.org/account' || $actual_link == 'https://myvegantree.org/customize' || $actual_link == 'https://myvegantree.org/requests'){
-		 echo '<a href="https://myvegantree.org/impact.php?username='.$rs['username'].'"><button class="button" style="background-color:#6c97d6;margin-bottom:-7px; margin-top: 15px;"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Go back to your tree!</button></a>';
+    if ( preg_match('/\/(?:account|customize|requests)$/', $_SERVER['REQUEST_URI']) ) {
+		 echo '<a href="/impact"><button class="button" style="background-color:#6c97d6;margin-bottom:-7px; margin-top: 15px;"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Go back to your tree!</button></a>';
 	}
     $requests_count = db_count('requests', 'idrequests', 'WHERE to_id='.$lg);
-	?>
-
+?>
       <a href="/account"><button class="button" style="margin-top: 15px;"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Edit account</button></a><br>
       <a href="/customize"><button class="button"><i class="fas fa-cog"></i>&nbsp;&nbsp;Customization</button></a><br>
       <a href="/requests"><button class="button"><i class="fas fa-comments"></i>&nbsp;&nbsp;View requests <h7 style="float:right;"><?= $requests_count ?></h2> </button></a><br>

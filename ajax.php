@@ -2,7 +2,8 @@
 include __DIR__.'/configs/config.php';
 
 if($pg == 'tree-edit'){
-	$sql = $db->query("SELECT * FROM ".prefix."bubbles WHERE id = '{$id}'");
+	$edit_id = (int)($_GET['id']);
+	$sql = $db->query("SELECT * FROM ".prefix."bubbles WHERE id = $edit_id");
 	$rs = $sql->fetch_assoc();
 	echo json_encode($rs);
 } elseif($pg == 'tree-send'){
@@ -47,7 +48,7 @@ if($pg == 'tree-edit'){
     } elseif(db_count('accounts', 'username', 'WHERE username = "'.$username.'"')){
         $alert = ["type" => "danger", "msg" => fh_alerts("That username already exists!")];
 	} elseif(db_count('accounts', 'email', 'WHERE email = "'.$email.'"')){
-        $alert = ["type" => "danger", "msg" => fh_alerts("A user with that email is already registered!")];	
+        $alert = ["type" => "danger", "msg" => fh_alerts("A user with that email is already registered!")];
     } elseif(!check_email($email)) {
         $alert = ["type" => "danger", "msg" => fh_alerts("You need a correct email address!")];
 	} else {
@@ -66,7 +67,29 @@ if($pg == 'tree-edit'){
 				'family'     => $account_id
 			]);
 
+			$vars = Array();
+			$result = db_get('accounts', 'name,username,email', $account_id);
 			$_SESSION['login'] = $account_id;
+			$vars['name']      = $_SESSION['name']     = $result['name'];
+			$vars['email']     = $_SESSION['email']    = $result['email'];
+			$vars['username']  = $_SESSION['username'] = $result['username'];
+
+			#send registration email
+			$content = file_get_contents("templates/registration_welcome.html");
+			foreach ( $vars as $key => $value ) {
+				$content = preg_replace('/{{ '.$key.' }}/', $value, $content);
+			}
+			$subject  = "Welcome to My Vegan Tree!";
+			$headers  = "MIME-Version: 1.0\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8\r\n";
+			$headers .= "From: no-reply@myvegantree.org\r\n";
+
+			$sent = mail($result['email'], $subject, $content, $headers);
+			if (!$sent) {
+				$error = error_get_last()['message'];
+				error_log($error);
+			}
+
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
 		}
@@ -126,9 +149,12 @@ if($pg == 'tree-edit'){
 			$passwordHash = $result["password"];
 			if($pass == sc_dehash($passwordHash, $pass))
 			{
-				$_SESSION['login'] = $result['id'];
-				$username = db_get("accounts", "username", $result["id"]);
-				$alert = ["id" => $result['id'], "username" => $username, "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
+				$_SESSION['login']    = $result['id'];
+				$_SESSION['name']     = $result['name'];
+				$_SESSION['username'] = $result['username'];
+				$_SESSION['public']   = $result['public'];
+
+				$alert = ["id" => $result['id'], "username" => $result['username'], "type" => "success", "msg" => fh_alerts("Success! Loading tree...", "success")];
 			} else {
 				$alert = ["type" => "danger", "msg" => fh_alerts("Username or password is incorrect!")];
 			}
@@ -162,8 +188,9 @@ elseif($pg == 'vpass-send'){
  echo json_encode($alert);
 
 } elseif($pg == "tree-delete"){
-	if($lg == db_get("bubbles", "family", $id))
-		db_delete("bubbles", $id);
+	$delete_id = (int)($_GET['id']);
+	if($lg == db_get("bubbles", "family", $delete_id))
+		db_delete("bubbles", $delete_id);
 
 } elseif($pg == 'request-send') {
 	$username = sc_sec($_POST['username']);

@@ -15,44 +15,27 @@ if($vp && $vp != $id){
 }
 
 
-// Let's grab from database to see if tree is private or public
+$check_if_tree_public = $public;
 
-$servername = "localhost";
-$username = "vrdntf_nosrick";
-$password = "imvegan";
-$dbname = "vrdntf_myvegantree";
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-$sql = "SELECT public, id FROM mvt_accounts WHERE username = '{$grab_username}'";
-$result = mysqli_query($conn, $sql);
-$check_if_tree_public = mysqli_fetch_row($result);
-
-
-	// let's count all direct impacts, including attached accounts
-	$cid_sql = "SELECT id FROM mvt_bubbles WHERE account_id = '{$id}'";
-	$cid_result = mysqli_query($conn, $cid_sql);
-	$grab_the_cid = mysqli_fetch_row($cid_result);
-	$cid = $grab_the_cid[0];
-
-	$sql_count_direct_impacts = "
+// let's count all direct impacts, including attached accounts
+$bubble_id = db_get('bubbles', 'id', $id, 'account_id');
+$sql_count_direct_impacts = "
         SELECT COUNT(*)
           FROM ".prefix."bubbles b
      LEFT JOIN ".prefix."requests r ON (b.account_id=r.to_id AND r.accepted=1)
-         WHERE (parent = '{$cid}' OR r.from_id = '{$id}')
+         WHERE (parent = $bubble_id OR r.from_id = $id )
            AND type != 2
          ORDER BY r.accepted, b.date ASC";
+$result = $db->query($sql_count_direct_impacts);
+$count_direct_impacts = $result->fetch_row();
 
-	$result_count_direct_impacts = mysqli_query($conn, $sql_count_direct_impacts);
-	$count_direct_impacts = mysqli_fetch_row($result_count_direct_impacts);
-
-$grab_id = $check_if_tree_public[1];
-
-if ($lg == $grab_id || $grab_id == $vp) {
+if ($lg == $id || $id == $vp) {
 
 	// never lock the tree if you're logged in on your own tree
 
 } else {
 
-if($check_if_tree_public[0] == 2) {
+if($check_if_tree_public == 2) {
 
 echo '<div class="pt-box">
 	<h3 style="padding: 21px 0px 14px 0px;font-size: 24px;">This tree has been set to private!</h3>
@@ -64,7 +47,7 @@ echo '<div class="pt-box">
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
-		<input type="hidden" name="id" value="'. $grab_id . '" />
+		<input type="hidden" name="id" value="'. $id . '" />
 	</form>
 </div>
 
@@ -93,10 +76,10 @@ exit;
 // lets count how many times a bubble appears under a label
 // will need to edit status = variable when we get custom statuses
 
-$label_1 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegan' && family = '{$grab_id}'")->fetch_array();
-$label_2 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegetarian' && family = '{$grab_id}'")->fetch_array();
-$label_3 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Plant-Based' && family = '{$grab_id}'")->fetch_array();
-$label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting there' && family = '{$grab_id}'")->fetch_array();
+$label_1 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegan' && family = '{$id}'")->fetch_array();
+$label_2 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegetarian' && family = '{$id}'")->fetch_array();
+$label_3 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Plant-Based' && family = '{$id}'")->fetch_array();
+$label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting there' && family = '{$id}'")->fetch_array();
 
 ?>
 
@@ -142,7 +125,7 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 
 <?php
 
-  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE username = '{$grab_username}'");
+  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE username = '{$username}'");
   if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="tree">
     <div class="tree-inner">

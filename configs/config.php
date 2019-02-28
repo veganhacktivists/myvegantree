@@ -11,20 +11,23 @@ include __DIR__.'/connection.php';
 include __DIR__.'/func.sec.php';
 include __DIR__.'/func.db.php';
 
-$grab_username = $_GET["username"];
-$id = (isset($_GET['id'])) ? (int)($_GET['id']) : 0;
+$username = (isset($_SESSION['username'])) ? $_SESSION['username'] : '';
+$name     = (isset($_SESSION['name']))     ? $_SESSION['name']     : '';
+$public   = (isset($_SESSION['public']))   ? $_SESSION['public']   : '';
+
 $pg = (isset($_GET['pg'])) ? sc_sec($_GET['pg']) : '';
-$lg = (isset($_SESSION['login'])) ? (int)($_SESSION['login']) : 0;
 $vp = (isset($_SESSION['vpass'])) ? (int)($_SESSION['vpass']) : 0;
+$lg = (isset($_SESSION['login'])) ? (int)($_SESSION['login']) : 0;
+$id = $lg;
 
 // the code below ensures that if user is not logged in, they can't access any other page and get redirected to index
-if ($LOGIN_REQ_OVERRIDE == true) {
+if (isset($LOGIN_REQ_OVERRIDE) && $LOGIN_REQ_OVERRIDE == true) {
 	// don't redirect if we're on impact (tree) pages, users can set public or private if they want
 } else {
-$whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=vpass-send", "/ajax.php?pg=user-send", "/impact.php");
+    $whitelist = array("/", "/register", "/ajax.php?pg=login-send", "/ajax.php?pg=vpass-send", "/ajax.php?pg=user-send", "/impact.php");
 
-if (!$lg && !in_array($_SERVER['REQUEST_URI'], $whitelist)) {
-    // redirect if user is not logged in
-    header('Location: /');
-}
+    if (!$lg && !in_array($_SERVER['REQUEST_URI'], $whitelist)) {
+        // redirect if user is not logged in
+        header('Location: /');
+    }
 }
