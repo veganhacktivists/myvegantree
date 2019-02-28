@@ -18,7 +18,9 @@ if($vp && $vp != $id){
 $check_if_tree_public = $public;
 
 $view_name = isset($_GET['name']) ? $_GET['name'] : $username;
-$view_id = db_get('accounts', 'id', $view_name, 'username');
+$view_account = db_get('accounts', 'id,public', $view_name, 'username');
+$view_id = $view_account['id'];
+$check_if_tree_public = $view_account['public'];
 
 // let's count all direct impacts, including attached accounts
 $bubble_id = db_get('bubbles', 'id', $view_id, 'account_id');
@@ -32,35 +34,33 @@ $sql_count_direct_impacts = "
 $result = $db->query($sql_count_direct_impacts);
 $count_direct_impacts = $result ? $result->fetch_row() : 0;
 
-if ($lg == $id || $id == $vp) {
-
+if ($lg && $lg == $view_id) {
 	// never lock the tree if you're logged in on your own tree
-
+} elseif ($vp == $view_id) {
+	// View acccess via password
 } else {
 
-if($check_if_tree_public == 2) {
+	if($check_if_tree_public == 2) {
+		echo '<div class="pt-box">
+			<h3 style="padding: 21px 0px 14px 0px;font-size: 24px;">This tree has been set to private!</h3>
 
-echo '<div class="pt-box">
-	<h3 style="padding: 21px 0px 14px 0px;font-size: 24px;">This tree has been set to private!</h3>
-
-	<form class="pt-form" id="send-vpass">
-		<div class="pt-input">
-			<i class="icons icon-list"></i>
-			<input type="password" name="vpass" placeholder="Submit tree password">
+			<form class="pt-form" id="send-vpass">
+				<div class="pt-input">
+					<i class="icons icon-list"></i>
+					<input type="password" name="vpass" placeholder="Submit tree password">
+				</div>
+				<hr />
+				<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
+				<input type="hidden" name="id" value="'. $view_id . '" />
+			</form>
 		</div>
-		<hr />
-		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
-		<input type="hidden" name="id" value="'. $view_id . '" />
-	</form>
-</div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/jquery.livequery.js"></script>
-<script src="js/custom.js"></script>';
-
-exit;
-}
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/jquery.livequery.js"></script>
+		<script src="js/custom.js"></script>';
+		exit;
+	}
 }
 ?>
 

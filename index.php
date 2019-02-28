@@ -13,9 +13,12 @@ if($vp && $vp != $id){
 	$rt = false;
 }
 
+$view_id = 4;
 $check_if_tree_public = $public;
 
-$view_id = 4;
+$view_account = db_get('accounts', 'id,public', $view_id);
+$view_id = $view_account['id'];
+$check_if_tree_public = $view_account['public'];
 
 // let's count all direct impacts, including attached accounts
 $bubble_id = db_get('bubbles', 'id', $view_id, 'account_id');
