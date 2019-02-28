@@ -1,2 +1,6 @@
 
 configs/connection\.php
+
+*~
+*\.swp
+*\.swo

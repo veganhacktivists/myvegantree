@@ -16,6 +16,7 @@ if($vp && $vp != $id){
 <link rel="stylesheet" href="css/fontawesome-iconpicker.min.css" >
 
 <style>
+
 .wrapper {
   border : 0px dotted #ccc; padding: 0px;
 }
@@ -102,6 +103,10 @@ input {
     margin: .4rem;
 }
 
+.label-name:disabled {
+    background-color: #EEE !important;
+}
+
 </style>
 
 
@@ -139,13 +144,12 @@ input {
             }
             
             $disabled = is_null( $label[ 'account_id' ] ) ? 'disabled' : '';
-            $addHidden = $label[ 'account_id' ] != -1 ? ' style="display: none;"' : '';
             $alterHidden = $label[ 'account_id' ] == -1 ? ' style="display: none;"' : '';
             
 ?>
     <tr class="label-container<?php if($label[ 'account_id' ] == -1) echo ' new-label'; ?>">
-        <td><input type="text" class="label-name" placeholder="New Label" value="<?=$label[ 'name' ]?>" <?=$disabled?>></td>
-        <td><input type="color" class="label-color" value="<?=$label[ 'color' ]?>" <?=$disabled?>></td>
+        <td><input type="text" class="label-name" placeholder="New Label" value="<?=$label[ 'name' ]?>" data-value="<?=$label[ 'name' ]?>" <?=$disabled?>/></td>
+        <td><input type="color" class="label-color" value="<?=$label[ 'color' ]?>" <?=$disabled?>/></td>
         <td>
             <div class="btn-group">
                 <button data-selected="<?=$label[ 'icon' ]?>" type="button" class="icp icp-dd btn btn-default dropdown-toggle iconpicker-component label-icon" data-toggle="dropdown" <?=$disabled?>>
@@ -156,10 +160,10 @@ input {
             </div>
         </td>
         <td><?php if(!$disabled) {?>
-            <button class="btn btn-success add-label"<?=$addHidden?>><i class="fas fa-plus-square"></i></button>
+            <button class="btn btn-success add-label" style="display: none;">Add</button>
             <div class="btn-group alter-label"<?=$alterHidden?>>
                 <input type='hidden' class='label-id' value='<?=$label[ 'id' ]?>' />
-                <button class="btn btn-success edit-label"><i class="fas fa-check-square"></i></button>
+                <button class="btn btn-success edit-label" style="display: none;">Save</button>
                 <button class="btn btn-danger delete-label"><i class="fas fa-minus-square"></i></button>
             </div><?php }?>
         </td>
@@ -167,7 +171,7 @@ input {
 </table>
 
 		<hr />
-		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Customizations</button>
+		<button type="submit" class="pt-button bg-0 update-labels"><i class="icons icon-login"></i>Update Customizations</button>
 
 	</div>
 </div>
@@ -182,7 +186,7 @@ input {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/jquery.livequery.js"></script>
 <script src="js/custom.js"></script>
-<script src="js/fontawesome-iconpicker.min.js"></script>
+<script src="js/fontawesome-iconpicker.js"></script>
 <script>
     
     var currentLabel = $( '.new-label' );
@@ -192,20 +196,21 @@ input {
     $( '.add-label' ).livequery( 'click', addLabel );
     $( '.edit-label' ).livequery( 'click', editLabel );
     $( '.delete-label' ).livequery( 'click', deleteLabel );
-    
+    $( '.label-name' ).livequery( 'change', updateLabelState );
+    $( '.update-labels' ).click( updateAllLabels );
+
     function setupLabel() {
         
         $(this).iconpicker({});
-        
         
     }
     
     function addLabel( e ) {
         
-		var label = $( e.target ).parents( '.label-container' );
+        var label = $( e.target ).parents( '.label-container' ), input = label.find( '.label-name' );
 		
         var data = {
-            name: label.find( '.label-name' ).val(),
+            name: input.val(),
             color: label.find( '.label-color' ).val(),
             icon: label.find( '.icp').data('iconpicker').iconpickerValue
         };
@@ -219,14 +224,15 @@ input {
         }
         
         $.post( 'ajax.php?pg=add-label', data, function( r ) {
-			
+		    
 			if( !r.success ) {
 				
-				alert( 'Error: Unable to create new label.' );
+				alert( 'Error: Unable to create new label: ' + r.error );
 				return;
 				
 			}
-			
+		    
+		    input.data( 'value', data.name );
 			label.find( '.add-label' ).css( { display: 'none' } );
 			label.find( '.alter-label' ).css( { display: 'inline-block' } );
 			
@@ -238,11 +244,9 @@ input {
         
     }
     
-    
-    
     function editLabel( e ) {
         
-        var label = $( e.target ).parents( '.label-container' );
+        var editButton = $( e.target ), label = editButton.parents( '.label-container' );
         
         var data = {
             id: label.find( '.label-id' ).val(),
@@ -251,23 +255,69 @@ input {
             icon: label.find( '.icp').data('iconpicker').iconpickerValue
         }
         
-        $.post( 'ajax.php?pg=edit-label', data );
+        $.post( 'ajax.php?pg=edit-label', data, function( r ) {
+            
+            if( !r.success ) {
+				
+				alert( 'Error: Unable to edit label: ' + r.error );
+				return;
+				
+			}
+        
+            label.find( '.label-name' ).data( 'value', label.find( '.label-name' ).val() );
+            editButton.css( { display: 'none' } );
+            
+        }, 'json' );
         
     }
     
     function deleteLabel( e ) {
         
-        var label = $( e.target ).parents( '.label-container' );
-        
-        if( !confirm( 'Are you sure you want to delete label "' + label.find( '.label-name' ).val() + '"?' ) )
-            return;
-        
-        var data = {
-            id: label.find( '.label-id' ).val()
-        }
-        
-        $.post( 'ajax.php?pg=delete-label', data, function( r ) { if( r.success ) label.remove() }, 'json' );
+        var label = $( e.target ).parents( '.label-container' ), id = label.find( '.label-id' ).val(), name = label.find( '.label-name' ).val();
+        $.get( 'ajax.php?pg=count-label', { id: id }, function( r ) {
+
+            if(
+                ( r.count == 0 && !confirm( 'Are you sure you want to delete label "' + name + '"?\nThis label is not assigned to anyone.' ) ) ||
+                ( r.count != 0 && !confirm( 'Label "' + name + '" is attached to ' + ( r.count == 1 ? 'someone' : r.count + ' people'  ) + ', are you sure you want to delete it?' ) )
+            )
+                return;
+            
+            var data = {
+                id: id
+            }
+            
+            $.post( 'ajax.php?pg=delete-label', data, function( r ) { if( r.success ) label.remove() }, 'json' );
+
+        }, 'json' );
+
         
     }
-	
+    
+    function updateAllLabels() {
+       
+       $( '.label-container' ).each( function() {
+            
+            var label = $( this ), input = label.find( '.label-name' );
+            if( input.data( 'value' ) == input.val() )
+                return;
+
+            if( input.data( 'value' ) == '' )
+                label.find( '.add-label' ).click();
+            else                
+                label.find( '.edit-label' ).click();
+
+       } );
+
+    }
+
+    function updateLabelState( e ) {
+        
+        var input = $( e.target ),
+            button = input.data( 'value' ) == '' ? 'add-label' : 'edit-label',
+            label = input.parents( '.label-container' );
+        
+        label.find( '.' + button ).css( { display: input.data( 'value' ) == input.val() ? 'none' : 'inline-block' } );
+
+    }
+ 
 </script>

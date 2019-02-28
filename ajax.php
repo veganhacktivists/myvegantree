@@ -274,7 +274,7 @@ elseif($pg == 'vpass-send'){
         $id = db_insert( 'labels', [ 'name' => '"'.$name.'"', 'account_id' => $_SESSION['login'], 'color' => '"'.$color.'"', 'icon' => '"'.$icon.'"' ] );
         $alert = [ 'success' => true, 'id' => $id ];
     } else
-        $alert = [ 'success' => false ];
+        $alert = [ 'success' => false, error => 'Invalid label' ];
 
 
     echo json_encode($alert);
@@ -288,7 +288,7 @@ elseif($pg == 'vpass-send'){
 
     if( !empty( $name ) && preg_match( '/#[0-9A-Fa-f]{6}/', $color ) && !empty( $icon ) ) {
 
-		$query = sprintf( "UPDATE %slabels SET name = '%s', color = '%s', icon = '%s' WHERE id = %d and account_id = %d ", prefix, $name, $color, $icon, $id, $_SESSION['login'] );
+		$query = sprintf( "UPDATE %slabels SET name = '%s', color = '%s', icon = '%s' WHERE id = %d and account_id = %d", prefix, $name, $color, $icon, $id, $_SESSION['login'] );
 		$res = $db->query($query);
 
 		if( $res )
@@ -296,20 +296,36 @@ elseif($pg == 'vpass-send'){
 		else
 			$alert = [ 'success' => false, 'error' => $db->error ];
     } else
-        $alert = [ 'success' => false ];
+        $alert = [ 'success' => false, 'error' => 'Invalid label' ];
 
-    echo $res;
     echo json_encode($alert);
 
 } elseif($pg == 'delete-label') {
 
     $id = (int) $_POST[ 'id' ];
 
-	$query = sprintf( "DELETE FROM %slabels WHERE id = %d and account_id = %d ", prefix, $id, $_SESSION['login'] );
+	$query = sprintf( "DELETE FROM %slabels WHERE id = %d and account_id = %d", prefix, $id, $_SESSION['login'] );
 	$res = $db->query($query);
 
-	if( $res )
+	if( $res ) {
+	    $query = sprintf( "UPDATE %slabels SET label_id = 1 WHERE label_id = %d", prefix, $id );
+	    $res = $db->query($query);
 		$alert = [ 'success' => true ];
+	} else
+		$alert = [ 'success' => false, 'error' => $db->error ];
+
+    echo json_encode($alert);
+
+} elseif($pg == 'count-label') {
+
+    $id = (int) $_GET[ 'id' ];
+
+	$query = sprintf( "SELECT count(*) FROM %sbubbles WHERE label_id = %d", prefix, $id );
+	$res = $db->query($query);
+	$count = $res->fetch_row()[0];
+
+	if( $res )
+		$alert = [ 'success' => true, 'count' => $count ];
 	else
 		$alert = [ 'success' => false, 'error' => $db->error ];
 
