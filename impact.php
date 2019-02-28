@@ -17,17 +17,20 @@ if($vp && $vp != $id){
 
 $check_if_tree_public = $public;
 
+$view_name = isset($_GET['name']) ? $_GET['name'] : $username;
+$view_id = db_get('accounts', 'id', $view_name, 'username');
+
 // let's count all direct impacts, including attached accounts
-$bubble_id = db_get('bubbles', 'id', $id, 'account_id');
+$bubble_id = db_get('bubbles', 'id', $view_id, 'account_id');
 $sql_count_direct_impacts = "
         SELECT COUNT(*)
           FROM ".prefix."bubbles b
      LEFT JOIN ".prefix."requests r ON (b.account_id=r.to_id AND r.accepted=1)
-         WHERE (parent = $bubble_id OR r.from_id = $id )
+         WHERE (parent = $bubble_id OR r.from_id = $view_id )
            AND type != 2
          ORDER BY r.accepted, b.date ASC";
 $result = $db->query($sql_count_direct_impacts);
-$count_direct_impacts = $result->fetch_row();
+$count_direct_impacts = $result ? $result->fetch_row() : 0;
 
 if ($lg == $id || $id == $vp) {
 
@@ -47,7 +50,7 @@ echo '<div class="pt-box">
 		</div>
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> View tree</button>
-		<input type="hidden" name="id" value="'. $id . '" />
+		<input type="hidden" name="id" value="'. $view_id . '" />
 	</form>
 </div>
 
@@ -113,7 +116,7 @@ exit;
 
 <?php
 
-  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE username = '{$username}'");
+  $sql = $db->query("SELECT * FROM ".prefix."accounts WHERE id = $view_id");
   if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 	<div class="tree">
     <div class="tree-inner">
@@ -122,7 +125,7 @@ exit;
         <?php
           $sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
           while($rs_m = $sql_m->fetch_assoc()){
-            echo get_child($rs_m['id'], 0);
+            echo get_child($rs_m['id'], $view_id, 0);
           }
         ?>
       </ul>
@@ -236,12 +239,12 @@ exit;
             var direct_count = <?php echo $count_direct_impacts[0]; ?>;
             var total = $('.pt-thumb').length;
             var indirect = total - 1 - direct_count;
-			
+
 			var total_vegan = $('.Vegan').length;
 			var total_vegetarian = $('.Vegetarian').length;
 			var total_plantbased = $('.Plant-Based').length;
 			var total_gettingthere = $('.Gettingthere').length;
-			
+
             $('#vegan-label-count').text('' + total_vegan);
 			$('#vegetarian-label-count').text('' + total_vegetarian);
 			$('#plantbased-label-count').text('' + total_plantbased);

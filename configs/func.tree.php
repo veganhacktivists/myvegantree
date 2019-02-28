@@ -13,7 +13,7 @@
 
 
 
-function get_child($cid, $attached){
+function get_child($cid, $view_id, $attached){
 	global $db, $lg, $id;
 
 	$bubble = db_get('bubbles', '*', $cid);
@@ -84,7 +84,7 @@ function get_child($cid, $attached){
 	}
 
 	// Edit buttons
-	if($lg && !$attached){
+	if($lg && $lg == $view_id && !$attached){
 		$button = "<button class='btn btn-danger tree-delete center-block' rel='".$cid."'>Delete</button>";
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
@@ -127,7 +127,7 @@ function get_child($cid, $attached){
 		$list .= '<ul>';
 		while($rs_m = $sql_m->fetch_assoc()){
 			$attached = ($attached || $rs_m['accepted']) ? 1 : 0;
-			$list .= get_child($rs_m['id'], $attached);
+			$list .= get_child($rs_m['id'], $view_id, $attached);
 		}
 		$list .= '</ul>';
 		$sql_m->close();
