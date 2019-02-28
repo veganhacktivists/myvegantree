@@ -15,14 +15,16 @@ if($vp && $vp != $id){
 
 $check_if_tree_public = $public;
 
+$view_id = 4;
+
 // let's count all direct impacts, including attached accounts
-//$bubble_id = db_get('bubbles', 'id', '4', 'account_id');
+$bubble_id = db_get('bubbles', 'id', $view_id, 'account_id');
 
 $sql_count_direct_impacts = "
         SELECT COUNT(*)
           FROM ".prefix."bubbles b
      LEFT JOIN ".prefix."requests r ON (b.account_id=r.to_id AND r.accepted=1)
-         WHERE (parent = '28' OR r.from_id = '4')
+         WHERE (parent = '$bubble_id' OR r.from_id = '$view_id')
            AND type != 2
          ORDER BY r.accepted, b.date ASC";
 
@@ -222,7 +224,7 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
 
               $sql_m = $db->query("SELECT * FROM ".prefix."bubbles WHERE family = '{$rs['id']}' && parent = 0 ORDER BY date ASC");
               while($rs_m = $sql_m->fetch_assoc()){
-                echo get_child($rs_m['id'], 0);
+                echo get_child($rs_m['id'], $view_id, 0);
               }
             ?>
           </ul>
@@ -340,12 +342,12 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
             var direct_count = <?php echo $count_direct_impacts[0]; ?>;
             var total = $('.pt-thumb').length;
             var indirect = total - 1 - direct_count;
-			
+
 			var total_vegan = $('.Vegan').length;
 			var total_vegetarian = $('.Vegetarian').length;
 			var total_plantbased = $('.Plant-Based').length;
 			var total_gettingthere = $('.Gettingthere').length;
-			
+
             $('#vegan-label-count').text('' + total_vegan);
 			$('#vegetarian-label-count').text('' + total_vegetarian);
 			$('#plantbased-label-count').text('' + total_plantbased);
