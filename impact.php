@@ -36,6 +36,8 @@ $count_direct_impacts = $result ? $result->fetch_row() : 0;
 
 if ($lg && $lg == $view_id) {
 	// never lock the tree if you're logged in on your own tree
+} elseif ($vp == $view_id) {
+	// View acccess via password
 } else {
 
 	if($check_if_tree_public == 2) {
