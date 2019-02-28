@@ -116,18 +116,17 @@ input {
   <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To edit your account details, go to Account <u><a href="https://myvegantree.org/account" style="color: #ffffff;">over here</a></u>!</h4>
 </div>
 
-<div class="pt-box" style="    width: 574px;
-    border-radius: 3px;
-    margin: 20px 0px 0px 50px;    background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
+<div class="pt-box" style="width: 574px;border-radius: 3px;margin: 20px 0px 0px 50px;background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
 
 
 	<div class="pt-form" id="send-detail" style="background-color: #ffffffba;">
 
-	<h4>Customize your Vegan tree!</h4><br>
+	<h4><b>Customize your Vegan tree!</b></h4><br>
 
+			 <p>You can customize the way your tree looks, along with creating labels that you can assign to individuals! Note: If you attempt to delete a custom label that is already assigned to existing people, those people will return to the default "Vegan" label.</p>
+<br>
 
-
-<h5>Labels</h5>
+<h4><b>Label Customization</b></h4><br>
 <table class="label-table">
 <?php
 		$sql = db_select(['table' => 'labels', 'where' => '(account_id IS NULL || account_id = ' . $_SESSION['login'] . ')']);
@@ -168,7 +167,7 @@ input {
 </table>
 
 		<hr />
-		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Account</button>
+		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Update Customizations</button>
 
 	</div>
 </div>

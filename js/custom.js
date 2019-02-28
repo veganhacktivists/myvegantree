@@ -161,9 +161,9 @@ $('#send-user').livequery('submit', function(){
 	$.post("ajax.php?pg=user-send", $(this).serialize(), function(puerto){
 		// console.log(data);
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
-		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'index.php'); }, 4000);
+			setTimeout(function(){ $(location).attr('href', 'index.php'); }, 1000);
 		}
 	}, 'json');
 
@@ -175,9 +175,9 @@ $('#send-detail').livequery('submit', function(){
 	$.post("ajax.php?pg=detail-send", $(this).serialize(), function(puerto){
 		console.log(puerto);
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
-		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ location.reload(); }, 4000);
+			setTimeout(function(){ location.reload(); }, 1000);
 		}
 	}, 'json');
 
@@ -190,9 +190,9 @@ $('#send-login').livequery('submit', function(){
 	$.post("ajax.php?pg=login-send", $(this).serialize(), function(puerto){
 		// console.log(data);
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
-		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 3000);
+		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'impact'); }, 3000);
+			setTimeout(function(){ $(location).attr('href', 'impact'); }, 1000);
 		}
 	}, 'json');
 
@@ -237,7 +237,7 @@ $('#request_send_btn').livequery('click', function(){
 	var user = $('#request_username').val().trim();
 	if ( !user || !user.match(/\w+/) ) {
 		$this.find('span').before($('<div class="alert alert-danger">Enter a valid user ID</div>').hide().fadeIn());
-		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 		return false;
 	}
 	var data = { username : user };
@@ -248,7 +248,7 @@ $('#request_send_btn').livequery('click', function(){
 		complete: function(response) {
 			var alert = JSON.parse(response.responseText);
 			$this.find('span').before($(alert.msg).hide().fadeIn());
-			setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 4000);
+			setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 			$('#request_username').val('');
 			if(alert.type == 'success') {
 				setTimeout(function(){ location.reload(); }, 1000);

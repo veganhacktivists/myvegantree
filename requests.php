@@ -108,7 +108,12 @@ th, td {
 
 
             <form class="pt-form" style="background-color: #ffffffba;">
- <h4>Tree Requests</h4><br>
+			 <h4><b>What are requests?</b></h4><br>
+			 <p>If someone you've impacted makes an account here, you can add them to your tree by username (by sending a request). If they accept your request, their tree will automatically be added to your tree, and their impact statistics will be added to yours - <i>live!</i>
+ <br>
+ <br>
+ <h4 style="background-color: #4caf50;color: white;padding: 8px 0px 8px 10px;margin: 0px 100px 10px 0px;border-radius: 5px;"><i class="fas fa-bell"></i>&nbsp;&nbsp;Recieved Requests</h4>
+
                 <?php
 
                 $get_requests = "
@@ -153,7 +158,7 @@ th, td {
                 $requests_sent = $db->query($get_sent_requests);
 
                 if ( $requests_sent->num_rows > 0 ) {
-                    echo '<hr><h4>Sent Requests</h4><br>';
+                    echo '<hr><h4 style="background-color: #da6161;color: white;padding: 8px 0px 8px 10px;margin: 0px 100px 10px 0px;border-radius: 5px;"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Sent Requests</h4>';
                     echo '<table id="requests_sent_table">';
                     echo '<tr><th>User</th><th>Status</th><th></th><th></th></tr>';
                     while ( $req = $requests_sent->fetch_assoc() ) {
@@ -170,8 +175,8 @@ th, td {
                 $requests_sent->close();
                 ?>
                 <span></span>
-                <table id="make_request_table">
-                    <tr><td>Make a Request</td><td></td></tr>
+                <table id="make_request_table" style="margin: 0px 0px -0px -9px;">
+                    <tr><td><h4 style="background-color: #337ab7;color: white;padding: 8px 0px 8px 10px;margin: 0px 77px 5px 0px;border-radius: 5px;"><i class="fas fa-users"></i>&nbsp;&nbsp;Make A Request</h4></td><td></td></tr>
                     <tr>
                         <td><input type="text" id="request_username" placeholder="Username" size="30"></td>
                         <td><button id="request_send_btn" class="btn btn-primary">Send Request</button></td>

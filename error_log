@@ -427,3 +427,43 @@ Stack trace:
   thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 94
 [27-Feb-2019 14:11:15 America/Chicago] PHP Parse error:  syntax error, unexpected '?>' in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 137
 [27-Feb-2019 15:29:13 America/Chicago] Mysql error: Duplicate entry 'dbarkz' for key 'username'
+[28-Feb-2019 03:47:15 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 03:47:20 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 03:47:27 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 03:47:30 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 03:47:35 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 03:47:41 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 04:03:39 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 04:04:50 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 05:13:16 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30
+[28-Feb-2019 05:22:14 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_row() on boolean in /home1/vrdntf/public_html/myvegantree.org/impact.php:30
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/impact.php on line 30

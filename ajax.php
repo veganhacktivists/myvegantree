@@ -132,7 +132,7 @@ if($pg == 'tree-edit'){
 		} catch (Exception $e) {
 			error_log( 'Mysql error: '.$e->getMessage() );
 		}
-		$alert = ["type" => "success", "msg" => fh_alerts("Your Username has updated succesfully!", "success")];
+		$alert = ["type" => "success", "msg" => fh_alerts("Your account has updated successfully!", "success")];
 	}
 	echo json_encode($alert);
 } elseif($pg == 'login-send'){

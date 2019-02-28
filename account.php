@@ -119,14 +119,17 @@ if($vp && $vp != $id){
   <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To customize your tree, go to Customization <u><a href="https://myvegantree.org/customize" style="color: #ffffff;">over here</a></u>!</h4>
 </div>
 
-<div class="pt-box" style="    width: 574px;
-    border-radius: 3px;
-    margin: 20px 0px 0px 50px;    background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
+<div class="pt-box" style="width: 574px;border-radius: 3px;margin: 20px 0px 0px 50px;background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
 
 
 	<form class="pt-form" id="send-detail" style="background-color: #ffffffba;">
 
-	<h4>Update your Account Details</h4><br>
+	<h4><b>Updating your account</b></h4><br>
+
+			 <p>You can update your account details here. If you've sent out tree requests that have been accepted, you will no longer be able to edit your username. Editing your username also changes your public/private tree link when you share it, your old link will break!</p>
+<br>
+
+	<h4><b>Update your Account Details</b></h4><br>
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
 			<input type="text" name="username" value="<?=db_get("accounts", "username", $lg)?>" placeholder="Update your Username">

@@ -164,19 +164,6 @@ endif;
 
 <div id="tree">
 
-<?php
-
-// lets count how many times a bubble appears under a label
-// will need to edit status = variable when we get custom statuses
-
-$label_1 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegan' && family = '4'")->fetch_array();
-$label_2 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Vegetarian' && family = '4'")->fetch_array();
-$label_3 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Plant-Based' && family = '4'")->fetch_array();
-$label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting there' && family = '4'")->fetch_array();
-
-?>
-
-
 <div class="header" id="myHeader">
   <h4><i class="fas fa-flag"></i>&nbsp;&nbsp;This is an example tree! Register or login to create or see yours!</h4>
 </div>
@@ -185,19 +172,19 @@ $label_4 = $db->query("SELECT COUNT(*) FROM mvt_bubbles WHERE status = 'Getting 
 <table style="margin: 5px;">
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #06bf01;color:#fff;"><i class="fas fa-leaf fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegan (<?php echo $label_1[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegan (<b id="vegan-label-count">23</b>)</td>
   </tr>
   <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #8677e0;color:#fff;"><i class="fab fa-pagelines fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegetarian (<?php echo $label_2[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Vegetarian (<b id="vegetarian-label-count">23</b>)</td>
   </tr>
     <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px;background-color: #4fc9d4;color:#fff;"><i class="fab fa-envira fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Plant-Based (<?php echo $label_3[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Plant-Based (<b id="plantbased-label-count">23</b>)</td>
   </tr>
       <tr>
     <td style="padding-top: 2px;"><div class="color-box" style="margin-bottom: 4px;padding-left: 5px;padding-top: 2px; background-color: #da6161;color:#fff;"><i class="fas fa-route fa-fw"></i></div></td>
-    <td style="vertical-align: middle;">&nbsp;&nbsp;Getting there (<?php echo $label_4[0];?>)</td>
+    <td style="vertical-align: middle;">&nbsp;&nbsp;Getting there (<b id="gettingthere-label-count">23</b>)</td>
   </tr>
 </table>
 
@@ -353,6 +340,16 @@ if($sql->num_rows){ $rs = $sql->fetch_assoc(); ?>
             var direct_count = <?php echo $count_direct_impacts[0]; ?>;
             var total = $('.pt-thumb').length;
             var indirect = total - 1 - direct_count;
+			
+			var total_vegan = $('.Vegan').length;
+			var total_vegetarian = $('.Vegetarian').length;
+			var total_plantbased = $('.Plant-Based').length;
+			var total_gettingthere = $('.Gettingthere').length;
+			
+            $('#vegan-label-count').text('' + total_vegan);
+			$('#vegetarian-label-count').text('' + total_vegetarian);
+			$('#plantbased-label-count').text('' + total_plantbased);
+			$('#gettingthere-label-count').text('' + total_gettingthere);
 
             $('#indirectly-impacted-count').text('' + indirect)
         }
