@@ -17,7 +17,7 @@ if($vp && $vp != $id){
 
 $check_if_tree_public = $public;
 
-$view_name = isset($_GET['name']) ? $_GET['name'] : $username;
+$view_name = isset($_GET['name']) ? sc_sec($_GET['name']) : $username;
 $view_account = db_get('accounts', 'id,public', $view_name, 'username');
 $view_id = $view_account['id'];
 $check_if_tree_public = $view_account['public'];
