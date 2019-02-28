@@ -19,7 +19,7 @@
 <?php
 	// if you're on certain pages, we'll hide the "go back to tree" link at the top of the menu
     if ( preg_match('/\/(?:account|customize|requests)$/', $_SERVER['REQUEST_URI']) ) {
-		 echo '<a href="/impact"><button class="button" style="background-color:#6c97d6;margin-bottom:-7px; margin-top: 15px;"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Go back to your tree!</button></a>';
+		 echo '<a href="/'.$_SESSION['username'].'"><button class="button" style="background-color:#6c97d6;margin-bottom:-7px; margin-top: 15px;"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Go back to your tree!</button></a>';
 	}
     $requests_count = db_count('requests', 'idrequests', 'WHERE to_id='.$lg);
 ?>

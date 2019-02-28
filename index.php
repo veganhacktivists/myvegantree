@@ -36,7 +36,7 @@ $count_direct_impacts = $count_result->fetch_row();
 
 // logged in? let's redirect from index to their tree URL
 if ($lg) {
-	echo '<META HTTP-EQUIV="refresh" content="0;URL=/impact">';
+	echo '<META HTTP-EQUIV="refresh" content="0;URL=/'.$_SESSION['username'].'">';
 }
 
 

@@ -192,7 +192,7 @@ $('#send-login').livequery('submit', function(){
 		$this.find('hr').before($(puerto.msg).hide().fadeIn());
 		setTimeout(function(){ $this.find('.alert').fadeOut(function(){ $(this).remove(); }); }, 1000);
 		if(puerto.type == 'success') {
-			setTimeout(function(){ $(location).attr('href', 'impact'); }, 1000);
+			setTimeout(function(){ $(location).attr('href', puerto.username); }, 1000);
 		}
 	}, 'json');
 
