@@ -27,7 +27,12 @@ $sql_count_direct_impacts = "
            AND type != 2
          ORDER BY r.accepted, b.date ASC";
 $result = $db->query($sql_count_direct_impacts);
-$count_direct_impacts = $result->fetch_row();
+//$count_direct_impacts = $result->fetch_row();
+$count_direct_impacts = 0;
+if ($result && $result->num_rows) {
+	$result->fetch_row();
+}
+
 
 if ($lg == $id || $id == $vp) {
 
