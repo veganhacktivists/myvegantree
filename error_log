@@ -1,0 +1,30 @@
+[01-Mar-2019 03:09:41 America/Chicago] PHP Warning:  date_format() expects parameter 1 to be DateTimeInterface, string given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:09:41 America/Chicago] PHP Warning:  date_format() expects parameter 1 to be DateTimeInterface, string given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:09:41 America/Chicago] PHP Warning:  date_format() expects parameter 1 to be DateTimeInterface, string given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:11:49 America/Chicago] PHP Parse error:  syntax error, unexpected '.' in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:12:09 America/Chicago] PHP Warning:  date_create() expects parameter 1 to be string, array given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 22
+[01-Mar-2019 03:12:09 America/Chicago] PHP Warning:  date_format() expects parameter 1 to be DateTimeInterface, boolean given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:12:09 America/Chicago] PHP Warning:  date_create() expects parameter 1 to be string, array given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 22
+[01-Mar-2019 03:12:09 America/Chicago] PHP Warning:  date_format() expects parameter 1 to be DateTimeInterface, boolean given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:12:09 America/Chicago] PHP Warning:  date_create() expects parameter 1 to be string, array given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 22
+[01-Mar-2019 03:12:09 America/Chicago] PHP Warning:  date_format() expects parameter 1 to be DateTimeInterface, boolean given in /home1/vrdntf/public_html/myvegantree.org/configs/func.tree.php on line 38
+[01-Mar-2019 03:29:23 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home1/vrdntf/public_html/myvegantree.org/impact.php:1) in /home1/vrdntf/public_html/myvegantree.org/configs/config.php on line 2
+[01-Mar-2019 03:56:54 America/Chicago] Mysql error: Unknown column 'Vegan' in 'field list'
+[01-Mar-2019 03:58:14 America/Chicago] Mysql error: Unknown column 'Vegan' in 'field list'
+[01-Mar-2019 04:08:28 America/Chicago] Mysql error: Unknown column 'Vegan' in 'field list'
+[01-Mar-2019 04:21:25 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home1/vrdntf/public_html/myvegantree.org/customize.php:140
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/customize.php on line 140
+[01-Mar-2019 04:21:31 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home1/vrdntf/public_html/myvegantree.org/customize.php:140
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/customize.php on line 140
+[01-Mar-2019 06:37:24 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home1/vrdntf/public_html/myvegantree.org/customize.php:140
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/customize.php on line 140
+[01-Mar-2019 06:38:28 America/Chicago] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home1/vrdntf/public_html/myvegantree.org/customize.php:140
+Stack trace:
+#0 {main}
+  thrown in /home1/vrdntf/public_html/myvegantree.org/customize.php on line 140
