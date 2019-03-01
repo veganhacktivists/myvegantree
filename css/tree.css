@@ -75,8 +75,8 @@ sidebar::-webkit-scrollbar-button {display:none}
     bottom: 0;
     right: 0;
 	left: 400px;
-	overflow: scroll;
-	cursor: pointer;
+	overflow: hidden;
+	cursor: move;
 	padding: 0 0 100px;
 }
 
@@ -220,6 +220,7 @@ right connector from last child*/
 
 .tree .tree-item .pt-options i:hover {
 	color:black;
+	cursor: pointer;
 }
 
 

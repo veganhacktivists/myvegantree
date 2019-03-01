@@ -34,8 +34,8 @@ $sql_count_direct_impacts = "
 $count_result = $db->query($sql_count_direct_impacts);
 $count_direct_impacts = $count_result->fetch_row();
 
-// logged in? let's redirect from index to their tree URL
-if ($lg) {
+// logged in? let's redirect from index to their tree URL if we're not already on that page
+if ($lg && $_SERVER['REQUEST_URI'] != '/'.$_SESSION['username']) {
 	echo '<META HTTP-EQUIV="refresh" content="0;URL=/'.$_SESSION['username'].'">';
 }
 
