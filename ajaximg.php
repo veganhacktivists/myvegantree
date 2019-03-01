@@ -62,6 +62,19 @@ foreach ($fields as $field) {
 	}
 }
 
+// date
+if (isset($_POST['birthyear']) && $_POST['birthyear'] > 1900) {
+	$time = mktime(0, 0, 0, (int)$_POST['birthmonth'], (int)$_POST['birthday'], (int)$_POST['birthyear']);
+	$timestamp = date("Y-m-d H:i:s", $time);
+	if (preg_match('/^\d{4}\-\d{2}\-\d{2} /', $timestamp)) {
+		$data['date'] = "'".$timestamp."'";
+	}
+	else {
+		echo json_encode(['error' => 'Date, '.$timestamp.', is invalid', 'status' => 'error']);
+		exit;
+	}
+}
+
 if($id){
 	try {
 		db_update('bubbles', $data, $id);
