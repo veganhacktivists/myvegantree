@@ -7,13 +7,20 @@
     border-bottom: 1px solid #ebebeb!important;
     border-radius: 5px 5px 0 0!important;
 }
+
+.tooltip.top .tooltip-inner {
+    background-color: #da6161;
+}
+.tooltip.top .tooltip-arrow {
+     border-top-color: #da6161;
+}
 </style>
 
 <?php
 
 
 
-function get_child($cid, $attached){
+function get_child($cid, $view_id, $attached){
 	global $db, $lg, $id;
 
 	$bubble = db_get('bubbles', '*', $cid);
@@ -31,8 +38,8 @@ function get_child($cid, $attached){
         $u_color = '#da6161';
 	}
 
-	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';""></i>';
-	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666;""></i>';
+	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';"></i>';
+	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666; z-index: 500;" data-toggle="tooltip" data-placement="right" title="Bubble created on: '.$bubble['date'].'"></i>';
 
 	/*
 	Semantic popup below, to appear when hovering over the fa-user icon..
@@ -74,17 +81,17 @@ function get_child($cid, $attached){
 
 
 	if (preg_match('/vegan/i', $bubble['status'])) {
-		$list .= '<div id="Vegan" style="margin-top: 3px;background-color: #06bf01;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #06bf01;"><i class="fas fa-leaf"></i>&nbsp;&nbsp;Vegan</i></div>';
+		$list .= '<div id="Vegan" class="Vegan" style="margin-top: 3px;background-color: #06bf01;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #06bf01;"><i class="fas fa-leaf"></i>&nbsp;&nbsp;Vegan</i></div>';
 	} else if (preg_match('/vegetarian/i', $bubble['status'])) {
-		$list .= '<div id="Vegetarian" style="margin-top: 3px;background-color: #8677e0;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #8677e0;"><i class="fab fa-pagelines"></i>&nbsp;&nbsp;Vegetarian</i></div>';
+		$list .= '<div id="Vegetarian" class="Vegetarian" style="margin-top: 3px;background-color: #8677e0;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #8677e0;"><i class="fab fa-pagelines"></i>&nbsp;&nbsp;Vegetarian</i></div>';
 	} else if (preg_match('/plant\-based/i', $bubble['status'])) {
-		$list .= '<div id="Plant-Based" style="margin-top: 3px;background-color: #4fc9d4;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #4fc9d4;"><i class="fab fa-envira"></i>&nbsp;&nbsp;Plant-Based</i></div>';
+		$list .= '<div id="Plant-Based" class="Plant-Based" style="margin-top: 3px;background-color: #4fc9d4;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #4fc9d4;"><i class="fab fa-envira"></i>&nbsp;&nbsp;Plant-Based</i></div>';
 	} else if (preg_match('/getting there/i', $bubble['status'])) {
-		$list .= '<div id="Getting there" style="margin-top: 3px;background-color: #da6161;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #da6161;"><i class="fas fa-route"></i>&nbsp;&nbsp;Getting there</i></div>';
+		$list .= '<div id="Getting there" class="Gettingthere" style="margin-top: 3px;background-color: #da6161;"><i style="font-size: 14px;color: #fff;border-radius: 25px;background-color: #da6161;"><i class="fas fa-route"></i>&nbsp;&nbsp;Getting there</i></div>';
 	}
 
 	// Edit buttons
-	if($lg && !$attached){
+	if($lg && $lg == $view_id && !$attached){
 		$button = "<button class='btn btn-danger tree-delete center-block' rel='".$cid."'>Delete</button>";
 		$list .= '<span class="pt-options">';
 		$list .= '<i style="font-size: 20px;margin: 10px;float: left;" class="fas fa-user-edit tree-edit" rel="'.$cid.'"></i>';
@@ -127,7 +134,7 @@ function get_child($cid, $attached){
 		$list .= '<ul>';
 		while($rs_m = $sql_m->fetch_assoc()){
 			$attached = ($attached || $rs_m['accepted']) ? 1 : 0;
-			$list .= get_child($rs_m['id'], $attached);
+			$list .= get_child($rs_m['id'], $view_id, $attached);
 		}
 		$list .= '</ul>';
 		$sql_m->close();
