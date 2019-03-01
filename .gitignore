@@ -4,3 +4,4 @@ configs/connection\.php
 *~
 *\.swp
 *\.swo
+**/.DS_Store
