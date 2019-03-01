@@ -22,7 +22,7 @@ function get_child($cid, $view_id, $attached){
 	}
 
 	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';"></i>';
-	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666; z-index: 500;" data-toggle="tooltip" data-placement="right" title="Bubble created on: '.date_format($createdDate, 'd/m/Y H:i').'"></i>';
+	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666; z-index: 500;" data-toggle="tooltip" data-placement="right" title="User added on: '.date_format($createdDate, 'm/d/Y').'"></i>';
 
 
 
