@@ -26,7 +26,7 @@ function get_child($cid, $view_id, $attached){
     $res = $db->query( sprintf( 'SELECT %1$sbubbles.account_id, %1$sbubbles.name, %1$1slabels.name as status, color, icon, photo FROM %sbubbles JOIN %1$slabels on label_id = %1$slabels.id WHERE %1$sbubbles.id = %d', prefix, $cid ) );
     echo $db->error;
     $bubble = $res->fetch_assoc();
-//	$bubble = db_get('bubbles', '*', $cid);
+	$grab_bubble_date = db_get('bubbles', '*', $cid);
 
 	$list = '';
 	$list .= '<li>';
@@ -42,22 +42,8 @@ function get_child($cid, $view_id, $attached){
 	}
 
 	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';"></i>';
-	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666; z-index: 500;" data-toggle="tooltip" data-placement="right" title="Bubble created on: '.$bubble['date'].'"></i>';
+	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666; z-index: 500;" data-toggle="tooltip" data-placement="right" title="Bubble created on: '.$grab_bubble_date['date'].'"></i>';
 
-	/*
-	Semantic popup below, to appear when hovering over the fa-user icon..
-
-	$list .= '
-	<div class="ui flowing popup top left transition hidden">
-	<div class="ui three column divided center aligned grid">
-    <div class="column">
-	<h4 class="ui header">Private Note</h4>
-	<p>[insert note from database]</p>
-	<div class="ui button">Edit User</div>
-    </div>
-	</div>
-	</div>';
-	*/
 
 
 	// this code randomize default profile pictures on load with a bunch of different faces
@@ -115,17 +101,8 @@ function get_child($cid, $view_id, $attached){
 
 
 
-
-	// tree-delete
-	// rel="'.$cid.'"
-
-
 	$list .= '</div>';
 
-	/* if ($attached == '1') {
-		$list .= 'test';
-	}
-	*/
 
 	$get_children = "
         SELECT *
