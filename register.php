@@ -124,7 +124,7 @@ if($vp && $vp != $id){
 
 <div id="tree">
 <div class="header" id="myHeader">
-  <h4><i class="fas fa-cog"></i>&nbsp;&nbsp;To customize your tree, go to Customization <u>over here</u>!</h4>
+  <h4><i class="fas fa-user-tag"></i>&nbsp;&nbsp;Welcome to My Vegan Tree! Please register below...</h4>
 </div>
 
 <div class="pt-box" style="    width: 574px;
@@ -142,23 +142,31 @@ if($vp && $vp != $id){
 			<i class="icons icon-user"></i>
 			<input type="text" name="name" placeholder="Enter your first name">
 		</div>
+        <div class="pt-input">
+            <i class="icons icon-envelope"></i>
+            <input type="text" name="email" placeholder="Enter your email address"></div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>
-			<input type="password" name="pass" placeholder="Enter your password">
+			<input type="password" id="pass1" name="pass" placeholder="Enter your password">
 		</div>
 		<div class="pt-input">
-			<i class="icons icon-envelope"></i>
-			<input type="text" name="email" placeholder="Enter your email">
+			<i class="icons icon-key"></i>
+			<input type="password" id="pass2" placeholder="Confirm your password">
 		</div>
-			<p style="font-size: 15px;line-height: 16px;padding: 10px;"><i>Note: This next password is used for if you decide to make your tree private - but still want to share it with a select few people.</i></p>
-
-		<div class="pt-input">
+		<p style="font-size: 15px;line-height: 16px;padding: 10px;"><i>Note: This next password is used for if you decide to make your tree private - but still want to share it with a select few people.</i></p>
+        <select name="public" class="tree-select">
+        <option value="1">Make my tree link public</option>
+        <option value="2">Password protect my tree</option>
+        </select>
+		<div class="pt-input tree-pass" style="display: none;">
 			<i class="icons icon-list"></i>
 			<input type="password" name="vpass" placeholder="Enter your Tree password">
 		</div>
 		
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign Up</button>
+		<br><br>
+		<i>You'll get a welcome email after a successful registration! Be sure to check your Spam folder if you don't see it in your inbox!</i>
 	</form>
 </div>
 

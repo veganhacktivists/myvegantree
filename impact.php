@@ -19,6 +19,12 @@ $check_if_tree_public = $public;
 
 $view_name = isset($_GET['name']) ? sc_sec($_GET['name']) : $username;
 $view_account = db_get('accounts', 'id,public', $view_name, 'username');
+
+if( is_null( $view_account ) ) {
+    header( 'Location: /' );
+    die();
+}
+
 $view_id = $view_account['id'];
 $check_if_tree_public = $view_account['public'];
 
