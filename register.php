@@ -131,8 +131,9 @@ if($vp && $vp != $id){
     border-radius: 3px;
     margin: 20px 0px 0px 50px;    background: #fff0;box-shadow: 0 0px 0px rgba(0, 0, 0, 0.13);">
 
+	<form class="pt-form" id="send-user" style="background-color: #ffffffba;">
 
-	<form class="pt-form" id="send-user">
+
 		<div class="pt-input">
 			<i class="icons icon-user"></i>
 			<input type="text" name="username" placeholder="Enter a username">
@@ -143,19 +144,21 @@ if($vp && $vp != $id){
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>
-			<input type="password" name="pass" placeholder="Write your password">
-		</div>
-		<div class="pt-input">
-			<i class="icons icon-list"></i>
-			<input type="password" name="vpass" placeholder="Write your view password">
+			<input type="password" name="pass" placeholder="Enter your password">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-envelope"></i>
-			<input type="text" name="email" placeholder="Write your email">
+			<input type="text" name="email" placeholder="Enter your email">
 		</div>
+			<p style="font-size: 15px;line-height: 16px;padding: 10px;"><i>Note: This next password is used for if you decide to make your tree private - but still want to share it with a select few people.</i></p>
+
+		<div class="pt-input">
+			<i class="icons icon-list"></i>
+			<input type="password" name="vpass" placeholder="Enter your Tree password">
+		</div>
+		
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign Up</button>
-		<div class="pt-new"><a href="index.php">Sign in!</a></div>
 	</form>
 </div>
 
