@@ -150,7 +150,7 @@ if($vp && $vp != $id){
 
 		<div class="pt-input">
 
-		<select name="public">
+		<select name="public" class="tree-select">
 		
 		<?php 
 		
@@ -180,9 +180,9 @@ if($vp && $vp != $id){
 
 		</div>
 
-		<div class="pt-input">
+		<div class="pt-input tree-pass"<?php if($grabcurrentvalue) echo ' style="display: none;"'; ?>>
 			<i class="icons icon-list"></i>
-			<input type="password" name="vpass" placeholder="Update your tree password">
+            <input type="password" name="vpass" placeholder="Update your tree password" />
 		</div>
 	<p style="font-size: 13px;line-height: 16px;padding: 10px;">Note: If you password protect your tree, users you've given access to attach your tree will still be able to see your tree regardless!</p>
 

@@ -63,7 +63,11 @@ $('#send-vpass').livequery('submit', function(){
 	return false;
 });
 
+$('.tree-select').livequery('change',function( e ) {
 
+    $( '.tree-pass' ).css( { display: $( e.target ).val() == 1 ? 'none' : 'block' } ); 
+
+});
 
 $("#add_poll").submit(function(){
 	$('.button').prop('disabled', true);

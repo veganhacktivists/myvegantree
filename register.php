@@ -142,21 +142,23 @@ if($vp && $vp != $id){
 			<i class="icons icon-user"></i>
 			<input type="text" name="name" placeholder="Enter your first name">
 		</div>
+        <div class="pt-input">
+            <i class="icons icon-envelope"></i>
+            <input type="text" name="email" placeholder="Enter your email address"></div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>
-			<input type="password" id="pass1" name="pass" placeholder="Write your password">
+			<input type="password" id="pass1" name="pass" placeholder="Enter your password">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>
 			<input type="password" id="pass2" placeholder="Confirm your password">
 		</div>
-		<div class="pt-input">
-			<i class="icons icon-list"></i>
-			<input type="password" name="vpass" placeholder="Write your view password">
-		</div>
-			<p style="font-size: 15px;line-height: 16px;padding: 10px;"><i>Note: This next password is used for if you decide to make your tree private - but still want to share it with a select few people.</i></p>
-
-		<div class="pt-input">
+		<p style="font-size: 15px;line-height: 16px;padding: 10px;"><i>Note: This next password is used for if you decide to make your tree private - but still want to share it with a select few people.</i></p>
+        <select name="public" class="tree-select">
+        <option value="1">Make my tree link public</option>
+        <option value="2">Password protect my tree</option>
+        </select>
+		<div class="pt-input tree-pass" style="display: none;">
 			<i class="icons icon-list"></i>
 			<input type="password" name="vpass" placeholder="Enter your Tree password">
 		</div>
