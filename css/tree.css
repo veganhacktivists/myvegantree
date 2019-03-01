@@ -75,7 +75,7 @@ sidebar::-webkit-scrollbar-button {display:none}
     bottom: 0;
     right: 0;
 	left: 400px;
-	overflow: scroll;
+	overflow: hidden;
 	cursor: pointer;
 	padding: 0 0 100px;
 }
