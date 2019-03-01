@@ -149,10 +149,10 @@ input {
 ?>
     <tr class="label-container<?php if($label[ 'account_id' ] == -1) echo ' new-label'; ?>">
         <td><input type="text" class="label-name" placeholder="New Label" value="<?=$label[ 'name' ]?>" data-value="<?=$label[ 'name' ]?>" <?=$disabled?>/></td>
-        <td><input type="color" class="label-color" value="<?=$label[ 'color' ]?>" <?=$disabled?>/></td>
+        <td><input type="color" class="label-color" value="<?=$label[ 'color' ]?>" data-value="<?=$label[ 'color' ]?>" <?=$disabled?>/></td>
         <td>
             <div class="btn-group">
-                <button data-selected="<?=$label[ 'icon' ]?>" type="button" class="icp icp-dd btn btn-default dropdown-toggle iconpicker-component label-icon" data-toggle="dropdown" <?=$disabled?>>
+                <button data-selected="<?=$label[ 'icon' ]?>"  data-value="<?=$label[ 'icon' ]?>" type="button" class="icp icp-dd btn btn-default dropdown-toggle iconpicker-component label-icon" data-toggle="dropdown" <?=$disabled?>>
                     <i class="fa fa-fw"></i>
                     <span class="caret"></span>
                 </button>
@@ -196,7 +196,9 @@ input {
     $( '.add-label' ).livequery( 'click', addLabel );
     $( '.edit-label' ).livequery( 'click', editLabel );
     $( '.delete-label' ).livequery( 'click', deleteLabel );
-    $( '.label-name' ).livequery( 'change', updateLabelState );
+    $( '.label-name' ).livequery( 'input', updateLabelState );
+    $( '.label-icon' ).livequery( 'iconpickerSelected', updateLabelState );
+    $( '.label-color' ).livequery( 'change', updateLabelState );
     $( '.update-labels' ).click( updateAllLabels );
 
     function setupLabel() {
@@ -215,14 +217,6 @@ input {
             icon: label.find( '.icp').data('iconpicker').iconpickerValue
         };
         
-        if( !data.name ) {
-            
-            // I dunno, add some pretty client side validation flashiness someday
-            alert( 'The label name cannot be empty!' );
-            return;
-            
-        }
-        
         $.post( 'ajax.php?pg=add-label', data, function( r ) {
 		    
 			if( !r.success ) {
@@ -232,7 +226,7 @@ input {
 				
 			}
 		    
-		    input.data( 'value', data.name );
+		    setValue( label, data );
 			label.find( '.add-label' ).css( { display: 'none' } );
 			label.find( '.alter-label' ).css( { display: 'inline-block' } );
 			
@@ -252,7 +246,7 @@ input {
             id: label.find( '.label-id' ).val(),
             name: label.find( '.label-name' ).val(),
             color: label.find( '.label-color' ).val(),
-            icon: label.find( '.icp').data('iconpicker').iconpickerValue
+            icon: label.find( '.label-icon' ).data('iconpicker').iconpickerValue
         }
         
         $.post( 'ajax.php?pg=edit-label', data, function( r ) {
@@ -264,7 +258,7 @@ input {
 				
 			}
         
-            label.find( '.label-name' ).data( 'value', label.find( '.label-name' ).val() );
+            setValue( label, data );
             editButton.css( { display: 'none' } );
             
         }, 'json' );
@@ -298,25 +292,40 @@ input {
        $( '.label-container' ).each( function() {
             
             var label = $( this ), input = label.find( '.label-name' );
-            if( input.data( 'value' ) == input.val() )
+            
+            if( input.prop( 'disabled' ) )
                 return;
-
-            if( input.data( 'value' ) == '' )
-                label.find( '.add-label' ).click();
-            else                
-                label.find( '.edit-label' ).click();
+            
+            var button = input.data( 'value' ) == '' ? label.find( '.add-label' ) : label.find( '.edit-label' );
+            
+            if( button.css( 'display' ) != 'none' ) // can be either of block or inline-block otherwise
+                button.click();
 
        } );
 
     }
+    
+    function setValue( label, data ) {
+       
+       var input, props = [ 'name', 'color', 'icon' ];
+       for( var i in props ) {
+            input = label.find( '.label-' + props[ i ] );
+            input.data( 'value', data[ props[ i ] ] );
+       }
+        
+    }
 
     function updateLabelState( e ) {
         
-        var input = $( e.target ),
-            button = input.data( 'value' ) == '' ? 'add-label' : 'edit-label',
-            label = input.parents( '.label-container' );
+        var label = $( e.target ).parents( '.label-container' ),
+            name = label.find( '.label-name' ),
+            color = label.find( '.label-color' ),
+            icon = label.find( '.label-icon ' ),
+            button = name.data( 'value' ) == '' ? 'add-label' : 'edit-label';
+
+        var unchanged = name.val() == '' || ( name.data( 'value' ) == name.val() && color.data( 'value' ) == color.val() && icon.data( 'value' ) == icon.data('iconpicker').iconpickerValue );
         
-        label.find( '.' + button ).css( { display: input.data( 'value' ) == input.val() ? 'none' : 'inline-block' } );
+        label.find( '.' + button ).css( { display: unchanged ? 'none' : 'inline-block' } );
 
     }
  
