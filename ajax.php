@@ -64,7 +64,8 @@ if($pg == 'tree-edit'){
 			db_insert('bubbles', [
 				'account_id' => $account_id,
 				'name'       => "'".sc_sec($_POST['name'])."'",
-				'family'     => $account_id
+				'family'     => $account_id,
+				'label_id'     => 1,
 			]);
 
 			$vars = Array();
