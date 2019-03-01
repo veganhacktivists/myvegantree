@@ -7,6 +7,13 @@
     border-bottom: 1px solid #ebebeb!important;
     border-radius: 5px 5px 0 0!important;
 }
+
+.tooltip.top .tooltip-inner {
+    background-color: #da6161;
+}
+.tooltip.top .tooltip-arrow {
+     border-top-color: #da6161;
+}
 </style>
 
 <?php
@@ -34,8 +41,8 @@ function get_child($cid, $view_id, $attached){
         $u_color = '#da6161';
 	}
 
-	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';""></i>';
-	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666;""></i>';
+	$list .= '<i class="fas fa-users" style="font-size: 17px;position: absolute;margin: 10px;color: '.$u_color.';"></i>';
+	$list .= '<i class="fas fa-user" style="font-size: 17px;position: absolute;padding-left: 144px;padding-top: 9px;color: #666666; z-index: 500;" data-toggle="tooltip" data-placement="right" title="Bubble created on: '.$bubble['date'].'"></i>';
 
 	/*
 	Semantic popup below, to appear when hovering over the fa-user icon..
