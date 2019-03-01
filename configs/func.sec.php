@@ -37,7 +37,7 @@ function sc_dehash($hash, $data)
 
 function check_email($email){
 	$address = strtolower(trim($email));
-	return (preg_match("/^[a-zA-Z0-9_.-]{1,40}+@([a-zA-Z0-9_-]){2,30}+\.([a-zA-Z0-9]){2,20}$/i",$address));
+	return (preg_match("/^[a-zA-Z0-9_.-]{1,40}+@([a-zA-Z0-9_-]){2,30}+\.([a-zA-Z0-9.]){2,20}$/i",$address));
 }
 
 
