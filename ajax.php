@@ -43,7 +43,7 @@ if($pg == 'tree-edit'){
     $vpass = sc_sec($_POST['vpass']);
     $email = sc_sec($_POST['email']);
 
-    if(empty($username) || empty($name) ||empty($pass) || empty($vpass) || empty($email)){
+    if(empty($username) || empty($name) ||empty($pass) || empty($email)){
         $alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
     } elseif(db_count('accounts', 'username', 'WHERE username = "'.$username.'"')){
         $alert = ["type" => "danger", "msg" => fh_alerts("That username already exists!")];
@@ -57,7 +57,8 @@ if($pg == 'tree-edit'){
 			"name"     => "'".$name."'",
 			"password" => "'".sc_pass($pass)."'",
 			"vpassword" => "'".sc_pass($vpass)."'",
-			"email"    => "'".sc_sec($_POST['email'])."'"
+            "email"    => "'".sc_sec($_POST['email'])."'",
+            "public"   => (int) $_POST[ 'public' ]
 		];
 		try {
 			$account_id = db_insert('accounts', $data);
