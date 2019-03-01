@@ -8,7 +8,7 @@ $photo = sc_sec($_POST['photo']);
 
 $poll_imgurl = '';
 
-if(file_exists($_FILES['poll_file']['tmp_name']) || !is_uploaded_file($_FILES['poll_file']['tmp_name'])) {
+if(!file_exists($_FILES['poll_file']['tmp_name']) || !is_uploaded_file($_FILES['poll_file']['tmp_name'])) {
 	//echo 'No upload';
 } else {
 	$dir_dest = 'uploads';
