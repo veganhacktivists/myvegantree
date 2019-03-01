@@ -82,7 +82,19 @@ function get_child($cid, $view_id, $attached){
 	$list .= '</div>';
 	$list .= '<strong style="font-size: 20px;">'.$bubble['name'].'</strong>';
 
-	$list .= '<div style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
+	// count labels on tree for default label statistics
+	if ($bubble['status'] == "Vegan") {
+		$list .= '<div class="Vegan" style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
+	} else if ($bubble['status'] == "Vegetarian") {
+		$list .= '<div class="Vegetarian" style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
+	} else if ($bubble['status'] == "Plant-Based") {
+		$list .= '<div class="Plant-Based" style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
+	} else if ($bubble['status'] == "Getting there") {
+		$list .= '<div class="Gettingthere" style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
+	} else {
+		$list .= '<div style="margin-top: 3px;background-color: '.$bubble['color'].';"><i style="font-size: 14px;color: #fff;border-radius: 25px;"><i class="'.$bubble['icon'].'"></i>&nbsp;&nbsp;'.$bubble['status'].'</i></div>';
+	}
+	
 
 	// Edit buttons
 	if($lg && $lg == $view_id && !$attached){
