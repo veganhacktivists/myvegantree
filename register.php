@@ -165,6 +165,8 @@ if($vp && $vp != $id){
 		
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign Up</button>
+		<br><br>
+		<i>You'll get a welcome email after a successful registration! Be sure to check your Spam folder if you don't see it in your inbox!</i>
 	</form>
 </div>
 
