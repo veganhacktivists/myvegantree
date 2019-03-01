@@ -143,7 +143,11 @@ if($vp && $vp != $id){
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-key"></i>
-			<input type="password" name="pass" placeholder="Write your password">
+			<input type="password" id="pass1" name="pass" placeholder="Write your password">
+		</div>
+		<div class="pt-input">
+			<i class="icons icon-key"></i>
+			<input type="password" id="pass2" placeholder="Confirm your password">
 		</div>
 		<div class="pt-input">
 			<i class="icons icon-list"></i>

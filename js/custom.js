@@ -167,6 +167,12 @@ $('.logout').livequery('click', function(){
 
 
 $('#send-user').livequery('submit', function(){
+
+    if( $( '#pass1' ).val() != $( '#pass2' ).val() ) {
+        alert( 'Your passwords do not match!' );
+        return false;
+    }
+
 	$this = $(this);
 	$.post("ajax.php?pg=user-send", $(this).serialize(), function(puerto){
 		// console.log(data);
