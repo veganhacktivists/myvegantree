@@ -277,3 +277,7 @@ $('body').on('click', function (e) {
         $('[data-toggle="popover"]').popover('hide');
     }
 });
+
+$(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+})
