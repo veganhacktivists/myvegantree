@@ -47,6 +47,8 @@ if($pg == 'tree-edit'){
         $alert = ["type" => "danger", "msg" => fh_alerts("All fields are required!")];
     } elseif(db_count('accounts', 'username', 'WHERE username = "'.$username.'"')){
         $alert = ["type" => "danger", "msg" => fh_alerts("That username already exists!")];
+    } elseif(!preg_match('/^[\w.-]+$/', $username)){
+        $alert = ["type" => "danger", "msg" => fh_alerts("That username contains invalid characters.")];
 	} elseif(db_count('accounts', 'email', 'WHERE email = "'.$email.'"')){
         $alert = ["type" => "danger", "msg" => fh_alerts("A user with that email is already registered!")];
     } elseif(!check_email($email)) {
