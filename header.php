@@ -35,6 +35,16 @@ include_once __DIR__.'/configs/config.php';
 	<!-- Site & Tree CSS -->
 	<link rel="stylesheet" href="css/tree.css">
 	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130853914-4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-130853914-4');
+	</script>
 </head>
 <body class="pt-login">
 
