@@ -3,7 +3,7 @@
 $connect = [
 	'HOSTNAME' => 'myvegantree.org', // HOST NAME
 	'USERNAME' => 'vrdntf_vtreeuser',      // DATABASE USERNAME
-	'PASSWORD' => '*cpsess8279904246',      // DATABASE PASSWORD
+	'PASSWORD' => '94&7268imvegan1&785',      // DATABASE PASSWORD
 	'DATABASE' => 'vrdntf_myvegantree' // DATABASE NAME
 ];
 
