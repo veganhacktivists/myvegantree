@@ -162,6 +162,11 @@ if($vp && $vp != $id){
 			<i class="icons icon-list"></i>
 			<input type="password" name="vpass" placeholder="Enter your Tree password">
 		</div>
+		<br>
+		<div class="pt-input">
+		<input type="checkbox" class="form-check-input" name="newslettercheck">
+		<label class="form-check-label" for="newslettercheck">Subscribe to our vegan newsletter!</label>
+		</div>
 		
 		<hr />
 		<button type="submit" class="pt-button bg-0"><i class="icons icon-login"></i> Sign Up</button>
