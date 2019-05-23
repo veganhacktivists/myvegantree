@@ -58,14 +58,14 @@
 
   <div id="donate" style="background-color: white;padding: 21px;border-radius: 10px;margin-bottom: 18px;">
     <center>
-      <a href="https://www.patreon.com/youaretheirvoice" target="_blank"><img src="/images/yatv-logo.png" style="width:70%;"></a>
+      <a href="https://www.patreon.com/veganhacktivists" target="_blank"><img src="/images/yatv-logo.png" style="width:70%;"></a>
       <br>
       <br>
-      This site is an 100% ad-less and free project by <a href="https://youaretheirvoice.com/" style="color: #da6161;" target="_blank">YouAreTheirVoice.com</a>, which is funded by its Patreon supporters. Please <a href="https://www.patreon.com/youaretheirvoice" style="color: #da6161;" target="_blank">consider a donation</a> if you find our site useful! Thank you <i>so much!</i>
+      This site is an 100% ad-less and free project by <a href="https://veganhacktivists.org/" style="color: #da6161;" target="_blank">VeganHacktivists.org</a>, which is funded by its Patreon supporters. Please <a href="https://www.patreon.com/veganhacktivists" style="color: #da6161;" target="_blank">consider a donation</a> if you find our site useful! Thank you <i>so much!</i>
     </center>
 
   </div>
-<center><a href="https://veganhacktivists.org" style="color: #fff;" target="_blank">Credits</a> <b style="color:#fff;">•</b> <a href="https://youaretheirvoice.com/contact?myvegantree" style="color: #fff;" target="_blank">Contact</a> <b style="color:#fff;">•</b> <a href="https://www.patreon.com/youaretheirvoice" style="color: #fff;" target="_blank">Donate</a><br>
+<center><a href="https://veganhacktivists.org" style="color: #fff;" target="_blank">Credits</a> <b style="color:#fff;">•</b> <a href="https://youaretheirvoice.com/contact?myvegantree" style="color: #fff;" target="_blank">Contact</a> <b style="color:#fff;">•</b> <a href="https://www.patreon.com/veganhacktivists" style="color: #fff;" target="_blank">Donate</a><br>
 <br><a href="https://youaretheirvoice.com/subscribe" style="color: #fff;" target="_blank"><i class="fas fa-envelope"></i> Signup to our Newsletter!</a></center>
 </div>
 <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us20.list-manage.com","uuid":"0baba35be8f6397f7ac1066f1","lid":"5fd11d4221","uniqueMethods":true}) })</script>
